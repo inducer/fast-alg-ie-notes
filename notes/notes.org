@@ -1925,10 +1925,9 @@ over \(m\). (Again: Smooth function leads to low rank!)
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-  #+ATTR_LATEX: :height 7cm
-  [[./media/bhut-01-particles.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :height 7cm
+# [[./media/bhut-01-particles.pdf]]
 #+END_CENTER
 
 *** Barnes-Hut: The Task At Hand
@@ -1958,20 +1957,17 @@ compute parts of it. To help do so, put down a grid.
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-  #+ATTR_LATEX: :height 5cm
-  [[./media/bhut-02-boxes.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :height 5cm
+# [[./media/bhut-02-boxes.pdf]]
 #+END_CENTER
 
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-
-  #+ATTR_LATEX: :height 5cm
-  [[./media/bhut-03-boxes-tgt.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :height 5cm
+# [[./media/bhut-03-boxes-tgt.pdf]]
 #+END_CENTER
 
 *** Barnes-Hut: Box Targets
@@ -1985,10 +1981,9 @@ For sake of discussion, choose one `box' as targets.
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-  #+ATTR_LATEX: :height 5cm
-  [[./media/bhut-04-boxes-mpole.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :height 5cm
+# [[./media/bhut-04-boxes-mpole.pdf]
 #+END_CENTER
 
 *** Barnes-Hut: Accuracy
@@ -2049,10 +2044,9 @@ boxes, instead make a /tree/.
 *** Box Splitting
 
 #+BEGIN_CENTER
-  #+ATTR_LATEX: :height 5cm
-  [[./media/bhut-05-levels.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :height 5cm
+# [[./media/bhut-05-levels.pdf]]
 #+END_CENTER
 
 *** Level Count
@@ -2073,11 +2067,9 @@ Options:
 *** Box Sizes
 
 #+BEGIN_CENTER
-
-  #+ATTR_LATEX: :height 5cm
-  [[./media/bhut-06-particles.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :height 5cm
+# [[./media/bhut-06-particles.pdf]]
 #+END_CENTER
 
 Want to evaluate all the \textcolor{red}{source} interactions with the
@@ -2090,11 +2082,9 @@ requirement?
 *** Multipole Sources
 
 #+BEGIN_CENTER
-
-  #+ATTR_LATEX: :height 5cm
-  [[./media/bhut-07-particle-tree.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :height 5cm
+# [[./media/bhut-07-particle-tree.pdf]]
 #+END_CENTER
 
 Data from which of these boxes could we bring in using multipole
@@ -2104,10 +2094,9 @@ function vs skeletons)
 *** Barnes-Hut: Box Properties
 
 #+BEGIN_CENTER
-  #+ATTR_LATEX: :height 5cm
-  [[./media/bhut-08-mpole-tree.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :height 5cm
+# [[./media/bhut-08-mpole-tree.pdf]]
 #+END_CENTER
 
 What properties do these boxes have?
@@ -2168,11 +2157,9 @@ We'll make a new word for that: A pair of boxes satisfying the condition
 
 Which of these boxes are well-separated from one another?
 #+BEGIN_CENTER
-
-  #+ATTR_LATEX: :height 5cm
-  [[./media/bhut-08-mpole-tree.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :height 5cm
+# [[./media/bhut-08-mpole-tree.pdf]]
 #+END_CENTER
 
 What is the cost of evaluating the \textcolor{blue}{target}
@@ -2206,11 +2193,9 @@ There are \(O (N)\) target boxes (because \(m\) is fixed), so we do the above \(
 *** Barnes-Hut: Next Revised Cost Estimate
 
 #+BEGIN_CENTER
-
-  #+ATTR_LATEX: :width \textwidth
-  [[./media/bhut-09-all-mpoles.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :width \textwidth
+# [[./media/bhut-09-all-mpoles.pdf]]
 #+END_CENTER
 
 Summarize the algorithm (so far) and the associated cost.
@@ -2237,11 +2222,9 @@ Let's start with the former.
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-
-  #+ATTR_LATEX: :width \textwidth
-  [[./media/bhut-10-mpoles-sources.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :width \textwidth
+# [[./media/bhut-10-mpoles-sources.pdf]
 #+END_CENTER
 
 How could this process be sped up?
@@ -2257,11 +2240,9 @@ But we already compute multipoles to summarize lower-level boxes...
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-
-  #+ATTR_LATEX: :width \textwidth
-  [[./media/bhut-11-mpoles-translate.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :width \textwidth
+# [[./media/bhut-11-mpoles-translate.pdf]]
 #+END_CENTER
 
 To get a new `big' multipole from a `small' multipole, we need a
@@ -2330,11 +2311,9 @@ maybe `downward' translation of /local/ expansions can help now.
 *** Using Multipole-to-Local
 
 #+BEGIN_CENTER
-
-  #+ATTR_LATEX: :width \textwidth
-  [[./media/fmm-mtol-1.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :width \textwidth
+# [[./media/fmm-mtol-1.pdf]]
 #+END_CENTER
 
 Come up with an algorithm that computes the interaction in the figure.
@@ -2359,11 +2338,9 @@ Let's consider the situation from the next level down.
 *** Using Multipole-to-Local: Next Level
 
 #+BEGIN_CENTER
-
-  #+ATTR_LATEX: :width \textwidth
-  [[./media/fmm-mtol-2.pdf]]
-
-  (Figure credit: G. Martinsson)
+# FIXME Add missing figure
+# #+ATTR_LATEX: :width \textwidth
+# [[./media/fmm-mtol-2.pdf]]
 #+END_CENTER
 
 Assuming we retain information from the previous level, how can we
@@ -2779,8 +2756,9 @@ Summary: Need to solve
      :BEAMER_col: 0.3
      :END:
 
-#+ATTR_LATEX: :height 4cm
-[[./media/cluster-compress-single.pdf]]
+# FIXME Add missing figure: find citable source
+# #+ATTR_LATEX: :height 4cm
+# [[./media/cluster-compress-single.pdf]]
 (Figure credit: G. Martinsson)
 
 *** Hierarchically Block-Separable
@@ -2805,10 +2783,11 @@ Start from the `most refined' level:
 In order to get \(O (N)\) complexity, could we apply this procedure recursively?
 #+BEGIN_CENTER
 
-  #+ATTR_LATEX: :height 6cm
-  [[./media/cluster-compress.pdf]]
+# FIXME Add missing figure: find citable source
+# #+ATTR_LATEX: :height 6cm
+# [[./media/cluster-compress.pdf]
 
-  (Figure credit: G. Martinsson)
+(Figure credit: G. Martinsson)
 #+END_CENTER
 
 *** Hierarchically Block-Separable
@@ -2829,11 +2808,11 @@ In order to get \(O (N)\) complexity, could we apply this procedure recursively?
 *** Telescoping Factorization
 
 #+BEGIN_CENTER
+# FIXME Add missing figure: find citable source
+# #+ATTR_LATEX: :width \textwidth
+# [[./media/telescoping-factorization.pdf]]
 
-  #+ATTR_LATEX: :width \textwidth
-  [[./media/telescoping-factorization.pdf]]
-
-  (Figure credit: G. Martinsson)
+(Figure credit: G. Martinsson)
 #+END_CENTER
 
 - The most decrease in `volume' happens in the off-diagonal part of the
