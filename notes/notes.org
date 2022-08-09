@@ -259,13 +259,13 @@ https://arxiv.org/abs/2012.06925, appendix B
 ** Notes
   :PROPERTIES:
   :RELATE_TREE_ICON: fa fa-book
-  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f19/notes.pdf
+  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f22/notes.pdf
   :END:
 
 ** Notes (unfilled, with empty boxes)
   :PROPERTIES:
   :RELATE_TREE_ICON: fa fa-book
-  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f19/notes-folded.pdf
+  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f22/notes-folded.pdf
   :END:
 
 *** What's the point of this class?
@@ -301,7 +301,7 @@ https://arxiv.org/abs/2012.06925, appendix B
 *** Class web page
 
 #+BEGIN_CENTER
-[[https://bit.ly/fastalg-f19]]
+[[https://bit.ly/fastalg-f22]]
 #+END_CENTER
 
 contains:
