@@ -4,6 +4,9 @@ Slides/notes and Jupyter notebook demos for an introductory course on fast algor
 for potential computation and mathematics for the solution of partial differential
 equations via boundary integral equation methods.
 
+**NOTE:** The notes are still missing a few figures that were removed due to
+licensing concerns. Those will be added in the next few weeks.
+
 Originally developed for [CS98APK](https://relate.cs.illinois.edu/course/cs598apk-f22/)
 in the [Department of Computer Science](https://cs.illinois.edu/)
 at the [University of Illinois](https://illinois.edu/).
