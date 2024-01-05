@@ -307,8 +307,10 @@ https://arxiv.org/abs/2012.06925, appendix B
 contains:
 
 - Class outline
+- Notes
+- Demos
 - Assignments
-- Piazza
+- Discussion forum
 - Grading
 - Video
 
