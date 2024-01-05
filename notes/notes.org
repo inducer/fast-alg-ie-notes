@@ -259,13 +259,13 @@ https://arxiv.org/abs/2012.06925, appendix B
 ** Notes
   :PROPERTIES:
   :RELATE_TREE_ICON: bi bi-book
-  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f24/notes.pdf
+  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-s24/notes.pdf
   :END:
 
 ** Notes (unfilled, with empty boxes)
   :PROPERTIES:
   :RELATE_TREE_ICON: bi bi-book
-  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f24/notes-folded.pdf
+  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-s24/notes-folded.pdf
   :END:
 
 *** What's the point of this class?
