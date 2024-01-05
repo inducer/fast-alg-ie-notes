@@ -7,7 +7,7 @@ equations via boundary integral equation methods.
 **NOTE:** The notes are still missing a few figures that were removed due to
 licensing concerns. Those will be added in the next few weeks.
 
-Originally developed for [CS98APK](https://relate.cs.illinois.edu/course/cs598apk-f22/)
+Originally developed for [CS98APK](https://relate.cs.illinois.edu/course/cs598apk-f24/)
 in the [Department of Computer Science](https://cs.illinois.edu/)
 at the [University of Illinois](https://illinois.edu/).
 
@@ -63,7 +63,7 @@ that I would be happy to share with you.
 
 ## MIT License
 
-Copyright (C) 2022 Andreas Kloeckner
+Copyright (C) 2013-2024 Andreas Kloeckner
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
