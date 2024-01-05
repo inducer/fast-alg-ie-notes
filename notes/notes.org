@@ -1,7 +1,7 @@
 #+TITLE: Fast Algorithms and Integral Equation Methods
 #+SUBTITLE: CS598APK
 #+AUTHOR: Andreas Kloeckner
-#+DATE: Fall 2022
+#+DATE: Fall 2024
 
 * To-do                                                            :noexport:
 ** TODO Work out kernel-independent M2L in more detail
@@ -259,13 +259,13 @@ https://arxiv.org/abs/2012.06925, appendix B
 ** Notes
   :PROPERTIES:
   :RELATE_TREE_ICON: fa fa-book
-  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f22/notes.pdf
+  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f24/notes.pdf
   :END:
 
 ** Notes (unfilled, with empty boxes)
   :PROPERTIES:
   :RELATE_TREE_ICON: fa fa-book
-  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f22/notes-folded.pdf
+  :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f24/notes-folded.pdf
   :END:
 
 *** What's the point of this class?
@@ -301,7 +301,7 @@ https://arxiv.org/abs/2012.06925, appendix B
 *** Class web page
 
 #+BEGIN_CENTER
-[[https://bit.ly/fastalg-f22]]
+[[https://bit.ly/fastalg-f24]]
 #+END_CENTER
 
 contains:
@@ -404,7 +404,7 @@ These notes (and the accompanying demos) are open-source!
 Bug reports and pull requests welcome: https://github.com/inducer/fast-alg-ie-notes
 
 \bigskip
-Copyright (C) 2013 -- 22 Andreas Kloeckner
+Copyright (C) 2013 -- 24 Andreas Kloeckner
 
 \bigskip
 \scriptsize
