@@ -314,6 +314,7 @@ contains:
 - Grading
 - Video
 
+*** TODO Incorporate advertising from s24 run
 *** Why study this at all?
 
 - Finite difference/element methods are inherently
