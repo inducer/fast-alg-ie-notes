@@ -606,7 +606,7 @@ Cost: \(O (N)\).
 Does this generalize? What is \(K\) here?
 
 #+LATEX: \begin{hidden}[4cm]
-- $k = \operatorname{rank} A$
+- $K = \operatorname{rank} A$
 - Sure does generalize. Cost: \(O (NK)\)
 - What if matrix has `full' rank? Cost back to \(O (N^2)\)
 #+LATEX: \end{hidden}
