@@ -886,9 +886,10 @@ What is one possible issue with the power method?
 Assumptions on \(\Omega\) are pretty weak--can use more or less
 anything we want.
 
-\(\rightarrow\) Make it so that we can apply the matvec \(A \Omega\) in \(O (n \log \ell )\) time.
+\(\rightarrow\) Make it so that we can apply the matvec \(A \Omega\) in \(O (n^2 \log \ell )\) time.
 
 How? Pick \(\Omega\) as a carefully-chosen subsampling of the Fourier transform.
+(many other approaches also exist)
 
 ** Low-Rank Approximation: Error Control
 *** Errors in Random Approximations
