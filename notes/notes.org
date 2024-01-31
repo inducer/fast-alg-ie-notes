@@ -758,8 +758,8 @@ Sure: Set \(B = Q\) and \(C = Q^T A\).
 
 If we have an LRA basis \(Q\), can we compute an SVD?
 #+LATEX: \begin{hidden}[6cm]
-1. \(B = Q^T A\)
-2. Compute an SVD of \(B\): \(B = \bar {U} \Sigma V^T\)
+1. \(C = Q^T A\)
+2. Compute an SVD of \(C\): \(C = \bar {U} \Sigma V^T\)
 3. Set \(U = Q \bar {U}\)
 
 Then: \(A \approx QQ^T A = Q \bar {U} \Sigma V^T = U \Sigma V^T . \)
