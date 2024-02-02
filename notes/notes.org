@@ -1085,21 +1085,20 @@ Accuracy (two $\approx$ on previous slide) vs. expense
 How would we use the ID in the context of the range finder?
 #+LATEX: \begin{hidden}
 - Can simply use ID on the sample matrix \(Y\)
-- Because of (essentially) the same argument, \(P\) made from \(Y\)
-  should transfer to \(A\).
+- \(P\) made from \(Y\) should transfer to \(A\) (similar argument)
 #+LATEX: \end{hidden}
 
 \demo{Interpolative Decomposition}
 
-*** What does the ID buy us?
-
+\medskip
 Name a property that the ID has over other factorizations.
 #+LATEX: \begin{hidden}
 
-It preserves (a subset of) matrix entries exactly.
-
-Copmosition with other transforms without (expensive!) matmats.
+- It preserves (a subset of) matrix entries exactly.
+- Copmosition with other transforms without (expensive!) matmats.
 #+LATEX: \end{hidden}
+
+*** ID: Impact on Low-Rank Algorithms
 
 All our randomized tools have two stages:
 
