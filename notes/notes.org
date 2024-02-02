@@ -1358,7 +1358,7 @@ Why is it interesting to consider Taylor expansions of Laplace point potentials?
 *** Taylor on Potentials (II)
 
 \footnotesize
-\verbatiminput{maxima-kernel-derivatives.txt}
+\verbatiminput{media/maxima-kernel-derivatives.txt}
 
 *** Taylor on Potentials (III)
 Which of these is the most dangerous (largest) term?
