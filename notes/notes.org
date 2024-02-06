@@ -1457,8 +1457,10 @@ goal?
 #+ATTR_LATEX: :height 4cm
 [[./media/local-expansion.pdf]]
 
-No, not really. In a roughly uniform target distribution with \(O (N)\) targets,
-we need \(O (N)\) local expansion \(\rightarrow\) nothing saved really.
+- If sources separated from targets: yes.
+- If no separation: unclear which sources should be included in expansion.
+  
+  And: would likely need many expansions.
 #+LATEX: \end{hidden}
 
 ** Multipole Expansions
