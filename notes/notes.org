@@ -328,6 +328,8 @@ contains:
 - Video
 
 *** TODO Incorporate advertising from s24 run
+
+# see https://relate.cs.illinois.edu/course/cs598apk-s24/file-version/9e0807db5f1ae05791f3b1cc142e48a16d76d7ff/lectures/classes/xournal-export/scribbles-2024-01-16-andreas.pdf#page=7
 *** Why study this at all?
 
 - Finite difference/element methods are inherently
