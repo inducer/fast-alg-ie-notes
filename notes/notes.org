@@ -8,6 +8,7 @@
 ** TODO Add Krasny's barycentric-formula M2M
 https://arxiv.org/abs/2012.06925, appendix B
 ** TODO Re-draw Gunnar's figures
+
 * LaTeX header setup stuff                                         :noexport:
 
 #+startup: beamer content indent
