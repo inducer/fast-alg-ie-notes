@@ -1430,8 +1430,9 @@ the Taylor series converges.
 
 *** Taylor on Potentials (VI)
 
-A few remarks:
+Generalize this to multiple source points:
 
+#+LATEX: \begin{hidden}
 - We have just invented one specific example of what we will call a
   /local expansion/ (of a potential \(\psi\)).
 
@@ -1445,6 +1446,7 @@ A few remarks:
     \[C_p \left ( \frac{r}{R} \right )^{k + 1} = \left ( \frac{\left .
            \text{dist(\tmtextbf{c}, furthest target} \right )}{\left .
            \text{dist(\tmtextbf{c}, closest source} \right )} \right )^{k + 1} \]
+#+LATEX: \end{hidden}
 
 *** Local expansions as a Computational Tool
 
