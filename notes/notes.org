@@ -1384,9 +1384,9 @@ components of \(\tmmathbf{y}\). So: hard to say.
 
 What's a bound on it? Let \(R = \sqrt{y_1^2 + y_2^2}\).
 #+LATEX: \begin{hidden}
-\[\left | \frac{5040 y_1}{(y_2^2 + y_1^2)^4}
-   \right | \leqslant C \left | \frac{y_1}{R^8} \right | \leqslant C
-   \frac{1}{R^7} . \]
+\[\left | \frac{120 y_1}{(y_2^2 + y_1^2)^3}
+   \right | \leqslant C \left | \frac{y_1}{R^6} \right | \leqslant C
+   \frac{1}{R^5} . \]
 #+LATEX: \end{hidden}
 
 `Generalize' this bound:
