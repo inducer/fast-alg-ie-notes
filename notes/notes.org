@@ -49,7 +49,7 @@ https://arxiv.org/abs/2012.06925, appendix B
 #+BEAMER_HEADER: \let\tmtextit=\textit
 #+BEAMER_HEADER: \let\tmtexttt=\texttt
 #+BEAMER_HEADER: \let\tmcolor=\textcolor
-#+BEAMER_HEADER: \let\tmmathbf=\mathbf
+#+BEAMER_HEADER: \let\tmmathbf=\boldsymbol
 #+BEAMER_HEADER: \let\tmem=\emph
 #+BEAMER_HEADER: \let\tmtt=\texttt
 #+BEAMER_HEADER: \let\tmop=\operatorname
