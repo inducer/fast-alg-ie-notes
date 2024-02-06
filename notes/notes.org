@@ -1036,7 +1036,7 @@ where
 *How* do we construct this (from RRQR): (short/fat case)
 
 #+LATEX: \begin{hidden}
-\(A \Pi = Q \begin{bmatrix} R_{11} & R_{12} \end{bmatrix} \)
+Suppose \(A \Pi = Q \begin{bmatrix} R_{11} & R_{12} \end{bmatrix} \)
 Set \(B = QR_{11} =(A\Pi)_{(:,J)}\).
 #+LATEX: \end{hidden}
 
