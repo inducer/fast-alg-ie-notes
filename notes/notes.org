@@ -1529,20 +1529,24 @@ The multipole expansion converges everywhere outside the circle!
 
 *** Multipole Expansions (III)
 
-If our particle distribution is like in the figure, then a multipole expansion
-is a computationally useful thing. If we set
+If our particle distribution is like in the figure: is a multipole expansion
+is a computationally useful thing?
+
+Set
 
 - \(S\) = #sources,
 - \(T\) = #targets,
-- \(K\) = #terms in expansion,
+- \(K\) = #terms in expansion.
 
-then the cost /without/ the expansion is \(O (ST)\),
+#+LATEX: \begin{hidden}
+Then the cost /without/ the expansion is \(O (ST)\),
 whereas the cost /with/ the expansion is \(O (SK + KT)\).
 
 If \(K \ll S, T\), then that's going from \(O (N^2)\) to \(O (N)\).\medskip
 
 The rank (#terms) of the multipole expansion is the same as above for the
-local expansion.\medskip
+local expansion.
+#+LATEX: \end{hidden}
 
 \demo{Multipole/local expansions}
 
