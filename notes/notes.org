@@ -1375,14 +1375,20 @@ Why is it interesting to consider Taylor expansions of Laplace point potentials?
 *** Taylor on Potentials (III)
 Which of these is the most dangerous (largest) term?
 
-\(\rightarrow\) Hard to say. They all contain the same number of powers of
-components of \(\tmmathbf{y}\).\medskip
+#+LATEX: \begin{hidden}
+Same number of powers of
+components of \(\tmmathbf{y}\). So: hard to say.
+#+LATEX: \end{hidden}
 
 What's a bound on it? Let \(R = \sqrt{y_1^2 + y_2^2}\).
+#+LATEX: \begin{hidden}
 \[\left | \frac{5040 y_1}{(y_2^2 + y_1^2)^4}
    \right | \leqslant C \left | \frac{y_1}{R^8} \right | \leqslant C
    \frac{1}{R^7} . \]
+#+LATEX: \end{hidden}
+
 `Generalize' this bound:
+#+LATEX: \begin{hidden}
 \[| D^p \psi | \leqslant C_p
 \begin{cases}
   \log (R) & | p | = 0\\
@@ -1392,6 +1398,7 @@ Appears true at least from the few \(p\) we tried. (Actually is true.)
 
 \(C_p\) is a `generic constant'--its value could change from one time it's
 written to the next.
+#+LATEX: \end{hidden}
 
 *** Taylor on Potentials (IV)
 
