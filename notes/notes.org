@@ -22,10 +22,22 @@ https://arxiv.org/abs/2012.06925, appendix B
 
 #+BEAMER_HEADER: \usepackage{environ}
 #+BEAMER_HEADER: \usepackage{tcolorbox}
+#+BEAMER_HEADER: \tcbuselibrary{skins}
 #+BEAMER_HEADER: \newif\ifshowhidden
+#+BEAMER_HEADER: \newif\ifshowlater
 #+BEAMER_HEADER: \showhiddentrue
+#+BEAMER_HEADER: \showlatertrue
 #+BEAMER_HEADER: \def\fillinbox#1{\begin{tcolorbox}[height=#1]\end{tcolorbox}}
-#+BEAMER_HEADER: \NewEnviron{hidden}[1][1.5cm]{\ifshowhidden\begin{tcolorbox}\BODY\end{tcolorbox}\else\fillinbox{#1}\fi}
+#+BEAMER_HEADER: \NewEnviron{hidden}[0]{\begin{tcolorbox}\ifshowhidden\BODY\else\phantom{\vbox{\BODY}}\vspace*{-1.25ex}\fi\end{tcolorbox}}
+#+BEAMER_HEADER: \NewEnviron{showlater}[0]{\begin{tcolorbox}[enhanced,frame hidden,colback=blue!5!white,borderline={1pt}{0pt}{blue,dashed}]%
+#+BEAMER_HEADER: \ifshowhidden\BODY\else%
+#+BEAMER_HEADER:   \ifshowlater%
+#+BEAMER_HEADER:     \uncover<2>{\BODY}\vspace*{-1.25ex}%
+#+BEAMER_HEADER:   \else%
+#+BEAMER_HEADER:     \phantom{\vbox{\BODY}}\vspace*{-1.25ex}%
+#+BEAMER_HEADER:   \fi%
+#+BEAMER_HEADER: \fi%
+#+BEAMER_HEADER: \end{tcolorbox}}
 
 #+BEAMER_HEADER: \let\plainhref=\href
 #+BEAMER_HEADER: \let\plainurl=\url
@@ -340,7 +352,7 @@ Idea of these methods:
 So what's wrong with doing that?
 
 *** Discretizing Derivatives: Issues?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 \begin{columns}
 \column{0.5\textwidth}
@@ -388,7 +400,7 @@ have these flaws!
 
 Both multigrid and fast/IE schemes ultimately are \(O (N)\) in the
 number of degrees of freedom \(N\).
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 But:
 
 #+ATTR_LATEX: :height 4cm
@@ -449,7 +461,7 @@ Assume \(A\) dense.
 
 \[A_{i j} = G (x_i, y_j) \]
 Does that actually change anything?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 \[\psi (x_i) = \sum _{j =
    1}^N G (x_i, y_j) \varphi (y_j) \]
 
@@ -470,7 +482,7 @@ But: Gain *terminology* and *intuition*:
 
 \[A_{i j} = G (x_i, y_j) \]
 Graphically, too:
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 #+ATTR_LATEX: :height 4cm
 [[./media/point-interactions.pdf]]
@@ -482,7 +494,7 @@ Each arrow corresponds to a matrix entry.
 
 \[\psi (x_i) = \sum _{j = 1}^N G (x_i, y_j) \varphi (y_j) \]
 This /feels/ different.
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 It's supposed to!
 
 \(G (x, y)\) defined for all \(x \in \mathbb{R}^3 ?\) *Possibly!* (Maybe
@@ -497,7 +509,7 @@ to make this worth studying?
 
 *** Point Interaction Matrices: Examples (I)
 
-#+LATEX: \begin{hidden}[7cm]
+#+LATEX: \begin{hidden}
 
 - (Lagrange) Interpolation:
   \(\ds \psi (x) = \sum _{j = 1}^N \ell _j (x) \varphi (y_j) \)
@@ -512,7 +524,7 @@ to make this worth studying?
 #+LATEX: \end{hidden}
 
 *** Point Interaction Matrices: Examples (II)
-#+LATEX: \begin{hidden}[7cm]
+#+LATEX: \begin{hidden}
 - Potential Evaluation: Potential of an electron at the origin in 3D?
   \[U (x) = \frac{q_{\tmop{el}}}{4 \pi } \cdot \frac{1}{| x |} \]
 
@@ -526,7 +538,7 @@ to make this worth studying?
 #+LATEX: \end{hidden}
 
 *** Point Interaction Matrices: Examples (III)
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 - Convolutions:
   \[\psi (x) = \sum _{j = 1}^N G (x - y_j) \varphi (y_j) \]
@@ -547,7 +559,7 @@ So yes, there are indeed lots of these things.
 
 Why did we go through the trouble of rephrasing matvecs as
 \[\psi (x_i) = \sum _{j = 1}^N G (x_i, y_j) \varphi (y_j) ? \]
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 - We're headed towards \emph{Integral Operators} (or `Integral
   Transforms') that look like this:
@@ -560,7 +572,7 @@ Why did we go through the trouble of rephrasing matvecs as
 
 \[\psi (x_i) = \sum _{j = 1}^N G (x_i, y_j) \varphi (y_j) \]
 So what can we do to make evaluating this cheaper?
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 - *Idea 1:* Make sure \(G\) evaluates to mostly zeros.
 
@@ -587,7 +599,7 @@ let \(\tmmathbf{u} = (u_i)\) and \(\tmmathbf{v} = (v_j)\).
 
 Can we compute \(A \tmmathbf{x}\) quickly? (for a vector
 \(\tmmathbf{x}\))
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 \[A = \tmmathbf{u} \tmmathbf{v}^T, \text{so} \]
 \[A \tmmathbf{x} = (\tmmathbf{u} \tmmathbf{v}^T) \tmmathbf{x} = \tmmathbf{u}
    (\tmmathbf{v}^T \tmmathbf{x}) \]
@@ -605,7 +617,7 @@ Cost: \(O (N)\).
    \tmmathbf{v}_K^T \]
 Does this generalize? What is \(K\) here?
 
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 - $K = \operatorname{rank} A$
 - Sure does generalize. Cost: \(O (NK)\)
 - What if matrix has `full' rank? Cost back to \(O (N^2)\)
@@ -616,7 +628,7 @@ Does this generalize? What is \(K\) here?
 Usable with low-rank complexity reduction?
 \[\psi (x_i) = \sum _{j = 1}^N G (x_i, y_j) \varphi (y_j) \]
 
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 \[\psi (x_i) = \sum _{j = 1}^N \underbrace{G_1 (x_i) G_2
    (y_j)}_{G (x_i, y_j)} \varphi (y_j) \]
 
@@ -635,7 +647,7 @@ Usable with low-rank complexity reduction?
 *** Numerical Rank
 
 What would a /numerical/ generalization of `rank' look like?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 First, what does \emph{exact} rank mean?
 \[A = UV, \]
 with \(U \in \mathbb{R}^{m \times k}\), \(V \in \mathbb{R}^{k \times n}\).
@@ -671,7 +683,7 @@ So in principle that's good news:
 *** Constructing a tool
 
 There is still a slight downside, though.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Suppose we wanted to use this to make the matvec cheaper.
 
 \smallskip
@@ -692,7 +704,7 @@ So we would need to make the /factorization/ cheaper as well.
 *** Representation
 
 What does all this have to do with (right-)preconditioning?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Idea behind Right Preconditioning:
 Instead of
 \[Ax = b \]
@@ -708,7 +720,7 @@ You could say: We change how we \emph{represent} the solution.
 #+LATEX: \end{hidden}
 
 *** Representation (in context)
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Connection with what we've been doing:
 
 - Assume \(Ax = b\) is a big, bad problem
@@ -737,7 +749,7 @@ Connection with what we've been doing:
 
 SVD answers low-rank-approximation (`LRA') question. But: too
 expensive. First, rephrase the LRA problem:
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Instead of the /factorization form/ \(A \approx BC^T \),
 
 we will ask for the /projection form/ of LRA: \(A \approx QQ^T A, \)
@@ -757,7 +769,7 @@ Sure: Set \(B = Q\) and \(C = Q^T A\).
 *** Using LRA bases
 
 If we have an LRA basis \(Q\), can we compute an SVD?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 1. \(C = Q^T A\)
 2. Compute an SVD of \(C\): \(C = \bar {U} \Sigma V^T\)
 3. Set \(U = Q \bar {U}\)
@@ -776,7 +788,7 @@ Can we hope to do better overall? (#entries?)
 *** Finding an LRA basis
 
 How would we /find/ an LRA basis?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Goal: Find \(Q\) columns so that
 \[| A - QQ^T A |_2 \leqslant \varepsilon .   \]
 *Question:* Do we know the number of columns \(k\) of \(Q\) ahead of
@@ -800,7 +812,7 @@ the power method.
 *** Giving up optimality
 
 What problem should we actually solve then?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Instead
 of
 \[| A - QQ^T A |_2 = \min _{\tmop{rank} (X) \leqslant k} | A - X |_2 =
@@ -815,7 +827,7 @@ with \(Q\) having \(k + p\) columns.
 *** Recap: The Power Method
 
 How did the power method work again?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 \(A\) square,
 eigenvalues
 \[| \lambda _1 | \geqslant | \lambda _2 | \geqslant \cdots \geqslant |
@@ -840,7 +852,7 @@ Then
 *** How do we construct the LRA basis?
 
 Put randomness to work:
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Design a /randomized
 range finder/:
 
@@ -856,7 +868,7 @@ range finder/:
 *** Tweaking the Range Finder (I)
 Can we accelerate convergence?
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 *Possible tweak:* Kill the unimportant bits of the range faster, by
 inserting a few iterations of the power method into Step 2:
@@ -872,7 +884,7 @@ But: singular values decay much faster:
 *** Tweaking the Range Finder (II)
 What is one possible issue with the power method?
 
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 - Overflow/FP problems
 
 - Normalization, orthogonalization
@@ -913,7 +925,7 @@ parameters as small as \(p = 5\).\medskip
 
 The result on the previous slide was /a-priori/. Once we're
 done, can we find out `how well it turned out'?
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 Sure: Just consider the error:
 \[A - QQ^T A \]
 Realize that what this does is instead of projecting onto the columns of \(Q\),
@@ -931,7 +943,7 @@ it projects onto their orthogonal complement:
 
 *** Adaptive Range Finding: Algorithm
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 - Compute small-ish fixed rank LRA
 
 - Check error
@@ -950,7 +962,7 @@ both use the same data!\medskip
 
 Sometimes the SVD is too /good/ (aka expensive)--we may need less
 accuracy/weaker promises, for a significant decrease in cost.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 This is where /RRQR/ or /pivoted QR/ comes in.
 
 For \(A \in \mathbb{R}^{m \times n}\),
@@ -976,7 +988,7 @@ where
 
 *** Using RRQR for LRA
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Given a RRQR factorization, we know
 
 - \(\sigma _{k + 1} \leqslant | R_{22} |_2  \) (i.e. it
@@ -1002,7 +1014,7 @@ Stop and think:
 Would be helpful to know /columns of \(A\)/ that contribute `the most' to the rank.
 
 (orthogonal transformation like in QR 'muddies the waters')
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 For a rank-\(k\) matrix \(A\), the /Interpolative
 Decomposition/ provides this:
 \[A_{m \times n} = A_{(:, J)} P_{k \times n}, \]
@@ -1028,7 +1040,7 @@ Set \(B = QR_{11} =(A\Pi)_{(:,J)}\).
 #+LATEX: \end{hidden}
 
 *Q:* What is \(P\), in terms of the RRQR?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 Next, set
 \(P = \begin{bmatrix} \tmop{Id} & R_{11}^{- 1} R_{12} \end{bmatrix} \Pi ^T \),
 then
@@ -1056,7 +1068,7 @@ then
 *** ID $Q$ vs ID $A$
 
 What does row selection mean for the LRA?
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 Starting point: At end of stage 1, have LRA \(A \approx QQ^T A. \)
 
 Run an ID on the /rows/ (i.e. a /transpose ID/) of \(Q\):
@@ -1124,7 +1136,7 @@ What is the impact of the ID?
 *** Leveraging the ID for SVD (I)
 
 Build a low-rank SVD with row extraction.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 1. Obtain the row subset \(J\) and upsampler \(\underset{N \times k}{P}\).
 
@@ -1143,7 +1155,7 @@ Build a low-rank SVD with row extraction.
 *** Leveraging the ID for SVD (II)
 
 In what way does this give us an SVD of \(A\)?
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 \begin{eqnarray*}
   &  & \underset{N \times k}{U}  \underset{k \times k}{\Sigma } \left (
       \underset{N \times k}{\bar {Q}}  \underset{k \times k}{\tilde {V}}
@@ -1159,7 +1171,7 @@ In what way does this give us an SVD of \(A\)?
 *** Leveraging the ID for SVD (III)
 
 *Q:* Why did we need to do the row QR?
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 Because otherwise we wouldn't have gotten a `real' SVD:
 
 \begin{eqnarray*}
@@ -1208,7 +1220,7 @@ further.
 *** Punchline
 
 What do (numerical) rank and smoothness have to do with each other?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 
 If the result of a (continuous) operation is smooth, its result can be
 represented with a short expansion in a function basis.
@@ -1234,7 +1246,7 @@ to get a lot of mileage out of low-rank machinery.\medskip
 
 What types of operations are smoothing?
 
-#+LATEX: \begin{hidden}[3.5cm]
+#+LATEX: \begin{hidden}
 
 - *Derivatives*: nope. Make a function `rougher'.
 
@@ -1258,7 +1270,7 @@ Decay of Taylor remainders.
 
 *** Recap: Multivariate Taylor
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 *1D Taylor:*
 \(\ds f (c + h) \approx \sum _{p = 0}^k \frac{f^{(p)} (c)}{p!} h^p \)
 
@@ -1280,7 +1292,7 @@ Decay of Taylor remainders.
 *** Taylor and Error (I)
 
 How can we estimate the error in a Taylor expansion?
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 Back to 1D:
 (\(n\)D is analogous)
 
@@ -1294,7 +1306,7 @@ assuming that the function is identical to its infinite Taylor expansion.
 *** Taylor and Error (II)
 Now suppose that we had an estimate that
 \(\ds\abs{\frac{f^{(p)} (c)}{p!} h^p} \leqslant \alpha ^p . \)
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 \vspace*{-2ex}
 \begin{eqnarray*}
   &  & \abs{\sum _{p = k + 1}^\infty  \frac{f^{(p)} (c)}{p!} h^p}\\
@@ -1311,7 +1323,7 @@ If \(\alpha < 1\), then this gives a viable bound.
 *** Connect Taylor and Low Rank
 
 Can Taylor help us establish low rank of an interaction?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 #+ATTR_LATEX: :height 2cm
 [[./media/taylor-schematic.pdf]]
@@ -1330,7 +1342,7 @@ expansion, then /low rank/!
 *** Taylor on Potentials (I)
 
 Compute a Taylor expansion of a 2D Laplace point potential.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 \begin{eqnarray*}
   \psi (x) & = & \sum _{i = 1}^n G (x, y_j) \varphi (y_j)\\
   & = & \sum _{i = 1}^n \log \left ( \norm{x - y}_2 \right ) \varphi (y_j)
@@ -1346,7 +1358,7 @@ Pick an expansion center \(\tmmathbf{c}\). WLOG, \(\tmmathbf{c} = \tmmathbf{0}\)
 
 Why is it interesting to consider Taylor expansions of Laplace point potentials?
 
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 - Fairly non-smooth (singular)
   - What works for them will also work for smoother functions
 - Important application in its own right
@@ -1383,7 +1395,7 @@ written to the next.
 *** Taylor on Potentials (IV)
 
 What does this mean for the convergence of the Taylor series as a whole?
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 \(\rightarrow\) Need to estimate each term. Recall that \(\tmmathbf{h}\) is the
 vector from \(\tmmathbf{c}\) to the target (aka point where we evaluate)
@@ -1397,12 +1409,16 @@ vector from \(\tmmathbf{c}\) to the target (aka point where we evaluate)
 
 *** Taylor on Potentials (V)
 
-Lesson: As long as
+Lesson?
+ 
+#+LATEX: \begin{hidden}
+As long as
 \begin{equation*}
 \frac{\max _i  | \tmmathbf{x}_i - \tmmathbf{c} |_2}{\min _j | \tmmathbf{y}_j
    - \tmmathbf{c} |_2   } = \frac{r}{R} < 1,
 \end{equation*}
 the Taylor series converges.
+#+LATEX: \end{hidden}
 
 *** Taylor on Potentials (VI)
 
@@ -1427,7 +1443,7 @@ A few remarks:
 Low rank makes evaluating interactions cheap(er). Do local
 expansions help with that
 goal?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 #+ATTR_LATEX: :height 4cm
 [[./media/local-expansion.pdf]]
 
@@ -1439,7 +1455,7 @@ we need \(O (N)\) local expansion \(\rightarrow\) nothing saved really.
 *** Taylor on Potentials, Again
 
 Stare at that Taylor formula again.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 \[\psi (\tmmathbf{x} - \tmmathbf{y}) \approx \sum _{| p | \leqslant k
      } \underbrace{\frac{D^p_{\tmmathbf{x}} \psi
@@ -1464,7 +1480,7 @@ At first sight, it doesn't look like much happened, but
 mathematically/geometrically, this is a very different animal.
 
 *First Q:* When does this expansion converge?
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 The analysis is the same as earlier:
 \[(\ast ) = \abs{\frac{D^p_{\tmmathbf{y}} \psi (\tmmathbf{ x -
@@ -1523,7 +1539,7 @@ local expansion.\medskip
 *** Taylor on Potentials: Low Rank?
 Connect this to the numerical rank observations:
 
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 We have just shown that point\(\rightarrow\)point potential interactions
 have low numerical rank!
 
@@ -1551,7 +1567,7 @@ low rank.
 *** On Rank Estimates
 
 So how many terms do we need for a given precision \(\varepsilon\)?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 \begin{equation*}
   \varepsilon \approx \left ( \frac{\left .
    \text{dist(\tmtextbf{c}, furthest target} \right )}{\left .
@@ -1573,7 +1589,7 @@ Want to relate this to \(K\) (#terms = rank). Take (2D) \(K \approx k^2\), i.e.
 *** Estimated vs Actual Rank
 
 Our rank estimate was off by a power of \(\log \varepsilon\). What gives?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Possible reasons:
 
 - Maybe by some happy accident some of the Taylor coefficients are zero?
@@ -1591,7 +1607,7 @@ Possible reasons:
 Look at \(\partial _x^2 G\) and \(\partial _y^2 G\) in the multipole demo again.
 Notice anything?
 
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 How does that relate to \(\Delta G = 0\)?
 
@@ -1604,7 +1620,7 @@ How does that relate to \(\Delta G = 0\)?
 *** Being Clever about Expansions
 
 How could one be clever about expansions? (i.e. give examples)
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 - Realize that in 2D, harmonic functions (\(\Delta u = 0\)) map one-to-one
   to complex-analytic ones.
@@ -1628,7 +1644,7 @@ How could one be clever about expansions? (i.e. give examples)
 *** Expansions for Helmholtz
 
 How do expansions for other PDEs arise?
-#+LATEX: \begin{hidden}[2cm]
+#+LATEX: \begin{hidden}
 - Transform Helmholtz PDE to polar coordinates
 - Obtain the Bessel ODE (in \(r\))
 - Solve resulting 1D BVP (in \(r\))
@@ -1656,7 +1672,7 @@ Actual expansions cheaper than LA approaches. Can this be fixed?
 \smallskip
 
 Compare costs for this situation:
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 - \(S\) sources
 - \(T\) targets
@@ -1686,7 +1702,7 @@ Oops. Can't be competitive, can it?
 *Q:* What error do we expect from the proxy-based multipole/local
 `expansions'?
 
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 - Function expansions give an indication of what is doable at a certain
   rank
@@ -1701,7 +1717,7 @@ Oops. Can't be competitive, can it?
 
 In particular, how general is this? Does this work for any
 kernel?
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 *No.* There are two (kernel-specific) miracles here:
 
 - We can /represent/ the far field of many sources in terms of
@@ -1804,7 +1820,7 @@ sources:
 \[\psi (\tmmathbf{x}) = \sum _{\tmmathbf{m} \in \mathbb{Z}^d} \sum _{j =
    1}^{N_{\tmop{src}}} G (\tmmathbf{x}, \tmmathbf{y}_j + \tmmathbf{m}) \varphi
    (\tmmathbf{y}_j) \]
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 `Potential' \(\psi\) is periodic as well (\(\rightarrow\) just need values in
 one unit cell).
 
@@ -1818,7 +1834,7 @@ Clear: Expressible as a convolution.
 *** Lattice Sums: Convergence
 *Q:* When does this have a right to converge?
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 - \(G = O (1)\) throghout obviously won't work
 
@@ -1844,7 +1860,7 @@ Clear: Expressible as a convolution.
 Clear: a discrete convolution. Would like to make use of the fact that
 the Fourier transform turns convolutions into products. How?
 
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 - $G$ is nonsmooth, it will have a Fourier transform with a long tail, hard to compute.
 - Idea: separate near (singular) and far part in such a way that
   far kernel is smooth enough for Fourier, and near is close enough
@@ -1853,7 +1869,7 @@ the Fourier transform turns convolutions into products. How?
 
 *** Ewald Summation: Screens
 
-#+LATEX: \begin{hidden}[7cm]
+#+LATEX: \begin{hidden}
 Split \(G\) into two parts with a /screen/ \(\sigma\) that
 `bleeps out' the singularity:
 \[G (\tmmathbf{x}) = \sigma (\tmmathbf{x}) G (\tmmathbf{x}) + (1 - \sigma
@@ -1876,7 +1892,7 @@ Then, suppose
 We can split the computation (from the perspective of a unit cell target) as
 follows:
 
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 |--------------+--------------------+-------------------------|
 |              | \(G_{\tmop{SR}}\)  | \(G_{\tmop{LR}}\)       |
 |--------------+--------------------+-------------------------|
@@ -1893,7 +1909,7 @@ follows:
 *** Ewald Summation: Summation (1D for simplicity)
 
 Interesting bit: How to sum \(G_{\tmop{LR}}\).
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 \vspace*{-3ex}
 \begin{eqnarray*}
   &  & \mathcal{F} \{\psi \}-\mathcal{F} \{\psi _{\tmop{SR}} \}
@@ -1942,7 +1958,7 @@ Want: All-pairs interaction.
 - In these (stolen) figures: \textcolor{blue}{targets} \textcolor{red}{sources}
 - Here: \textcolor{red}{targets and sources}
 
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 Specifically, want
 \[\tmmathbf{u} = A \tmmathbf{q} \]
 where
@@ -1992,7 +2008,7 @@ For sake of discussion, choose one `box' as targets.
 *** Barnes-Hut: Accuracy
 
 With this computational outline, what's the accuracy?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 \begin{eqnarray*}
   \varepsilon & \sim & \left ( \frac{d \left ( \text{box ctr}, \tmop{furthest}
     \tmop{src} \right )}{d \left ( \text{box ctr}, \text{closest tgt} \right )}
@@ -2009,7 +2025,7 @@ With this computational outline, what's the accuracy?
 *** Barnes-Hut (Single-Level): Computational Cost
 
 What's the cost of this algorithm?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Let:
 
 - \(N\) be #particles
@@ -2031,7 +2047,7 @@ Let:
 
 *** Barnes-Hut Single Level Cost: Observations
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Forget \(K\) (small, constant). Only mpole eval matters:
 \[\tmop{cost} \sim \frac{N^2}{m} \sim N^{1.5} . \]
 *Observations:* There are very many (very) far box-box
@@ -2054,7 +2070,7 @@ boxes, instead make a /tree/.
 
 *** Level Count
 How many levels?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Options:
 
 - Keep refining until the number of sources in each leaf box is below a
@@ -2108,7 +2124,7 @@ What properties do these boxes have?
 
 *** Barnes-Hut: Box Properties
 
-#+LATEX: \begin{hidden}[7cm]
+#+LATEX: \begin{hidden}
 
 *More complete:* We can put a uniform bound on the error in the
 (function) expansion at the target:\medskip
@@ -2127,7 +2143,7 @@ What properties do these boxes have?
 
 Which boxes in the tree should be allowed to contribute via multipole?
 
-#+LATEX: \begin{hidden}[7cm]
+#+LATEX: \begin{hidden}
 #+BEGIN_CENTER
 \begin{tikzpicture}[scale=0.7]
   \draw [thick] (-1,-1) rectangle (1,1) ;
@@ -2169,7 +2185,7 @@ What is the cost of evaluating the \textcolor{blue}{target}
 potentials, assuming that we know the multipole expansions already?
 
 *** Barnes-Hut: Revised Cost Estimate
-#+LATEX: \begin{hidden}[7cm]
+#+LATEX: \begin{hidden}
 - \(L\) be the number of levels
 - \(N\) be #particles
 - \(K\) be #terms in expansion
@@ -2206,7 +2222,7 @@ Summarize the algorithm (so far) and the associated cost.
 *** Barnes-Hut: Next Revised Cost Estimate
 
 Summarize the algorithm (so far) and the associated cost.
-#+LATEX: \begin{hidden}[7cm]
+#+LATEX: \begin{hidden}
 
 |                 | *How often*                             | *Cost*  | *Total cost*  |
 |-----------------+-----------------------------------------+---------+---------------|
@@ -2253,7 +2269,7 @@ new mathematical tool.
 
 *** Barnes-Hut: Translations
 
-#+LATEX: \begin{hidden}[7cm]
+#+LATEX: \begin{hidden}
 Nominally, all the tool needs to accomplish is to
 
 - take in a multipole expansion at one center
@@ -2277,7 +2293,7 @@ Questions:
 
 *** Cost of Multi-Level Barnes-Hut
 
-#+LATEX: \begin{hidden}[7cm]
+#+LATEX: \begin{hidden}
 *Just the new construction phase:*
 
 | *Level*                | *What*                      | *Cost*  | *How Many*     |
@@ -2324,7 +2340,7 @@ Come up with an algorithm that computes the interaction in the figure.
 *** Using Multipole-to-Local
 Come up with an algorithm that computes the interaction in the figure.
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 1. Form \textcolor{red}{multipoles}
 2. Translate \textcolor{red}{multipole} to \textcolor{blue}{local}
@@ -2356,7 +2372,7 @@ Assuming we retain information from the previous level, how can we
 obtain a valid local expansion on the \textcolor{blue}{target}
 box?
 
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 1. Obtain contribution from well-separated boxes on previous level by
   \textcolor{blue}{local}\(\rightarrow\)\textcolor{blue}{local} translation.
@@ -2376,7 +2392,7 @@ box?
 
 For a box \(b\), the interaction list \(I_b\) consists of all boxes
 \(b'\) so that
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 
 - \(b\) and \(b'\) are on the same level,
 
@@ -2451,7 +2467,7 @@ For a box \(b\), the interaction list \(I_b\) consists of all boxes
 #+END_CENTER
 
 *** Adaptivity: what changes?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 
 - Boxes interacting with a target box \(b\) can be at many levels
 - Both higher and lower
@@ -2459,7 +2475,7 @@ For a box \(b\), the interaction list \(I_b\) consists of all boxes
 
 *** FMM: List of Interaction Lists
 Make a list of cases:
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 1. Near/touching neighbor: direct
 2. Well-separated, same level: \(\tmop{mp} \rightarrow \tmop{loc}\)
@@ -2477,7 +2493,7 @@ Alternatively: `List U', `List V', ...
 
 Likely computational goal: Solve a linear system \(Ax = b\). How do
 our methods help with that?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 
 - Barnes-Hut/FMM/Ewald provide a matvec.
 
@@ -2491,7 +2507,7 @@ our methods help with that?
 *** A Matrix View of Low-Rank Interaction
 
 Only /parts of the matrix are low-rank/! What does this look like from a matrix perspective?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 #+BEGIN_CENTER
   \begin{tikzpicture}[x=1cm,y=-1cm, lr/.style={fill=black!20},scale=0.75]
@@ -2531,7 +2547,7 @@ Remarks about this matrix form:
 [[./media/coordinate-bisection.pdf]]
 
 \vspace{-5ex}
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 Then, assuming the right ordering, the matrix captures the following
 interactions:
 \[
@@ -2550,7 +2566,7 @@ The off-diagonal blocks have low-ish rank.
   D_1 & A_{12} & A_{13} & A_{14}\\A_{21} & D_2 & A_{23} & A_{24}\\A_{31} & A_{32} & D_3 & A_{34}\\A_{41} & A_{42} & A_{43} & D_4
 \end{bmatrix} \]
 where \(A_{i j}\) has low rank: How to capture rank structure?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 Recall column ID:
 \[A_{i j} \approx (A_{i j})_{(:, J)} \Pi _{\tmop{col}} \]
 Recall row ID:
@@ -2573,7 +2589,7 @@ What would the resulting matrix look like?
 Unlike FMMs, partitions here do not include "buffer" zones of near elements.
 What are the consequences?
 
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 - IDs will be built using proxies
 - If near-neighbor particles inside the proxy circle, simply include them as 'additional proxies'
   to enlarge the space enough to get accuracy for those interactions
@@ -2675,7 +2691,7 @@ Now work towards doing /just/ a `coarse' solve on \(\tmmathbf{\tilde
 {x}}\), using, effectively, the \ Schur complement. Multiply first row
 by \(\Pi D^{- 1}\), add to second:
 
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 \begin{eqnarray*}
   \begin{bmatrix}
     \Pi \tmcolor{red}{D^{- 1} D} & \Pi D^{- 1} B\\- \Pi & \tmop{Id}
@@ -2718,7 +2734,7 @@ The nomenclature makes (some) sense, because \(\widetilde{A_{}}_{i i}\) is a
 
 *** BSS Solve (IV)
 Next, left-multiply \((\tmop{Id} + \Pi D^{- 1} B)\) by \(\operatorname{diag}(\tilde A_{ii})\):
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 \begin{equation*}
     \begin{bmatrix}
     \tilde {A}_{11} &  &  & \\
@@ -2772,7 +2788,7 @@ To get to \(O (N)\), realize we can \emph{recursively}
 - eliminate more variables.
 
 Where does this process start?
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 Start from the `most refined' level:
 
   #+ATTR_LATEX: :height 4cm
@@ -2865,7 +2881,7 @@ fixed precision $\epsilon$.
 *** Recompression: Making use of Area-Bounded Rank
 
 How do rectangular submatrices get expressed so as to reveal their constant rank?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 #+BEGIN_CENTER
 \begin{tikzpicture}[scale=1.25,thick]
   \draw (0,0) coordinate (orig-a) rectangle ++(0.25,1.5);
@@ -2917,7 +2933,7 @@ claim needs to be viewed as \(n\to \infty\).
 *** Observations: Cost
 
 What is the cost (in the reduced-cost case) of the matvec?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 - Level 0: \(P_{0,k}\) have size \(r\times n/2^L\)
 - Level \(\ell\): \(P_{\ell,i,j}\) have size \(r\times 2r\)
 - Postprocess: \(B_{L,j}\) have size \(n/(2^L)\times r\)
@@ -2979,14 +2995,14 @@ cost of applying is substantially less than \(O(n^2)\).
 aka. /Free space Green's Functions/
 
 How do you assign a precise meaning to the statement with the \(\delta\)-function?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Multiply by a test function, integrate by parts.
 #+LATEX: \end{hidden}
 
 *** Green's Functions
 
 Why care about Green's functions?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 If you know them, they make
 solving the PDE simple:
 \[\triangle G = \delta \quad \Rightarrow \quad \triangle (G \ast f) = (f \ast
@@ -2995,7 +3011,7 @@ i.e. \(G \ast f\) is the solution to free-space Poisson \(\triangle u = f\).
 #+LATEX: \end{hidden}
 
 What is a non-free-space Green's function? I.e. one for a specific domain?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 One that satisfies \(\Delta G = \delta\) \emph{and} a boundary
 condition.
 #+LATEX: \end{hidden}
@@ -3003,12 +3019,12 @@ condition.
 *** Green's Functions (II)
 
 Why not just use domain Green's functions?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 We don't know them! (for general domains)
 #+LATEX: \end{hidden}
 
 What if we don't know a Green's function for our PDE... at all?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 Use a known one that works for the highest-order derivative parts of the PDE.
 #+LATEX: \end{hidden}
 
@@ -3142,7 +3158,7 @@ Can create norm from /inner product/: \(\|x\|= \sqrt{\langle x, x \rangle }\)
 *** Function Spaces
 
 Name some function spaces with their norms.
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 \begin{tabular}{l|p{12.0cm}}
   \(C (\Omega )\) & \(f\) continuous, \(\|f\|_\infty  \assign \sup _{x \in \Omega }     |f (x) |\)\\\(C^k (\Omega )\) & \(f\) \(k\)-times continuously differentiable\\\(C^{0, \alpha } (\Omega )\) & \(\|f\|_\alpha  \assign \|f\|_\infty  + \sup _{x     \ne y}  \frac{|f (x) - f (y) |}{|x - y|^\alpha }\) (\(\alpha \in (0, 1)\))\\\(C_L (\Omega )\) & \(|f (x) - (y) | \le L \|x - y\|\)\\\(L^p (\Omega )\) & \(\|f\|_p \assign \sqrt[p]{\int _D |f (x) |^p dx} < \infty\)
@@ -3154,7 +3170,7 @@ Name some function spaces with their norms.
 *** Convergence
 
 Name some ways in which a sequence can `converge'.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 #+LATEX: \begin{definition}[Convergent sequence]
 
@@ -3274,7 +3290,7 @@ Given
 \[(A \phi ) (x) \assign \int _G K (x, y) \varphi (y) dy, \]
 are we allowed to ask for a solution of
 \[(\tmop{Id} + A) \varphi = g ? \]
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 Will see three attempts to answer that,
 in roughly historical order:
 
@@ -3292,7 +3308,7 @@ Want to solve
 Formally:
 \[\varphi = (I - A)^{- 1} g. \]
 What does that remind you of?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 
 \[\sum _{k = 0}^\infty  \alpha ^k = \frac{1}{1 - \alpha } \]
 Only works if \(| \alpha | < 1  \)!
@@ -3316,7 +3332,7 @@ with \(\|(I - A)^{- 1} \|\le 1 / (1 -\|A\|)\).
 
 *Q:* Why does this fall short?
 
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 
 - \(\norm{A} \leqslant 1\) is /way/ to restrictive a condition.
 
@@ -3347,7 +3363,7 @@ with \(\|(I - A)^{- 1} \|\le 1 / (1 -\|A\|)\).
 *** Compact Sets (II)
 
 Counterexample to `precompact \(\Leftrightarrow\) bounded'? (\(\infty\) dim)
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 Looking for a bounded set where not
 every sequence contains a convergent subsequence. \(\rightarrow\) Make use of
 the fact that there are infinitely many `directions' (dimensions).\medskip
@@ -3408,7 +3424,7 @@ Let \(G \subset \mathbb{R}^n\) be compact.
 
 *Equicontinuous* means
 
-#+LATEX: \begin{hidden}[2cm]
+#+LATEX: \begin{hidden}
 For all \(x, y \in G\)
 
 for all \(\epsilon > 0\) there exists a \(\delta > 0\) such that for all \(f \in U\)
@@ -3418,7 +3434,7 @@ if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).\medskip
 
 *Continuous* means:
 
-#+LATEX: \begin{hidden}[2cm]
+#+LATEX: \begin{hidden}
 For all \(x, y \in G\)
 
 for all \(\epsilon > 0\) there exists a \(\delta > 0\) such that
@@ -3427,7 +3443,7 @@ if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).\medskip
 #+LATEX: \end{hidden}
 *** Arzelà-Ascoli: Proof Sketch
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 - Pick a dense seuqence in \(G\)
 - Use a diagonal argument to find pointwise convergent subsequence
 - Use equicontinuity to show uniform convergence
@@ -3467,12 +3483,12 @@ Continuous on a closed and bounded (`compact') set.
 Use A-A. (a statement about compact /sets/) What is there to show?
 
 Pick \(U \subset C (G)\). \(A (U)\) bounded?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Yes, because the operator is bounded.
 #+LATEX: \end{hidden}
 
 \(A (U)\) equicontinuous?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Yes: \(K\) /uniformly/
 continuous on \(G \times G\) because \(G \times G\) compact.
 #+LATEX: \end{hidden}
@@ -3499,7 +3515,7 @@ is compact on \(C (G)\), where \(\operatorname{cl}(G^\circ)=G\).
 
 *** Weakly singular: Proof Outline
 Outline the proof of `Weakly singular kernel $\Rightarrow$  compact'.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 - \[\int|x-y|^{\alpha-n} \le \omega_n \int_0^d \rho^{\alpha-n}\rho^{n-1}d\rho=d^\alpha/\alpha \omega_n\]
 - Show boundedness/existence as improper integral.
@@ -3560,7 +3576,7 @@ Questions:
 
 *** Riesz First Theorem: Proof Outline
 Show it.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 Good news because each dimension in \(N (L)\) is an obstacle to
 invertibility. Now we know that there's only `finitely many obstacles'.
 
@@ -3602,7 +3618,7 @@ Gives out completely if there happens to be a nullspace.
 *** Riesz Theory: Boundedness Proof Outline
 
 Assuming \((I - A)\) is bijective, show that \((I - A)^{- 1}\) is bounded.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 - Assume \(L^{-1}\) unbounded, so there exists a sequence \((f_n)\) with \(\norm{f_n}=1\) and \(\norm{L^{-1}f_n}\ge n\).
 - Define \(g_n=f_n/\norm{L^{-1}f_n}\to 1\) and \(\phi_n=L^{-1} f_n/\norm{L^{-1}f_n}\)
 - \(\phi_n-A\phi_n=g_n\)
@@ -3672,22 +3688,22 @@ Facts:
 *** Adjoint Operator: Observations?
 What is the adjoint operator in finite dimensions? (in matrix
 representation)
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 The transpose.
 #+LATEX: \end{hidden}
 
 What do you expect to happen with integral operators?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Sources and targets swap roles.
 #+LATEX: \end{hidden}
 
 Adjoint of the single-layer?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Itself. (`self-adjoint')
 #+LATEX: \end{hidden}
 
 Adjoint of the double-layer?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 \(S'\)
 #+LATEX: \end{hidden}
 
@@ -3710,7 +3726,7 @@ Adjoint of the double-layer?
 #+LATEX: \end{theorem}
 
 Seen these statements before?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Fundamental thm of linear algebra \(\rightarrow\) next slide
 #+LATEX: \end{hidden}
 
@@ -3725,7 +3741,7 @@ Fundamental thm of linear algebra \(\rightarrow\) next slide
 *** Fredholm Alternative in IE terms
 
 Translate to language of integral equation solvability:
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 - *Either* \(\varphi (x) - \int K (x, y) \varphi (y) = 0\) and
   \(\psi (x) - \int K (y, x) \psi (y) = 0\) have only the trivial solution and
@@ -3773,12 +3789,12 @@ Will work on that.
 #+LATEX: \end{definition}
 
 Can a value be regular and ``eigen'' at the same time?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 No: eigen means that \((\lambda I - A)\) has a nullspace, so there isn't an inverse.
 #+LATEX: \end{hidden}
 
 What's special about \(\infty\)-dim here?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Not all non-regular values are eigen.
 #+LATEX: \end{hidden}
 
@@ -3824,17 +3840,17 @@ By Riesz, nullspaces and non-invertibility (of \(\lambda I - A\)) coincide.
 *** Spectral Theory of Compact Operators: Implications
 
 Rephrase last two: how many eigenvalues with \(| \cdot | \ge  R\)?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Finitely many
 #+LATEX: \end{hidden}
 
 *Recap:* What do compact operators do to high-frequency data?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Dampen it.
 #+LATEX: \end{hidden}
 
 Don't confuse \(I - A\) with \(A\) itself!
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 For example: \(\mathrm{dim} N (A)\) vs \(\mathrm{dim} N (I - A)\)
 #+LATEX: \end{hidden}
 
@@ -3860,7 +3876,7 @@ For example: \(\mathrm{dim} N (A)\) vs \(\mathrm{dim} N (I - A)\)
 #+LATEX: \end{definition}
 
 Where are layer potentials harmonic?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Away from the boundary.
 #+LATEX: \end{hidden}
 
@@ -3889,7 +3905,7 @@ Is the double layer \emph{actually} weakly singular? *Recap:*
 - Singularity with approach on \(y = 0\)?
 - Singularity with approach on \(x = 0\)?
 
-#+LATEX: \begin{hidden}[2cm]
+#+LATEX: \begin{hidden}
 So life is simultaneously worse and better than discussed.
 
 How about 3D? (\(- x / |x|^3\))
@@ -3905,7 +3921,7 @@ singularity! \(\rightarrow\) punch it out.\medskip
 *Problem:* Make sure that what's left over is well-defined
 
 \[\int _{- 1}^1 \frac{1}{x} dx \text{?} \]
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 Not defined really.
 \[PV \int _{- 1}^1 \frac{1}{x} dx \assign \lim _{\epsilon \to 0 +} \left (
    \int _{- 1}^{- \epsilon } \frac{1}{x} + \int _\epsilon ^1 \frac{1}{x} \right )
@@ -4103,7 +4119,7 @@ Realize the power of this statement:
 We will focus on \(\mathbb R^3\). WLOG assume \(0\in\Omega\). Let \(M=\norm{u}_{L^\infty(\mathbb R^n\setminus \bar\Omega)}\).
 
 First, show \(\norm{\nabla u}\le 6M/\norm x\) for \(x\ge R_0\).
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 Choose \(R_0\) so that \(B(0, R_0/2)^c \cap \Omega =\emptyset\) and assume \(\norm{x}\ge R_0\).
 
 Since \(\partial_i u\) is also harmonic, we may apply the mean value theorem and Gauss's theorem:
@@ -4131,7 +4147,7 @@ Let \(r\) be such that \(\bar \Omega \subset B(x,r)\). Apply Green's formula on 
 \end{equation*}
 
 Show \(S_{\partial B(x,r)} (\partial_n u) \to 0\) as \(r\to\infty\):
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 Consider
 \[0=\int_{\partial (B(x,r)\cap \bar \Omega^c)} (\partial_n u)(y) =\int_{\partial B(x,r) } (\partial_n u)(y) -\int_{\partial \Omega} (\partial_n u)(y) .\]
 
@@ -4146,7 +4162,7 @@ It remains to bound the term
 \[D_{\partial B(x,r)} u) (x) =\frac{4\pi}{r^2} \int_{\partial B (x,r)} u(y) dS_y.\]
 
 Can we transplant that ball to the origin in some sense?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 \[u(x+y)-u(y) = \nabla u((1-\theta)y+\theta x)\cdot x\]
 for some \(\theta \in [0,1]\), so that if \(y\) is sufficiently large,
 \[\abs{u(x+y)-u(y)}\le \frac {6M\norm{x}} {\norm{y}-\norm{x}}.\]
@@ -4220,14 +4236,14 @@ Let \([X] = X_+ - X_-\). (Normal points towards ``+''=``exterior''.)
 #+LATEX: \end{theorem}
 
 Truth in advertising: Assumptions on \(\Gamma ?\)
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Needs to be \(C^2\), i.e. twice continuously differentiable.
 #+LATEX: \end{hidden}
 
 *** Jump Relations: Proof Sketch for SLP
 
 Sketch the proof for the single layer.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 - Use same cut-off function approach as in proof for weakly singular
   \(\Rightarrow\) compact
@@ -4238,7 +4254,7 @@ Sketch the proof for the single layer.
 *** Jump Relations: Proof Sketch for DLP
 
 Sketch proof for the double layer.
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 - Represent tgt point \(x\) near boundary as
   \[x = z + h \hat {n} (z) \]
@@ -4294,12 +4310,12 @@ What does \(f (x) = O (1)\) mean? (and \(f (x) = o (1)\)?)
 *** Uniqueness Proofs
 
 Dirichlet uniqueness: why?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 (Hint: Maximum principle)
 #+LATEX: \end{hidden}
 
 Neumann uniqueness: why?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 Suppose two solutions exist and
 difference \(\tilde {u} = u_1 - u_2\) is not constant. Then \(\nabla \tilde {u} \neq 0\) somewhere. Then:
 \[\int _\Omega  u \triangle u + \nabla u \cdot \nabla v = \int _{\partial
@@ -4338,7 +4354,7 @@ Given Dirichlet data, find Neumann data. Possible!
 *** IE Uniqueness: Proofs (1/3)
 
 Show \(N (I / 2 - D) = \{0 \}.\)
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 - Suppose \(\varphi / 2 - D \varphi = 0\). To show: \(\varphi = 0\).
 - \(u (x) \assign D \varphi (x)\) is harmonic off \(\partial \Omega\), \(u^-     = D \varphi - \varphi / 2 = 0\).
@@ -4358,7 +4374,7 @@ Show \(N (I / 2 - S') = \{0 \}.\)
 
 *** IE Uniqueness: Proofs (3/3)
 Show \(N (I / 2 + D) = \tmop{span} \{1 \}\).
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 - Suppose \(\varphi / 2 + D \varphi = 0\). To show: \(\varphi\) constant
 - \(u (x) \assign D \varphi (x)\) is harmonic off \(\partial \Omega\), \(u^+     = D \varphi + \varphi / 2 = 0\).
 - Has right decay, so exterior Dirichlet uniqueness says \(u     |_{\bar {\Omega }^c} = 0 \).
@@ -4428,7 +4444,7 @@ Numerically: Needs consideration, can drive up cost through refinement.
 *** Where does Helmholtz come from?
 
 Derive the Helmholtz equation from the wave equation \(\partial _t^2 U = c^2 \triangle U, \). *Q:* What is \(c\)?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 ($c$: Sound speed) Ansatz: \(U (x, t) = u (x) e^{- i \omega t}\). Plug in:
 \begin{eqnarray*}
   u (x) \partial _t^2 [e^{- i \omega t}] & = & c^2 e^{- i \omega t} \triangle u (x)\\
@@ -4526,14 +4542,14 @@ _0\) is the `equilibrium' density about which we've linearized.
 #+LATEX: \end{hidden}
 
 What happens to a pressure BC as \(\omega \to 0\)?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 It disappears!
 #+LATEX: \end{hidden}
 
 *** Helmholtz: Boundary Conditions
 
 Interfaces between media: What's continuous?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Normal velocity, pressure.
 #+LATEX: \end{hidden}
 
@@ -4661,7 +4677,7 @@ First idea: Same as Dirichlet. But: (see next slide).
 
 *** Patching up resonances: CFIE (1/3)
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 For simplicity, we'll choose the the scaling
 parameter \(\alpha = 1\), so that
 \[u = D \varphi + iS \varphi . \]
@@ -4674,7 +4690,7 @@ Suppose \(\varphi / 2 + D \varphi - iS \varphi = 0\). We want to show \(\varphi 
 
 *** Patching up resonances: CFIE (2/3)
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 From the IE, we conclude that \(\lim _+ u = 0\). Using exterior uniqueness, we
 conclude that \(u = 0\) in the entire exterior, thus \(\lim _+ \hat {n} \cdot  \nabla u = 0\) also. The jump relations for the double and single layer then
@@ -4689,7 +4705,7 @@ give us
 #+LATEX: \end{hidden}
 
 *** Patching up resonances: CFIE (3/3)
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 Equating right the right hand sides, we get
 \[- i (\hat {n} \cdot \nabla u)^- = u^- . \]
@@ -4711,7 +4727,7 @@ Using \(u^+ = u^- = 0\) and the jump relation for the double layer, we obtain
 *** Helmholtz Uniqueness
 Uniqueness for remaining IEs similar:
 
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 - Set RHS of IE to 0.
 - Use uniqueness to get zero limit on one side.
@@ -4727,7 +4743,7 @@ Uniqueness for remaining IEs similar:
 *** A word about $D'$
 Show that \(D'\) is self-adjoint. 
 #+LATEX: {\scriptsize [Kress LIE 3rd ed. Sec 7.6]}
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 
 - To show: \((D' \varphi , \psi ) = (\varphi , D' \psi )\)
 
@@ -4755,7 +4771,7 @@ Let \(w:=S\phi\) and \(v=D\psi\).
 #+LATEX: \end{hidden}
 
 \((\varphi , SD' \psi )\)?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 \vspace*{-5mm}
 \begin{eqnarray*}
   &  & (\varphi , SD' \psi )\\
@@ -4780,7 +4796,7 @@ Let \(w:=S\phi\) and \(v=D\psi\).
 Also valid for Laplace (jump relation same after all!)\medskip
 
 Why do we care?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 \(\to\) Exterior Neumann IE has \(D'\).
 But: Hypersingular is yucky.
 
@@ -4828,7 +4844,7 @@ Related finite element concept: /Ciarlet triple/
 
 \medskip
 Discretization options for a curve?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 - Equispaced
 - Fourier modes (actually different from equispaced?)
 - Piecewise polynomials
@@ -4885,7 +4901,7 @@ Remarks:
      :END:
 
 Why have an unstructured mesh?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 - Adaptable to many engineering problems
 - Deal with topology
 - Deal with solution non-smoothness
@@ -4899,7 +4915,7 @@ Why have an unstructured mesh?
      :END:
 
 What is the trade-off in going unstructured?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 - Complexity: Data structures, algorithms, generation
 - Where do meshes come from?
 - What is a `reference element'?
@@ -4946,7 +4962,7 @@ Piecewise vs. Global
 *** Fixed-order vs Spectral
 
 What should the DoFs be?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 Natural DoF match:
 
 - Fixed-order: point values
@@ -4954,7 +4970,7 @@ Natural DoF match:
 #+LATEX: \end{hidden}
 
 What's the difficulty with purely modal discretizations?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 Nonlinearities are hard to express.
 
 \(\rightarrow\) Use point values to compute those. (/Pseudospectral methods/)
@@ -5145,7 +5161,7 @@ Sure--if it's true for a function \(\varphi\), it should be true for point value
 #+LATEX: \end{hidden}
 
 Does \eqref{eq:nystrom-nodes} \(\Rightarrow\) \eqref{eq:nystrom-quad} hold?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 Actually--it must! \(\varphi _k^{(n)}\) are
 point values of the density (since we satisfied \eqref{eq:nystrom-nodes}!),
 and so the `approximate' \(\tilde {\varphi }\) was not so approximate after
@@ -5155,7 +5171,7 @@ all--it must be the function that solves \eqref{eq:nystrom-quad}.
 *** Nyström Discretizations (4/4)
 
 What good does that do us?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 Goal: say something about error. I.e.: does the method work at all?
 
 Point: much easier to examine error between \eqref{eq:nystrom-quad} and the
@@ -5197,7 +5213,7 @@ What senses of convergence are there for sequences of operators \(A_n\)?
 
 Will we get norm convergence \(\|A_n - A\|_\infty \to 0\) for Nyström?
 {\scriptsize [Kress LIE 2nd ed. Thm. 12.8]}]
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 *No:* Pick \(\psi _\epsilon  = 1\) everywhere except in
 \(\epsilon\)-nbh of quad nodes, 0 there.
 
@@ -5209,7 +5225,7 @@ Show:
 #+LATEX: \end{hidden}
 
 Is functionwise convergence good enough?
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 No, not at all. When we're solving \(A \varphi = b\), we want all possible densities to be
 roughly `equally far along' in convergence.
 
@@ -5341,7 +5357,7 @@ How good of an inverse is it?
 *** Anselone's Theorem: Proof (II)
 Want \(S_n \rightarrow 0\) somehow. Prior result gives us \(\norm{(A - A_n) A_n} \rightarrow 0\).
 
-#+LATEX: \begin{hidden}[7cm]
+#+LATEX: \begin{hidden}
 So \(\norm{S_n} \rightarrow 0\).
 
 Using Neumann series:
@@ -5355,7 +5371,7 @@ So \(I - A_n\) must also be invertible. Rearrange:
 #+LATEX: \end{hidden}
 
 *** Anselone's Theorem: Proof (III)
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 
 Let \(\varphi\) be the exact density that solves \((I - A) \varphi = f\) and
 \(\varphi _n\) the approximate density that solves \((I - A_n) \varphi _n = f_n\).
@@ -5389,7 +5405,7 @@ We /assumed/ collective compactness. Do we have that? Assume
   \sum | \text{quad. weights for \(n\) points} | \le C \qquad \text{(independent
     of \(n\))} \label{eq:bounded-quad-weights}
 \end{equation}
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 To use Arzelà-Ascoli, we'll need to show uniform boundedness
 (easy!) and equicontinuity of the sequence \((A_n \varphi )\) for a given density
 \(\varphi\). To show the latter, consider
@@ -5405,7 +5421,7 @@ To use Arzelà-Ascoli, we'll need to show uniform boundedness
 
 *** Nyström: Collective Compactness
 
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 And
 \[\sum _{i = 1}^n | \omega _i |, \]
 is bounded because we assumed it is. Since the constant doesn't depend on \(n\):
@@ -5468,7 +5484,7 @@ In this case,
 
 *** Céa's Lemma: Proof :noexport:
 Proof?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 
 \[\phi_n-\phi = ((P_n A)^{- 1} P_n A - I)\phi\]
 
@@ -5482,7 +5498,7 @@ Build error estimate.
 #+LATEX: \end{hidden}
 
 Core message of the theorem?
-#+LATEX: \begin{hidden}[1cm]
+#+LATEX: \begin{hidden}
 Projection doesn't destroy invertibility.
 #+LATEX: \end{hidden}
 
@@ -5522,7 +5538,7 @@ For $A \varphi = f$ and $A_n \varphi_n = f_n$, we have the estimate
 *** Norm Convergence of Inverses: Proof
 
 Prove the result:
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 Note: $I - A^{- 1} (A_n - A) = A^{- 1} A_n$.
 
 \medskip
@@ -5540,7 +5556,7 @@ For the error estimate, consider $A_n (\varphi_n - \varphi) = f_n - f + (A - A_n
 
 Write out the projected version of the second-kind equation $\varphi - A
 \varphi = f$:
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 \[ P_n \varphi_n - P_n A \varphi_n = P_n f \]
 Valid, but necessarily non-unique. Better (but distinct!):
 \[ \varphi_n - P_n A \varphi_n = P_n f. \]
@@ -5572,7 +5588,7 @@ depending on $A$.
 *** Error Estimate for Second Kind Projection: Proof
 
 Prove the result:
-#+LATEX: \begin{hidden}[5cm]
+#+LATEX: \begin{hidden}
 Riesz' theorem: $(I - A)$ invertible.
 
 \medskip
@@ -5618,7 +5634,7 @@ is uniquely solvable and for some positive constant $M$,
    \right) . \]
 #+LATEX: \end{theorem}
 
-#+LATEX: \begin{hidden}[3cm]
+#+LATEX: \begin{hidden}
 Norm convergence of inverses: Existence and uniform boundedness of $(I - P_n
 A_n)^{- 1}$ (from $(I - P_n A)^{- 1}$).
 
@@ -5697,7 +5713,7 @@ Good when it works.
 #+LATEX: \end{hidden}
 
 Why not Gaussian?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 Error estimate:
 \[\abs{\int f - \sum f (x_i) \omega _i} \leqslant C \norm{f^{(p)}} h^p \]
 \(\norm{f^{(p)}}\) blows up!
@@ -5880,7 +5896,7 @@ Related: [Beale/Lai `01]
 *** Acceleration and Quadature 
 
 How can singular quadrature and FMM acceleration be made compatible?
-#+LATEX: \begin{hidden}[4cm]
+#+LATEX: \begin{hidden}
 - FMM is a point-to-point algorithm: requires point discretization
   - Kussmaul-Martensen and FMM?
 - If singular quadrature applies to all targets:
@@ -6165,7 +6181,7 @@ the exterior $\Omega^+$ onto the exterior of the unit disk.
 *** Local QBX: Viewing QBX as a Local Correction
 
 What happens if one attempts to use QBX quadrature as a 'local correction'?
-#+LATEX: \begin{hidden}[6cm]
+#+LATEX: \begin{hidden}
 #+LATEX: \end{hidden}
 
 *** QBX + FMM : A straightforward coupling
