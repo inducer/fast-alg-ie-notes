@@ -1560,7 +1560,7 @@ We have just shown that point\(\rightarrow\)point potential interactions
 have low numerical rank!
 
 Specifically, to precision
-\(\ds C_p \left ( \frac{r}{R} \right )^{k + 1} \)
+\(\ds C_p \left ( \frac{r}{R} \right )^{k + 1} \),
 the interaction from sources to targets has a numerical rank of at most
 (#terms in Taylor series)
 aka
