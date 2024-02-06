@@ -1512,6 +1512,7 @@ admit multiple sources/targets, we get
 
 The abstract idea of a \emph{multipole expansion} is that:
 
+#+LATEX: \begin{hidden}
 - it converges on the *exterior* of a ball as long as the
   furthest source is closer to the center than the closest target,
 
@@ -1526,6 +1527,7 @@ The abstract idea of a \emph{multipole expansion} is that:
 
 The multipole expansion converges everywhere outside the circle!
 (Possibly: slowly, if the targets are too close--but it does!)
+#+LATEX: \end{hidden}
 
 *** Multipole Expansions (III)
 
