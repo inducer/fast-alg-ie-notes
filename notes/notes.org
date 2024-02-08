@@ -1962,9 +1962,10 @@ over \(m\). (Again: Smooth function leads to low rank!)
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :height 7cm
-# [[./media/bhut-01-particles.pdf]]
+#+ATTR_LATEX: :height 7cm
+[[./media/bhut-01-particles-crop.pdf]]
+
+(Figure following G. Martinsson)
 #+END_CENTER
 
 *** Barnes-Hut: The Task At Hand
@@ -1973,7 +1974,7 @@ Want: All-pairs interaction.
 
 *Caution:*
 
-- In these (stolen) figures: \textcolor{blue}{targets} \textcolor{red}{sources}
+- In these figures: \textcolor{blue}{targets} \textcolor{red}{sources}
 - Here: \textcolor{red}{targets and sources}
 
 #+LATEX: \begin{hidden}
@@ -1994,17 +1995,17 @@ compute parts of it. To help do so, put down a grid.
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :height 5cm
-# [[./media/bhut-02-boxes.pdf]]
+#+ATTR_LATEX: :height 5cm
+[[./media/bhut-02-boxes-crop.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :height 5cm
-# [[./media/bhut-03-boxes-tgt.pdf]]
+#+ATTR_LATEX: :height 5cm
+[[./media/bhut-03-boxes-tgt-crop.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 *** Barnes-Hut: Box Targets
@@ -2018,9 +2019,9 @@ For sake of discussion, choose one `box' as targets.
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :height 5cm
-# [[./media/bhut-04-boxes-mpole.pdf]
+#+ATTR_LATEX: :height 5cm
+[[./media/bhut-04-boxes-mpole-crop.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 *** Barnes-Hut: Accuracy
@@ -2084,6 +2085,7 @@ boxes, instead make a /tree/.
 # FIXME Add missing figure
 # #+ATTR_LATEX: :height 5cm
 # [[./media/bhut-05-levels.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 *** Level Count
@@ -2107,6 +2109,7 @@ Options:
 # FIXME Add missing figure
 # #+ATTR_LATEX: :height 5cm
 # [[./media/bhut-06-particles.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 Want to evaluate all the \textcolor{red}{source} interactions with the
@@ -2122,6 +2125,7 @@ requirement?
 # FIXME Add missing figure
 # #+ATTR_LATEX: :height 5cm
 # [[./media/bhut-07-particle-tree.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 Data from which of these boxes could we bring in using multipole
@@ -2134,6 +2138,7 @@ function vs skeletons)
 # FIXME Add missing figure
 # #+ATTR_LATEX: :height 5cm
 # [[./media/bhut-08-mpole-tree.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 What properties do these boxes have?
@@ -2197,6 +2202,7 @@ Which of these boxes are well-separated from one another?
 # FIXME Add missing figure
 # #+ATTR_LATEX: :height 5cm
 # [[./media/bhut-08-mpole-tree.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 What is the cost of evaluating the \textcolor{blue}{target}
@@ -2233,6 +2239,7 @@ There are \(O (N)\) target boxes (because \(m\) is fixed), so we do the above \(
 # FIXME Add missing figure
 # #+ATTR_LATEX: :width \textwidth
 # [[./media/bhut-09-all-mpoles.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 Summarize the algorithm (so far) and the associated cost.
@@ -2262,6 +2269,7 @@ Let's start with the former.
 # FIXME Add missing figure
 # #+ATTR_LATEX: :width \textwidth
 # [[./media/bhut-10-mpoles-sources.pdf]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 How could this process be sped up?
@@ -2280,6 +2288,7 @@ But we already compute multipoles to summarize lower-level boxes...
 # FIXME Add missing figure
 # #+ATTR_LATEX: :width \textwidth
 # [[./media/bhut-11-mpoles-translate.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 To get a new `big' multipole from a `small' multipole, we need a
