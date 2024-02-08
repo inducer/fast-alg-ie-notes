@@ -415,7 +415,7 @@ The number \(N\) is different! (And it's smaller for IEs.)
 #+LATEX: \end{hidden}
 
 *** Open Source <3
-    
+
 These notes (and the accompanying demos) are open-source!
 
 \bigskip
