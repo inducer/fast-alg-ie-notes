@@ -446,6 +446,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+*** Sources
+
+- [[http://arxiv.org/abs/0909.4061][Finding structure with randomness: Probabilistic algorithms for
+  constructing approximate matrix decompositions]]  by Halko/Martinsson/Tropp
+- Carrier, Greengard, Rokhlin: [[https://doi.org/10.1137/0909044][A Fast Adaptive Multipole Algorithm for Particle Simulations]]
+- Rainer Kress: [[https://link.springer.com/book/10.1007/978-1-4612-0559-3][Linear integral equations]]. (second edition)
+- David Colton and Rainer Kress: [[https://link.springer.com/book/10.1007/978-1-4614-4942-3][Inverse Acoustic and Electromagnetic Scattering Theory]].
+  (3rd edition)
+
 * Dense Matrices and Computation
   :PROPERTIES:
   :RELATE_TREE_SECTION_NAME: dense_compute
