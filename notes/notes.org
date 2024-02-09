@@ -2813,7 +2813,7 @@ Where does this process start?
 #+LATEX: \begin{hidden}
 Start from the `most refined' level:
 
-  #+ATTR_LATEX: :height 4cm
+  #+ATTR_LATEX: :height 3cm
   [[./media/box-skeleton.pdf]]
 
 \textcolor{red}{Coarser level skeletons} \(\cdot\) \textcolor{blue}{Finest skeletons}
