@@ -2910,7 +2910,7 @@ In order to get \(O (N)\) complexity, could we apply this procedure recursively?
   - \(\mathcal{H}^2\) does target clustering (like FMM), \(\mathcal{H}\)
     does not (like Barnes-Hut)
 
-*** Telescoping Factorization
+*** Telescoping Factorization :noexport:
 
 #+BEGIN_CENTER
 # FIXME Add missing figure: find citable source
