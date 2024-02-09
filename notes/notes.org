@@ -2127,7 +2127,7 @@ requirement?
 
 #+BEGIN_CENTER
 #+ATTR_LATEX: :height 5cm
-[[./media/bhut-07-particle-tree.pdf]]
+[[./media/bhut-07-particle-tree-crop.pdf]]
 #+END_CENTER
 
 Data from which of these boxes could we bring in using multipole
@@ -2138,7 +2138,7 @@ function vs skeletons)
 
 #+BEGIN_CENTER
 #+ATTR_LATEX: :height 5cm
-[[./media/bhut-08-mpole-tree.pdf]]
+[[./media/bhut-08-mpole-tree-crop.pdf]]
 #+END_CENTER
 
 What properties do these boxes have?
@@ -2200,7 +2200,7 @@ We'll make a new word for that: A pair of boxes satisfying the condition
 Which of these boxes are well-separated from one another?
 #+BEGIN_CENTER
 #+ATTR_LATEX: :height 5cm
-[[./media/bhut-08-mpole-tree.pdf]]
+[[./media/bhut-08-mpole-tree-crop.pdf]]
 #+END_CENTER
 
 What is the cost of evaluating the \textcolor{blue}{target}
@@ -2234,9 +2234,8 @@ There are \(O (N)\) target boxes (because \(m\) is fixed), so we do the above \(
 *** Barnes-Hut: Next Revised Cost Estimate
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :width \textwidth
-# [[./media/bhut-09-all-mpoles.pdf]]
+#+ATTR_LATEX: :width \textwidth
+[[./media/bhut-09-all-mpoles-crop.pdf]]
 (Figure following G. Martinsson)
 #+END_CENTER
 
@@ -2264,9 +2263,8 @@ Let's start with the former.
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :width \textwidth
-# [[./media/bhut-10-mpoles-sources.pdf]
+#+ATTR_LATEX: :width \textwidth
+[[./media/bhut-10-mpoles-sources-crop.pdf]]
 (Figure following G. Martinsson)
 #+END_CENTER
 
@@ -2283,9 +2281,8 @@ But we already compute multipoles to summarize lower-level boxes...
 *** Barnes-Hut: Putting Multipole Expansions to Work
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :width \textwidth
-# [[./media/bhut-11-mpoles-translate.pdf]]
+#+ATTR_LATEX: :width \textwidth
+[[./media/bhut-11-mpoles-translate-crop.pdf]]
 (Figure following G. Martinsson)
 #+END_CENTER
 
@@ -2355,9 +2352,9 @@ maybe `downward' translation of /local/ expansions can help now.
 *** Using Multipole-to-Local
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :width \textwidth
-# [[./media/fmm-mtol-1.pdf]]
+#+ATTR_LATEX: :width \textwidth
+[[./media/fmm-mtol-1-crop.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 Come up with an algorithm that computes the interaction in the figure.
@@ -2382,9 +2379,9 @@ Let's consider the situation from the next level down.
 *** Using Multipole-to-Local: Next Level
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :width \textwidth
-# [[./media/fmm-mtol-2.pdf]]
+#+ATTR_LATEX: :width \textwidth
+[[./media/fmm-mtol-2-crop.pdf]]
+(Figure following G. Martinsson)
 #+END_CENTER
 
 Assuming we retain information from the previous level, how can we

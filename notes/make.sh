@@ -3,7 +3,7 @@
 set -e
 
 python make-fast-alg-figures.py
-for i in media/bhut-*.pdf; do
+for i in media/bhut-*.pdf media/fmm-*.pdf; do
   if ! [[ $i = *crop* ]]; then
     pdfcrop $i
   fi
