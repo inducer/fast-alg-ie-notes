@@ -2797,10 +2797,22 @@ Summary: Need to solve
      :BEAMER_col: 0.3
      :END:
 
-# FIXME Add missing figure: find citable source
-# #+ATTR_LATEX: :height 4cm
-# [[./media/cluster-compress-single.pdf]]
-(Figure credit: G. Martinsson)
+#+BEGIN_EXPORT latex
+\begin{tikzpicture}[scale=0.3]
+\draw [fill=black] (0, 0) rectangle (8, 8);
+\draw [ultra thick, white] (0, 0) grid (8, 8);
+\draw [ultra thick, ->] (4, -0.1) -- node [right,font=\tiny] {compress} (4, -2);
+
+\begin{scope}[scale=0.75,xshift=-17pt]
+\draw [fill=black] (2, -11) rectangle (10, -3);
+\draw [ultra thick, white] (2, -11) grid (10, -3);
+\foreach \x in {2,...,9}{
+    \draw [fill=white, white] (\x, -2 - \x) rectangle (\x + 1, -1 - \x);
+}
+\end{scope}
+\end{tikzpicture}
+#+END_EXPORT
+(Figure following G. Martinsson, drawn by A. Fikl)
 
 *** Hierarchically Block-Separable
 
@@ -2822,14 +2834,66 @@ Start from the `most refined' level:
 *** Hierarchically Block-Separable
 
 In order to get \(O (N)\) complexity, could we apply this procedure recursively?
-#+BEGIN_CENTER
 
-# FIXME Add missing figure: find citable source
-# #+ATTR_LATEX: :height 6cm
-# [[./media/cluster-compress.pdf]
+#+BEGIN_EXPORT latex
+\begin{center}
+\begin{tikzpicture}[scale=0.3]
+\draw [fill=black] (0, 0) rectangle (8, 8);
+\draw [ultra thick, white] (0, 0) grid (8, 8);
+\draw [ultra thick, ->] (4, -0.1) -- node [right,font=\tiny] {compress} (4, -2);
+\draw [ultra thick, ->] (7, -2.3) -- node [below right,font=\tiny] {cluster} (11.9, -0.1);
+% \node at (8, 4) [right] {$\vect{A}^{(0)}$};
+% \node at (8, -5) [right] {$\vect{S}^{(0)}$};
 
-(Figure credit: G. Martinsson)
-#+END_CENTER
+\draw [fill=black] (12, 0) rectangle (16, 4);
+\draw [ultra thick, white] (12, 0) grid (16, 4);
+\draw [ultra thick, ->] (14, -0.1) -- node [right,font=\tiny] {compress} (14, -2);
+\draw [ultra thick, ->] (15.5, -2.3) -- node [below right,font=\tiny] {cluster} (19.9, -0.1);
+\foreach \x in {12,12.5,...,15.5}{
+    \draw [fill=white, white] (\x, 16 - \x) rectangle (\x + 0.5, 15.5 - \x);
+}
+% \node at (16, 2) [right] {$\vect{A}^{(1)}$};
+% \node at (16, -3.5) [right] {$\vect{S}^{(1)}$};
+
+\draw [fill=black] (20, 0) rectangle (22, 2);
+\draw [ultra thick, white] (20, 0) grid (22, 2);
+\draw [ultra thick, ->] (21, -0.1) -- node [right,font=\tiny] {compress} (21, -2);
+\foreach \x in {20,20.5,...,21.5}{
+    \draw [fill=white, white] (\x, 22 - \x) rectangle (\x + 0.5, 21.5 - \x);
+}
+% \node at (22, 1) [right] {$\vect{A}^{(2)}$};
+% \node at (22, -3) [right] {$\vect{S}^{(2)}$};
+
+\begin{scope}[scale=0.75,xshift=-17pt]
+\draw [fill=black] (2, -11) rectangle (10, -3);
+\draw [ultra thick, white] (2, -11) grid (10, -3);
+\foreach \x in {2,...,9}{
+    \draw [fill=white, white] (\x, -2 - \x) rectangle (\x + 1, -1 - \x);
+}
+\end{scope}
+
+\begin{scope}[scale=0.75,xshift=-10pt]
+\draw [fill=black] (17, -7) rectangle (21, -3);
+\draw [ultra thick, white] (17, -7) grid (21, -3);
+\foreach \x in {17,...,20}{
+    \draw [fill=white, white] (\x, 14 - \x) rectangle (\x + 1, 13 - \x);
+}
+\end{scope}
+
+\begin{scope}[scale=0.75, xshift=0pt]
+\draw [fill=black] (27, -5) rectangle (29, -3);
+\draw [ultra thick, white] (27, -5) grid (29, -3);
+\foreach \x in {27,...,28}{
+    \draw [fill=white, white] (\x, 24 - \x) rectangle (\x + 1, 23 - \x);
+}
+\end{scope}
+\end{tikzpicture}
+
+(Figure following G. Martinsson, drawn by A. Fikl)
+\end{center}
+#+END_EXPORT
+
+
 
 *** Hierarchically Block-Separable
 - Using this hierarchical grouping gives us
