@@ -1533,9 +1533,6 @@ The abstract idea of a \emph{multipole expansion} is that:
 
 #+ATTR_LATEX: :height 3cm
 [[./media/multipole.pdf]]
-
-The multipole expansion converges everywhere outside the circle!
-(Possibly: slowly, if the targets are too close--but it does!)
 #+LATEX: \end{hidden}
 
 *** Multipole Expansions (III)
