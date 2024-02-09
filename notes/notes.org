@@ -2091,9 +2091,8 @@ boxes, instead make a /tree/.
 *** Box Splitting
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :height 5cm
-# [[./media/bhut-05-levels.pdf]]
+#+ATTR_LATEX: :height 5cm
+[[./media/bhut-05-levels-crop.pdf]]
 (Figure following G. Martinsson)
 #+END_CENTER
 
@@ -2115,9 +2114,8 @@ Options:
 *** Box Sizes
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :height 5cm
-# [[./media/bhut-06-particles.pdf]]
+#+ATTR_LATEX: :height 5cm
+[[./media/bhut-06-box-sizes-crop.pdf]]
 (Figure following G. Martinsson)
 #+END_CENTER
 
@@ -2131,10 +2129,8 @@ requirement?
 *** Multipole Sources
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :height 5cm
-# [[./media/bhut-07-particle-tree.pdf]]
-(Figure following G. Martinsson)
+#+ATTR_LATEX: :height 5cm
+[[./media/bhut-07-particle-tree.pdf]]
 #+END_CENTER
 
 Data from which of these boxes could we bring in using multipole
@@ -2144,10 +2140,8 @@ function vs skeletons)
 *** Barnes-Hut: Box Properties
 
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :height 5cm
-# [[./media/bhut-08-mpole-tree.pdf]]
-(Figure following G. Martinsson)
+#+ATTR_LATEX: :height 5cm
+[[./media/bhut-08-mpole-tree.pdf]]
 #+END_CENTER
 
 What properties do these boxes have?
@@ -2208,10 +2202,8 @@ We'll make a new word for that: A pair of boxes satisfying the condition
 
 Which of these boxes are well-separated from one another?
 #+BEGIN_CENTER
-# FIXME Add missing figure
-# #+ATTR_LATEX: :height 5cm
-# [[./media/bhut-08-mpole-tree.pdf]]
-(Figure following G. Martinsson)
+#+ATTR_LATEX: :height 5cm
+[[./media/bhut-08-mpole-tree.pdf]]
 #+END_CENTER
 
 What is the cost of evaluating the \textcolor{blue}{target}

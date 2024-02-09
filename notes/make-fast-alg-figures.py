@@ -3,6 +3,7 @@ from typing import Any, Dict, List, Optional, Sequence, Type
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import numpy as np
+import numpy.linalg as la
 from dataclasses import dataclass
 
 
@@ -73,6 +74,27 @@ def uniform_split_box(box: Box, levels: int):
         uniform_split_box(ch, levels - 1)
 
 
+def split_boxes_by_mac(root: Box, tbox: Box) -> None:
+    if root is tbox:
+        return
+    if are_neighbors(root, tbox):
+        return
+    
+    if not root.children:
+        dim = len(root.lower_left)
+
+        rsource = root.size/2
+        rtarget = tbox.size/2
+        r = la.norm(root.center - tbox.center, 2)
+
+        # multipole acceptance criterion
+        if r < 3*max(rsource, rtarget):
+            split_box(root)
+
+    for ch in root.children:
+        split_boxes_by_mac(ch, tbox)
+
+
 class _NotProvided:
     pass
 
@@ -81,16 +103,24 @@ def plot_box(box: Box,
         particle_marker: str | None | Type[_NotProvided] = _NotProvided,
         particle_kwargs: Optional[Dict[str, Any]] = None,
         center_marker: str | None = None,
-        center_kwargs: Optional[Dict[str, Any]] = None):
-    plt.gca().add_patch(
-        patches.Rectangle(
-            xy=tuple(box.lower_left),
-            width=box.size,
-            height=box.size,
-            edgecolor="black",
-            facecolor="none",
+        center_kwargs: Optional[Dict[str, Any]] = None,
+        box_boundaries: bool =True,
+        box_boundaries_kwargs: Optional[Dict[str, Any]] = None):
+    if box_boundaries:
+        if box_boundaries_kwargs is None:
+            box_boundaries_kwargs = {
+                "edgecolor": "black",
+                "facecolor": "none",
+            }
+        
+        plt.gca().add_patch(
+            patches.Rectangle(
+                xy=tuple(box.lower_left),
+                width=box.size,
+                height=box.size,
+                **box_boundaries_kwargs
+            )
         )
-    )
     if box.particles is not None:
         if particle_marker is not None:
             if particle_marker is _NotProvided:
@@ -115,7 +145,7 @@ def plot_boxtree(box: Box, *, except_boxes: Sequence[Box] = (), **kwargs):
 
     if box.children:
         for ch in box.children:
-                plot_boxtree(ch, except_boxes=except_boxes, **kwargs)
+            plot_boxtree(ch, except_boxes=except_boxes, **kwargs)
     else:
         plot_box(box, **kwargs)
     
@@ -200,8 +230,9 @@ def find_box_neighbors(root: Box, box: Box) -> List[Box]:
 # }}}
 
 
-def configure_plot():
-    plt.clf()
+def configure_plot(clear: bool = True) -> None:
+    if clear:
+        plt.clf()
     plt.gca().set_aspect("equal")
     plt.axis("off")
     plt.tight_layout()
@@ -253,8 +284,77 @@ def plot_bhut_boxes_mpole():
     plt.savefig("media/bhut-04-boxes-mpole.pdf")
 
 
+def plot_bhut_levels():
+    plt.clf()
+
+    for i in range(4):
+        plt.subplot(2, 2, i+1)
+        plt.title(f"Level {i}")
+        configure_plot(clear=False)
+        b = get_root_box()
+        uniform_split_box(b, i)
+        plot_boxtree(b)
+
+    plt.savefig("media/bhut-05-levels.pdf")
+
+
+def plot_bhut_box_sizes():
+    configure_plot()
+    b = get_root_box(get_particles())
+    uniform_split_box(b, 4)
+    tbox = find_box_at(b, np.array([0.3, 0.6]))
+    plot_box(b, particle_marker=None)
+    plot_boxtree(b, except_boxes=[tbox], box_boundaries=False)
+    plot_boxtree(tbox, particle_marker="bo")
+
+    plt.savefig("media/bhut-06-box-sizes.pdf")
+
+
+def plot_bhut_particle_tree():
+    configure_plot()
+    tpoint = np.array([0.42, 0.6])
+    b = get_root_box(get_particles())
+    for i in range(5):
+        tbox = find_box_at(b, tpoint)
+        split_box(tbox)
+
+    tbox = find_box_at(b, tpoint)
+    split_boxes_by_mac(b, tbox)
+
+    plot_boxtree(b, except_boxes=[tbox])
+    plot_box(tbox, particle_marker="bo")
+
+    plt.savefig("media/bhut-07-particle-tree.pdf")
+
+
+    
+def plot_bhut_mpole_tree():
+    configure_plot()
+    tpoint = np.array([0.42, 0.6])
+    b = get_root_box(get_particles())
+    for i in range(5):
+        tbox = find_box_at(b, tpoint)
+        split_box(tbox)
+
+    tbox = find_box_at(b, tpoint)
+    split_boxes_by_mac(b, tbox)
+
+    nbs = find_box_neighbors(b, tbox)
+    plot_boxtree(b, except_boxes=[tbox] + nbs, 
+                 particle_marker=None, center_marker="ro")
+    for nb in nbs:
+        plot_box(nb)
+    plot_box(tbox, particle_marker="bo")
+
+    plt.savefig("media/bhut-08-mpole-tree.pdf")
+
+
 if __name__ == "__main__":
     plot_bhut_particles()
     plot_bhut_boxes()
     plot_bhut_boxes_target()
     plot_bhut_boxes_mpole()
+    plot_bhut_levels()
+    plot_bhut_box_sizes()
+    plot_bhut_particle_tree()
+    plot_bhut_mpole_tree()
