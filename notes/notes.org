@@ -1866,12 +1866,16 @@ Clear: Expressible as a convolution.
 
 - \(G = O \left ( \norm{\tmmathbf{x}}_2^{- p} \right )\). Now think in
   spherical shells:
-  \[\psi (\tmmathbf{0}) = \sum _{i = 0}^\infty  \sum _{\text{cells@\(\ell ^2\)
-       dist \([i, i + 1)\) to \(\tmmathbf{0}\)}} \underbrace{O (i^{d -
-       1})}_{\text{surface of shell} \sim \#\tmop{cells}} O (i^{- p}) \]
+  \begin{align*}
+  \psi (\tmmathbf{0})
+  &= \sum _{i = 0}^\infty  \sum _{\text{cells@\(\ell ^2\)
+       dist \([i, i + 1)\) to \(\tmmathbf{0}\)}} O (i^{- p})\\
+  &= \sum _{i = 0}^\infty   \underbrace{O (i^{d -
+       1})}_{\text{surface of shell} \sim \#\tmop{cells}} O (i^{- p})
+  \end{align*}
   where \(d\) is space dimension. Have:
-  \[d - 1 - p < - 1 \quad \Leftrightarrow \quad p > d. \]
-  (because \(\sum 1 / n\) is divergent)
+  \[d - 1 - p < - 1 \quad \Leftrightarrow \quad p > d. \quad\text{(\(\sum 1 / n\) is divergent)} \]
+  
 #+LATEX: \end{hidden}
 
 *** Ewald Summation: Dealing with Smoothness
@@ -2057,13 +2061,13 @@ Let:
 - \(K\) be #terms in expansion
 - \(m\) be #particles/box.
 
-|-----------------+------------------------------------------+----------+---------------|
-| *What*          | *How often*                              | *Cost*   | *Total*       |
-|-----------------+------------------------------------------+----------+---------------|
-| Compute mpoles  | \(N / m\) boxes                          | \(Km\)   | \(KN\)        |
-| Evaluate mpoles | \(N\) tgts \(\cdot\) \(N / m\) src boxes | \(K\)    | \(N^2 K / m\) |
-| 9 close boxes   | \(9 \cdot\)(\(N / m\) boxes)             | \(m^2\)  | \(Nm\)        |
-|-----------------+------------------------------------------+----------+---------------|
+|-----------------+-------------------------------------+---------+---------------|
+| *What*          | *How often*                         | *Cost*  | *Total*       |
+|-----------------+-------------------------------------+---------+---------------|
+| Compute mpoles  | \(N / m\) boxes                     | \(Km\)  | \(KN\)        |
+| Evaluate mpoles | \(N\) tgts \(\cdot\) \(N / m\) src boxes | \(K\)   | \(N^2 K / m\) |
+| 9 close boxes   | \(9 \cdot\)(\(N / m\) boxes)             | \(m^2\) | \(9Nm\)       |
+|-----------------+-------------------------------------+---------+---------------|
 
 - Assume \(m \sim \sqrt{N}\) or \(N \sim m^2\).
 
