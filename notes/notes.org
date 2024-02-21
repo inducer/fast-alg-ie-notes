@@ -1826,7 +1826,7 @@ the work and (b) can be made cheap as we saw.)
 - Convolution turns into multiplication: \(\mathcal{F} \{f \ast g \}=\mathcal{F}f \cdot \mathcal{F}g, \)
 - A single $\delta$ turns into: \(\mathcal F \{\delta(x-a)\}(\omega)=e^{-i a\omega}  \)
 
-- And a "train" of  \(\delta\)s turns into:
+- And a "train" of  \(\delta\)s turns into (see e.g. [[[http://maverick.inria.fr/~Xavier.Decoret/resources/maths/impulsion-train.pdf][Décoret `04]]]):
   \[\mathcal{F} \left \{\sum _{\ell \in \mathbb{Z}} \delta (x - \ell) \right \}
   (\omega ) = \sum _{k \in \mathbb{Z}} \delta (\omega - 2\pi k) . \]
 
@@ -1835,7 +1835,7 @@ What is \(\mathcal F\{f(x-a)\}\)?
 \[\mathcal F\{x\mapsto f(x-a)\} =\mathcal F\{f\}\mathcal F\{\delta(x-a)\} =\mathcal F\{f\}e^{-i a\omega}\]
 #+LATEX: \end{hidden}
 
-See e.g. [[[http://maverick.inria.fr/~Xavier.Decoret/resources/maths/impulsion-train.pdf][Décoret `04]]].
+
 
 *** Simple and Periodic: Ewald Summation
 
