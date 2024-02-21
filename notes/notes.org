@@ -1998,7 +1998,7 @@ it:
 No targets are cleanly separated from other sources.
 
 \medskip
-*Lesson from PME:* If you can't compute the entire interaction,
+*Lesson from Ewald:* If you can't compute the entire interaction,
 compute parts of it. To help do so, put down a grid.
 #+LATEX: \end{hidden}
 
