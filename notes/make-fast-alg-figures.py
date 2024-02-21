@@ -261,7 +261,7 @@ def configure_plot(clear: bool = True) -> None:
 
 
 def get_particles():
-    return np.random.rand(2, 2000)
+    return np.random.rand(2, 2900)
 
 
 def plot_bhut_particles():
