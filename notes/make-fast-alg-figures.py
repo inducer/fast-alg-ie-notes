@@ -252,6 +252,7 @@ def find_list_2(root: Box, box: Box) -> List[Box]:
 
 
 def configure_plot(clear: bool = True) -> None:
+    np.random.seed(17)
     if clear:
         plt.clf()
     plt.gca().set_aspect("equal")
