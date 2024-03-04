@@ -2714,8 +2714,7 @@ and \(\tmmathbf{\tilde {x}}\)?
 #+LATEX: \end{hidden}
 
 Now work towards doing /just/ a `coarse' solve on \(\tmmathbf{\tilde
-{x}}\), using, effectively, the \ Schur complement. Multiply first row
-by \(\Pi D^{- 1}\), add to second:
+{x}}\), using the Schur complement:
 
 #+LATEX: \begin{hidden}
 \begin{eqnarray*}
