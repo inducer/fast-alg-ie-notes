@@ -2201,7 +2201,7 @@ We'll make a new word for that: A pair of boxes satisfying the condition
 
 *** Barnes-Hut: Revised Cost Estimate
 
-Which of these boxes are well-separated from one another?
+Which of these boxes are well-separated from the target?
 #+BEGIN_CENTER
 #+ATTR_LATEX: :height 5cm
 [[./media/bhut-08-mpole-tree-crop.pdf]]
@@ -2218,7 +2218,7 @@ potentials, assuming that we know the multipole expansions already?
 - \(m\) be #particles/box.
   Assume bounded (say, \(m \leqslant 100\))
 
-- Then \(L \sim \log (N)\)
+- Then \(L \sim \log (N)\) (under what assumptions?)
 
 What do we need to do?
 
@@ -2644,9 +2644,6 @@ Here:
 
 - \(\Pi _i\) shared for entire column
 
-\medskip
-*Q:* Why is it called that?
-
 *** Block-Separable Matrix: Questions
 
 *Q:* Why is it called that?
@@ -2719,23 +2716,29 @@ Now work towards doing /just/ a `coarse' solve on \(\tmmathbf{\tilde
 #+LATEX: \begin{hidden}
 \begin{eqnarray*}
   \begin{bmatrix}
-    \Pi \tmcolor{red}{D^{- 1} D} & \Pi D^{- 1} B\\- \Pi & \tmop{Id}
+    D & B \\
+    \Pi \tmcolor{red}{D^{- 1} D} & \Pi D^{- 1} B\\
+    - \Pi & \tmop{Id}
   \end{bmatrix}
   \begin{bmatrix}
     \tmmathbf{x}\\\widetilde{\tmmathbf{x}}
   \end{bmatrix} & = &
   \begin{bmatrix}
-    \Pi D^{- 1} \tmmathbf{b}\\\tmmathbf{0}
+    \tmmathbf{b}\\
+    \Pi D^{- 1} \tmmathbf{b} \\
+    \tmmathbf{0}
   \end{bmatrix}\\
   \begin{bmatrix}
-    \Pi D^{- 1} D & \Pi D^{- 1} B\\0 & \tmop{Id} + \Pi D^{- 1} B
+
+    D & B \\
+    0 & \tmop{Id} + \Pi D^{- 1} B
   \end{bmatrix}
   \begin{bmatrix}
     \tmmathbf{x}\\
     \widetilde{\tmmathbf{x}}
   \end{bmatrix} & = &
   \begin{bmatrix}
-    \tmmathbf{0}\\
+    \tmmathbf{b}\\
     \Pi D^{- 1} \tmmathbf{b}
   \end{bmatrix}
 \end{eqnarray*}
@@ -2776,7 +2779,7 @@ Next, left-multiply \((\tmop{Id} + \Pi D^{- 1} B)\) by \(\operatorname{diag}(\ti
     \end{bmatrix}}_{\tilde {A}} .
 \end{equation*}
 Summary: Need to solve
-\[\tilde {A} \tmmathbf{\tilde {x}} = (\Pi _i D_i^{- 1} P_i)^{- 1} \tmmathbf{}
+\[\tilde {A} \tmmathbf{\tilde {x}} = \operatorname{block-diag}_i(\Pi _i D_i^{- 1} P_i)^{- 1}\cdot 
    \Pi D^{- 1} \tmmathbf{b} . \]
    #+LATEX: \end{hidden}
 
@@ -2947,6 +2950,8 @@ The foundation of the /Fast Fourier Transform (FFT)/ is the factorization:
 
 #+ATTR_LATEX: :height 6cm
 [[./media/fft-butterfly.png]]
+
+(Figure credit: [[https://en.wikipedia.org/wiki/Fast_Fourier_transform#/media/File:DIT-FFT-butterfly.svg][Wikipedia]])
 
 Perhaps a little bit like a butterfly?
 
