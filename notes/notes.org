@@ -2173,19 +2173,20 @@ Which boxes in the tree should be allowed to contribute via multipole?
 #+LATEX: \begin{hidden}
 #+BEGIN_CENTER
 \begin{tikzpicture}[scale=0.7]
-  \draw [thick] (-1,-1) rectangle (1,1) ;
+  \draw [thick] (-1,-1) rectangle ++(2,2) ;
   \draw [thick,dashed] (0,0) coordinate (sctr) -- +(0,1) node [pos=0.5,anchor=west] {$r_s$};
-  \draw [thick] (3-1,-1) rectangle (3+1,1) ;
-  \draw [thick,dashed] (3,0) coordinate (tctr) -- +(0,1) node [pos=0.5,anchor=west] {$r_t$};
-  \draw (3,0) circle (1.4145);
-  \draw [thick,dotted] (3,0) (sctr) -- (tctr) node [pos=0.4,anchor=south] {$R$};
+  \draw [thick] (5-1,-1) rectangle ++(2,2) ;
+  \draw [thick,dashed] (5,0) coordinate (tctr) -- +(0,1) node [pos=0.5,anchor=west] {$r_t$};
+  \draw (5,0) circle (1.4145);
+  \draw (0,0) circle (1.4145);
+  \draw [thick,dotted] (5,0) (sctr) -- (tctr) node [pos=0.5,anchor=south] {$R$};
 \end{tikzpicture}
 #+END_CENTER
 
 Convergent iff
 \(r_s \sqrt{2} < R - r_t . \qquad (\ast ) \)
 
-Convergent /if/ (picture) \(R \geqslant 3 \cdot \max (r_t, r_s) \qquad (\ast \ast ) \)
+Convergent /if/ \(R \geqslant 3 \sqrt 2 \max (r_t, r_s) \qquad (\ast \ast ) \) [ [[https://doi.org/10.1137/0909044][Carrier et al.]] p. 671]
 
 because \((\ast ) \Leftrightarrow \left ( r_t + \sqrt{2} r_s \right ) < R. \)
 
@@ -2222,9 +2223,9 @@ potentials, assuming that we know the multipole expansions already?
 
 What do we need to do?
 
-- 9 boxes of direct evaluation (self and touching neighbors)
+- Amortized $O(1)$ boxes of direct evaluation (self+neighbors)
 
-  \(\rightarrow\) \(O (m) = O (1)\)
+  (see [[https://doi.org/10.1137/0909044][Carrier et al.]] Lemma A.1, A.4)
 
 - \(L\) levels of multipoles, each of which contains:
 
@@ -2250,11 +2251,11 @@ Summarize the algorithm (so far) and the associated cost.
 Summarize the algorithm (so far) and the associated cost.
 #+LATEX: \begin{hidden}
 
-|                 | *How often*                             | *Cost*  | *Total cost*  |
-|-----------------+-----------------------------------------+---------+---------------|
-| Compute mpoles  | \(N\) srcs                              | \(LK\)  | \(KN \log N\) |
+|                 | *How often*                        | *Cost*  | *Total cost*  |
+|-----------------+------------------------------------+---------+---------------|
+| Compute mpoles  | \(N\) srcs $\cdot$ $L$ levels           | \(K\)   | \(KN \log N\) |
 | Evaluate mpoles | \(N\) tgts \(\cdot\) \(27 L\) src boxes | \(K\)   | \(NK \log N\) |
-| 9 close boxes   | \(9 \cdot\)(\(N / m\) boxes)            | \(m^2\) | \(N / m\)     |
+| Self+neighbors  | \(C \cdot N / m\) boxes)                | \(m^2\) | \(C N / m\)   |
 
 So even with the forming of the multipoles, the overall algorithm is \[O (N \log N).\]
 
@@ -2500,13 +2501,17 @@ For a box \(b\), the interaction list \(I_b\) consists of all boxes
 #+LATEX: \end{hidden}
 
 *** FMM: List of Interaction Lists
+
+# FIXME: Boxes in list 2 don't seem well-separated in the sense of Carrier et al.?
+# 2024-03-06
+
 Make a list of cases:
 #+LATEX: \begin{hidden}
 
 1. Near/touching neighbor: direct
 2. Well-separated, same level: \(\tmop{mp} \rightarrow \tmop{loc}\)
-3. Well-separated, lower level: \(\tmop{mp} \rightarrow \tmop{tgt}\)
-4. Not well-separated, higher level: \(\tmop{src} \rightarrow \tmop{loc}\)
+3. Multipole convergent, smaller: \(\tmop{mp} \rightarrow \tmop{tgt}\)
+4. Multipole not convergent, larger: \(\tmop{src} \rightarrow \tmop{loc}\)
 5. Well-separated, higher level: nothing to do
 
 In the FMM literature, the resulting interaction lists are `insightfully'
