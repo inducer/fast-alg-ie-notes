@@ -2255,7 +2255,7 @@ Summarize the algorithm (so far) and the associated cost.
 |-----------------+------------------------------------+---------+---------------|
 | Compute mpoles  | \(N\) srcs $\cdot$ $L$ levels           | \(K\)   | \(KN \log N\) |
 | Evaluate mpoles | \(N\) tgts \(\cdot\) \(27 L\) src boxes | \(K\)   | \(NK \log N\) |
-| Self+neighbors  | \(C \cdot N / m\) boxes)                | \(m^2\) | \(C N / m\)   |
+| Self+neighbors  | \(C \cdot N / m\) boxes                 | \(m^2\) | \(C N / m\)   |
 
 So even with the forming of the multipoles, the overall algorithm is \[O (N \log N).\]
 
@@ -2426,6 +2426,11 @@ For a box \(b\), the interaction list \(I_b\) consists of all boxes
 - \(b\) and \(b'\) are well-separated, and
 
 - the parents of \(b\) and \(b'\) touch.
+#+LATEX: \end{hidden}
+
+Provide an upper bound on the number of elements of $I_b$.
+#+LATEX: \begin{hidden}
+$27=6^2-3^2$.
 #+LATEX: \end{hidden}
 
 *** The Fast Multipole Method (`FMM')
@@ -2753,7 +2758,7 @@ Now work towards doing /just/ a `coarse' solve on \(\tmmathbf{\tilde
 Focus in on the second row:
 \[(\tmop{Id} + \Pi D^{- 1} B) \widetilde{\tmmathbf{x}} = \Pi D^{- 1}
    \tmmathbf{b} \]
-Every non-zero entry in \(\Pi D^{- 1} B\) looks like
+Every non-zero (i.e. off-diagonal) entry in \(\Pi D^{- 1} B\) looks like
 #+LATEX: \begin{hidden}
 \[\Pi _i D_i^{- 1} P_i \tilde {A}_{i j} . \]
 #+LATEX: \end{hidden}
