@@ -2675,7 +2675,7 @@ single-level Barnes-Hut scheme.
 
 *** BSS Solve (I)
 
-Use the following notation:
+Separate out 'coarse' unknowns. Use the following notation:
 \begin{equation*}
     B =
     \begin{bmatrix}
@@ -2695,6 +2695,7 @@ and
     \Pi _1 &  &  & \\& \Pi _2 &  & \\&  & \Pi _3 & \\&  &  & \Pi _4
     \end{bmatrix} .
 \end{equation*}
+#+LATEX: \begin{hidden}
 Then \(A = D + B \Pi\) and
 \begin{equation*}
     \begin{bmatrix}
@@ -2707,9 +2708,10 @@ Then \(A = D + B \Pi\) and
     \tmmathbf{b}\\
     \tmmathbf{0}
     \end{bmatrix}
+  \Leftrightarrow
+  A \tmmathbf{x} = \tmmathbf{b}.
 \end{equation*}
-
-is equivalent to \(A \tmmathbf{x} = \tmmathbf{b}\).
+#+LATEX: \end{hidden}
 
 *** BSS Solve (II)
 
@@ -2771,7 +2773,7 @@ The nomenclature makes (some) sense, because \(\widetilde{A_{}}_{i i}\) is a
 #+LATEX: \end{hidden}
 
 *** BSS Solve (IV)
-Next, left-multiply \((\tmop{Id} + \Pi D^{- 1} B)\) by \(\operatorname{diag}(\tilde A_{ii})\):
+Next, left-multiply \((\tmop{Id} + \Pi D^{- 1} B)\) by \(\operatorname{block-diag}_i(\tilde A_{ii})\):
 #+LATEX: \begin{hidden}
 \begin{equation*}
     \begin{bmatrix}
@@ -2841,11 +2843,13 @@ Where does this process start?
 #+LATEX: \begin{hidden}
 Start from the `most refined' level:
 
-  #+ATTR_LATEX: :height 3cm
+  #+ATTR_LATEX: :height 2.5cm
   [[./media/box-skeleton.pdf]]
 
-\textcolor{red}{Coarser level skeletons} \(\cdot\) \textcolor{blue}{Finest skeletons}
+\textcolor{blue}{Coarser level skeletons} \(\cdot\) \textcolor{red}{Finest skeletons}
 #+LATEX: \end{hidden}
+
+\demo{Skeletonization using Proxies} (Hierarchical)
 
 *** Hierarchically Block-Separable
 
@@ -2975,7 +2979,7 @@ $e^{i\gamma x t}$ is bounded by a constant times $\gamma$, at any
 fixed precision $\epsilon$.
 #+END_QUOTE
 
-(i.e. rank is bounded by the area of the rectangle swept out by \(x\) and \(t\))
+(i.e. rank is proportional to the area of the rectangle swept out by \(x\) and \(t\))
 
 [[[https://doi.org/10.1016/j.acha.2009.08.005][O'Neil et al. `10]]]
 
