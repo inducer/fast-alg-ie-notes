@@ -78,10 +78,10 @@ def uniform_split_box(box: Box, levels: int):
         uniform_split_box(ch, levels - 1)
 
 
-def is_well_separated(box1: Box, box2: Box) -> bool:
-    r1 = box1.size/2
-    r2 = box2.size/2
-    return la.norm(box1.center - box2.center, 2) >= 3*max(r1, r2)
+def is_well_separated(*, sbox: Box, tbox: Box) -> bool:
+    rs = sbox.size/2
+    rt = tbox.size/2
+    return la.norm(sbox.center - tbox.center, np.inf) >= 3*rs + rt
 
 
 def split_boxes_by_mac(root: Box, tbox: Box) -> None:
@@ -91,7 +91,7 @@ def split_boxes_by_mac(root: Box, tbox: Box) -> None:
         return
     
     if not root.children:
-        if not is_well_separated(root, tbox):
+        if not is_well_separated(sbox=root, tbox=tbox):
             split_box(root)
 
     for ch in root.children:
@@ -245,7 +245,7 @@ def find_list_2(root: Box, box: Box) -> List[Box]:
         ch
         for pc in parent_colleagues
         for ch in pc.children
-        if is_well_separated(ch, box)
+        if is_well_separated(sbox=ch, tbox=box)
     ]
 
 # }}}

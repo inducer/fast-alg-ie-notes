@@ -2157,12 +2157,12 @@ What properties do these boxes have?
 
 \(r_s :\) Source box `radius` (center to vertical/horizontal edge)
 
-\(R\): source center \(\rightarrow\) target center distance
+\(R_p\): source center \(\rightarrow\) target center distance (in \(p\)-norm)
 
 \(r_t :\) Target box `radius` (center to vertical/horizontal edge)
 \[\left ( \frac{d \left ( \text{src ctr}, \text{furthest src} \right )}{d \left (
    \text{src ctr}, \text{closest tgt} \right )} \right )^{k + 1} = \left (
-   \frac{r_s \sqrt{2}}{R - r_t} \right )^{k + 1} \]
+   \frac{r_s \sqrt{2}}{R_2 - r_t} \right )^{k + 1} \]
 #+LATEX: \end{hidden}
 
 *** Barnes-Hut: Well-separated-ness
@@ -2171,27 +2171,24 @@ Which boxes in the tree should be allowed to contribute via multipole?
 
 #+LATEX: \begin{hidden}
 #+BEGIN_CENTER
-\begin{tikzpicture}[scale=0.7]
+\begin{tikzpicture}[scale=0.6]
   \draw [thick] (-1,-1) rectangle ++(2,2) ;
   \draw [thick,dashed] (0,0) coordinate (sctr) -- +(0,1) node [pos=0.5,anchor=west] {$r_s$};
-  \draw [thick] (5-1,-1) rectangle ++(2,2) ;
-  \draw [thick,dashed] (5,0) coordinate (tctr) -- +(0,1) node [pos=0.5,anchor=west] {$r_t$};
-  \draw (5,0) circle (1.4145);
-  \draw (0,0) circle (1.4145);
-  \draw [thick,dotted] (5,0) (sctr) -- (tctr) node [pos=0.5,anchor=south] {$R$};
+  \draw [thick] (4-1,-1) rectangle ++(2,2) ;
+  \draw [thick,dashed] (4,0) coordinate (tctr) -- +(0,1) node [pos=0.5,anchor=west] {$r_t$};
+  %\draw (4,0) circle (1.4145);
+  %\draw (0,0) circle (1.4145);
+  \draw [thick,dotted] (4,0) (sctr) -- (tctr) node [pos=0.5,anchor=south] {$R$};
 \end{tikzpicture}
 #+END_CENTER
 
 Convergent iff
-\(r_s \sqrt{2} < R - r_t . \qquad (\ast ) \)
+\(r_s \sqrt{2} < R_2 - r_t . \qquad (\ast ) \)
 
-Convergent /if/ \(R \geqslant 3 \sqrt 2 \max (r_t, r_s) \qquad (\ast \ast ) \) [ [[https://doi.org/10.1137/0909044][Carrier et al.]] p. 671]
+Convergent with factor $\sqrt2/3$ /if/ \(3 r_s + r_t \le  R_\infty \qquad (\ast \ast ) \)
+\[(**) \Leftrightarrow \frac{\sqrt 2 r_s}{R_\infty  -r_t} \le \frac{\sqrt 2}3 \Rightarrow\frac{\sqrt 2 r_s}{R_2 -r_t} \le \frac{\sqrt 2}3\qquad (R_\infty \le R_2)\]
 
-because \((\ast ) \Leftrightarrow \left ( r_t + \sqrt{2} r_s \right ) < R. \)
-
-\medskip
-We'll make a new word for that: A pair of boxes satisfying the condition
-\((\ast \ast )\) is called /well-separated/. *Observations:*
+Pair of boxes satisfying \((\ast \ast )\) called /well-separated/.
 
 - This is just /one/ choice. (the one we'll use anyway)
 - One can play games here, based on a target accuracy.
