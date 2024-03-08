@@ -2482,6 +2482,10 @@ $27=6^2-3^2$.
 
 *** What about adaptivity?
 
+**** Figure
+     :PROPERTIES:
+     :BEAMER_col: 0.7
+     :END:
 #+BEGIN_CENTER
 
   #+ATTR_LATEX: :height 6cm
@@ -2490,7 +2494,13 @@ $27=6^2-3^2$.
   Figure credit: Carrier et al. (`88)
 #+END_CENTER
 
-*** What about adaptivity?
+**** Criterion Reminder
+     :PROPERTIES:
+     :BEAMER_col: 0.3
+     :END:
+
+     Recall target convergence factor of $\sqrt 2/3$!
+*** Adaptivity: Solution
 
 #+BEGIN_CENTER
 
