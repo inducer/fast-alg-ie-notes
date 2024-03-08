@@ -3031,18 +3031,23 @@ For which types of $n\times n$ matrices does the butterfly lead to a reduction i
 #+LATEX: \begin{hidden}
 "Matrices for which \(p\times q\) subblocks have rank proportional to \(p q/n\)."
 [[[https://doi.org/10.1016/j.acha.2009.08.005][O'Neil et al. `10]]]
+
+- This is most meaningful in the `middle regime' where $p\approx q$.
+
+  This is where the rank /could/ grow biggest, but it needs to stay
+  constant instead in order for the Butterfly to win.
+- $pq$ is constant for the block sizes occurring in the factorization.
 #+LATEX: \end{hidden}
-Explore the limit cases of the characterization.
-#+LATEX: \begin{hidden}
-Reducing \(p\) to 1 leads to a rank of one, which doesn't make sense. Instead, the
-claim needs to be viewed as \(n\to \infty\).
-#+LATEX: \end{hidden}
-*** Observations: Cost
+*** Cost
 
 What is the cost (in the reduced-cost case) of the matvec?
 #+LATEX: \begin{hidden}
+Let $r$ be the rank bound for the 'glued'+'chopped' matrices.
+
 - Level 0: \(P_{0,k}\) have size \(r\times n/2^L\)
 - Level \(\ell\): \(P_{\ell,i,j}\) have size \(r\times 2r\)
+  - $2^L=O(N)$ blocks at each level, $L$ levels
+  - $O(N \log N)$ total
 - Postprocess: \(B_{L,j}\) have size \(n/(2^L)\times r\)
 #+LATEX: \end{hidden}
 
