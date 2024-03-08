@@ -2353,6 +2353,12 @@ If `upward' translation of multipoles helped earlier,
 maybe `downward' translation of /local/ expansions can help now.
 
 ** Fast Mutipole
+*** TODO Do not be tempted to reintroduce 'well-separated' notion from Carrier et al.
+
+# NOTE: Carrier et al.'s notion of well-separatedness is broken and
+# does not apply to list-2 boxes in the FMM.
+# -AK, 2024-03-08
+
 *** Using Multipole-to-Local
 
 #+BEGIN_CENTER
@@ -2400,10 +2406,10 @@ box?
 
 #+LATEX: \begin{hidden}
 
-1. Obtain contribution from well-separated boxes on previous level by
+1. Obtain contribution from far-field boxes on previous level by
   \textcolor{blue}{local}\(\rightarrow\)\textcolor{blue}{local} translation.
 
-1. Obtain contribution from \textcolor{red}{well-separated boxes} on this
+1. Obtain contribution from \textcolor{red}{non-touching} on this
   level by
 
   \textcolor{red}{multipole}\(\rightarrow\)\textcolor{blue}{local} translation. For
@@ -2422,7 +2428,7 @@ For a box \(b\), the interaction list \(I_b\) consists of all boxes
 
 - \(b\) and \(b'\) are on the same level,
 
-- \(b\) and \(b'\) are well-separated, and
+- \(b\) and \(b'\) do not touch, and
 
 - the parents of \(b\) and \(b'\) touch.
 #+LATEX: \end{hidden}
@@ -2506,17 +2512,14 @@ $27=6^2-3^2$.
 
 *** FMM: List of Interaction Lists
 
-# FIXME: Boxes in list 2 don't seem well-separated in the sense of Carrier et al.?
-# 2024-03-06
-
 Make a list of cases:
 #+LATEX: \begin{hidden}
 
 1. Near/touching neighbor: direct
-2. Well-separated, same level: \(\tmop{mp} \rightarrow \tmop{loc}\)
+2. same level, `moderate' distance: \(\tmop{mp} \rightarrow \tmop{loc}\)
 3. Multipole convergent, smaller: \(\tmop{mp} \rightarrow \tmop{tgt}\)
 4. Multipole not convergent, larger: \(\tmop{src} \rightarrow \tmop{loc}\)
-5. Well-separated, higher level: nothing to do
+5. Higher level, far: nothing to do
 
 In the FMM literature, the resulting interaction lists are `insightfully'
 often called `List 1', `List 2', ... (with the case numbers above).
