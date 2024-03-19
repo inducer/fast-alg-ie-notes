@@ -3566,7 +3566,7 @@ if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).\medskip
 *** Arzelà-Ascoli: Proof Sketch
 
 #+LATEX: \begin{hidden}
-- Pick a dense seuqence in \(G\)
+- Pick a dense sequence in \(G\)
 - Use a diagonal argument to find pointwise convergent subsequence
 - Use equicontinuity to show uniform convergence
 #+LATEX: \end{hidden}
