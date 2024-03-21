@@ -3075,29 +3075,43 @@ cost of applying is substantially less than \(O(n^2)\).
 
 *** PDEs: Simple Ones First, More Complicated Ones Later
 
-\begin{tabular}{p{6.0cm}p{6.0cm}}
-  \tmtextbf{Laplace} & \tmtextbf{Helmholtz}\\\(\triangle u = 0\) & \(\triangle u + k^2 u = 0\)\\
-  \begin{itemize}
-    \item Steady-state \(\partial _t u = 0\) of wave propagation, heat conduction
-  \end{itemize}
+**** Laplace
+     :PROPERTIES:
+     :BEAMER_col: 0.5
+     :BEAMER_opt: [t]
+     :END:
 
-  \begin{itemize}
-    \item Electric potential \(u\) for applied voltage
+*Laplace*
 
-        \item Minimal surfaces/``soap films''
+\medskip
+\(\triangle u = 0\) 
 
-        \item \(\nabla u\) as velocity of incompressible flow
-  \end{itemize} &
-  \begin{itemize}
-    \item Assume time-harmonic behavior \(\tilde {u} = e^{\pm i \omega t} u (x)\)
-        in time-domain wave equation:
-        \[\partial _t^2  \tilde {u} = \triangle \tilde {u} \]
-        \item Sign in \(\tilde {u}\) determines direction of wave: Incoming/outgoing
-        if free-space problem
+/Applications:/
 
-        \item \tmtextit{Applications:} Propagation of sound, electromagnetic waves
-  \end{itemize}
-\end{tabular}
+- Steady-state \(\partial _t u = 0\) of wave propagation, heat conduction
+- Electric potential \(u\) for applied voltage
+- Minimal surfaces/``soap films''
+- \(\nabla u\) as velocity of incompressible/potential flow
+
+**** Helmholtz
+     :PROPERTIES:
+     :BEAMER_col: 0.5
+     :BEAMER_opt: [t]
+     :END:
+
+*Helmholtz*
+
+\medskip
+\(\triangle u + k^2 u = 0\)
+     
+Assume time-harmonic behavior \(\tilde {u} = e^{\pm i \omega t} u (x)\)
+in time-domain wave equation:
+\[\partial _t^2  \tilde {u} = \triangle \tilde {u} \]
+
+/Applications:/
+
+- Propagation of sound
+- Electromagnetic waves
 
 *** Fundamental Solutions
 
@@ -3168,42 +3182,48 @@ Use a known one that works for the highest-order derivative parts of the PDE.
 
 *** Layer Potentials (I)
 
+
+Let \(G_k\) be the Helmholtz kernel (\(k = 0\) \(\rightarrow\) Laplace).
+#+LATEX: \begin{hidden}
+\vspace*{-2ex}
 \begin{align*}
-  (S_k \sigma ) (x) & \assign \int _\Gamma  G_k  (x - y) \sigma (y) ds_y\\(S_k' \sigma ) (x) & \assign n \cdot \nabla _x PV \int _\Gamma  G_k  (x - y)
-    \sigma (y) ds_y\\(D_k \sigma ) (x) & \assign PV \int _\Gamma  n \cdot \nabla _y G_k  (x - y)
-    \sigma (y) ds_y\\(D_k' \sigma ) (x) & \assign n \cdot \nabla _x f.p. \int _\Gamma  n \cdot
-    \nabla _y G_k  (x - y) \sigma (y) ds_y
+  (S_k \sigma ) (x) & \assign \int _\Gamma  G_k  (x - y) \sigma (y) ds_y\\
+  (S_k' \sigma ) (x) & \assign n \cdot \nabla _x PV \int _\Gamma  G_k  (x - y) \sigma (y) ds_y\\
+  (D_k \sigma ) (x) & \assign PV \int _\Gamma  n \cdot \nabla _y G_k  (x - y) \sigma (y) ds_y\\
+  (D_k' \sigma ) (x) & \assign n \cdot \nabla _x f.p. \int _\Gamma  n \cdot \nabla _y G_k  (x - y) \sigma (y) ds_y
 \end{align*}
 
-- \(G_k\) is the Helmholtz kernel (\(k = 0\) \(\rightarrow\) Laplace)
+#+LATEX: \end{hidden}
 
-- Operators--map function \(\sigma\) on \(\Gamma\) to...
+These operators map function \(\sigma\) on \(\Gamma\) to...
 
-  - ...function on \(\mathbb{R}^n\)
-
-  - ...function on \(\Gamma\) (in particular)
+#+LATEX: \begin{hidden}
+- ...function on \(\mathbb{R}^n\)
+- ...function on \(\Gamma\) (in particular)
+#+LATEX: \end{hidden}
 
 *** Layer Potentials (II)
 
-- Alternate (``standard'') nomenclature:
-
-  | Ours   | Theirs |
-  |--------+--------|
-  | \(S\)  | \(V\)  |
-  | \(D\)  | \(K\)  |
-  | \(S'\) | \(K'\) |
-  | \(D'\) | \(T\)  |
-
-- \(S''\) (and higher) analogously
-
-- Called /layer potentials/:
+Called /layer potentials/:
 
   - \(S\) is called the /single-layer potential/
-
   - \(D\) is called the /double-layer potential/
+  - \(S''\) (and higher) analogously
 
-- (Show pictures using =pytential/examples/layerpot.py=, observe
-  continuity properties.)
+(Show pictures using =pytential/examples/layerpot.py=, observe continuity properties.)
+
+Alternate (``standard'') nomenclature:
+
+#+LATEX: \begin{hidden}
+
+| Ours   | Theirs |
+|--------+--------|
+| \(S\)  | \(V\)  |
+| \(D\)  | \(K\)  |
+| \(S'\) | \(K'\) |
+| \(D'\) | \(T\)  |
+
+#+LATEX: \end{hidden}
 
 *** How does this actually solve a PDE?
 
@@ -3211,18 +3231,21 @@ Solve a (interior Laplace Dirichlet) BVP, \(\partial \Omega = \Gamma\)
 \[\triangle u = 0 \quad \text{in } \Omega , \qquad u|_\Gamma  = f|_\Gamma  .
 \]
 
+#+LATEX: \begin{hidden}
 1. Pick /representation/:
-  \[u (x) \assign (S \sigma ) (x) \]
+  \(u (x) \assign (S \sigma ) (x) \)
 1. Take (interior) limit onto \(\Gamma\):
-  \[u|_\Gamma  = S \sigma \]
+  \(u|_\Gamma  = S \sigma \)
 1. Enforce BC:
-  \[u|_\Gamma  = f \]
+  \(u|_\Gamma  = f \)
 1. Solve resulting linear system:
-  \[S \sigma = f \]
+  \(S \sigma = f \)
+  
   (quickly--using the methods we've developed: It is precisely of the form
   that suits our fast algorithms!)
 
 1. Obtain PDE solution in \(\Omega\) by evaluating representation
+#+LATEX: \end{hidden}
 
 *** IE BVP Solve: Observations (I)
 
@@ -3327,7 +3350,6 @@ Name some ways in which a sequence can `converge'.
 \(\|A\|\) bounded \(\Leftrightarrow\) \(A\) continuous
 #+LATEX: \end{theorem}
 
-Other facts?
 #+LATEX: \begin{hidden}
 - The set of bounded linear operators is itself a Banach space: \(L (X,     Y)\)
 - \(\|Ax\|\le \|A\|\|x\|\)
