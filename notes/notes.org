@@ -3578,7 +3578,7 @@ For all \(x, y \in G\)
 
 for all \(\epsilon > 0\) there exists a \(\delta > 0\) such that for all \(f \in U\)
 
-if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).\medskip
+if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).
 #+LATEX: \end{hidden}
 
 *Continuous* means:
@@ -3588,7 +3588,7 @@ For all \(x, y \in G\)
 
 for all \(\epsilon > 0\) there exists a \(\delta > 0\) such that
 
-if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).\medskip
+if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).
 #+LATEX: \end{hidden}
 *** Arzelà-Ascoli: Proof Sketch for b\land e \Rightarrow c
 
