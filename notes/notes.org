@@ -3490,19 +3490,24 @@ with \(\|(I - A)^{- 1} \|\le 1 / (1 -\|A\|)\).
 
 *** Compact Sets
 
-#+LATEX: \begin{definition}[Precompact/Relatively compact]
+#+LATEX: \begin{definition}[Precompact/Relatively compact/Sequentially compact]
 
-  \(M \subseteq X\) precompact\(: \Leftrightarrow\) all sequences \((x_k) \subset    M\) contain a subsequence converging in \(X\)
+\(M \subseteq X\) precompact\(: \Leftrightarrow\) all sequences \((x_k) \subset    M\) contain a subsequence converging in \(X\)
 #+LATEX: \end{definition}
 
 #+LATEX: \begin{definition}[Compact/`Sequentially complete']
-
-  \(M \subseteq X\) compact\(: \Leftrightarrow\) all sequences \((x_k) \subset M\)
-  contain a subsequence converging in \(M\)
+\(M \subseteq X\) compact\(: \Leftrightarrow\) all sequences \((x_k) \subset M\)
+contain a subsequence converging in \(M\)
 #+LATEX: \end{definition}
 
 - Precompact \(\Rightarrow\) bounded
 - Precompact \(\Leftrightarrow\) bounded (finite dim. only!)
+- Question: Is a set consisting of two elements precompact?
+
+#+LATEX: \begin{theorem}[Finite subcover]
+$M\subseteq X$ compact $\Leftrightarrow$ For all /covers/ $C$ with $M=\bigcup_{S\in C} S$ consisting of open sets $S\subseteq X$,
+there exists a finite /subcover/ $F\subseteq C$ so that $M=\bigcup_{S\in F} S$.
+#+LATEX: \end{theorem}
 
 *** Compact Sets (II)
 
