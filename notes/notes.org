@@ -3433,7 +3433,7 @@ Show `\(\leqslant\)'.
 Given
 \[(A \phi ) (x) \assign \int _G K (x, y) \varphi (y) dy, \]
 are we allowed to ask for a solution of
-\[(\tmop{Id} + A) \varphi = g ? \]
+\[(\tmop{Id} - A) \varphi = g ? \]
 #+LATEX: \begin{hidden}
 Will see three attempts to answer that,
 in roughly historical order:
