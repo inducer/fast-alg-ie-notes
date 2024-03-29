@@ -3780,6 +3780,7 @@ Assuming \((I - A)\) is bijective, show that \((I - A)^{- 1}\) is bounded.
 - Pick a convergent subsequence out of \((A\phi_n)\), let \(A\phi_n\to \phi\)
 - \(A\phi=\phi\), so \(\phi\in N(L)\).
 #+LATEX: \end{hidden}
+(Quite a bit more to the proof: Riesz' second, third theorems, Riesz numbers, \dots)
 
 *** Hilbert spaces
 
