@@ -3810,7 +3810,7 @@ so that \(|(\phi,\psi)|\le\norm\phi \norm \psi\) for \(\phi,\psi\in X\).
 #+LATEX: \begin{theorem}[Lax dual system {\scriptsize [Kress LIE 3rd ed. Thm. 4.13]}]
 Let \(U\subseteq X\) be a subspace and let \(A:X\to Y\) and \(B:Y\to
 X\) be bounded linear operators with
-\[A\phi,\psi)=(\phi,B\psi)\qquad (\phi\in U, \psi\in Y).\]
+\[(A\phi,\psi)=(\phi,B\psi)\qquad (\phi\in U, \psi\in Y).\]
 Then \(A:U\to Y\) is bounded with respect to \(\norm{\cdot}_s\)
 induced by the scalar product and \(\norm{A}_s^2\le \norm{A}\norm{B}\).
 #+LATEX: \end{theorem}
