@@ -3628,7 +3628,7 @@ Continuous on a closed and bounded (`compact') set.
 
 *** Integral Operators are Compact
 
-#+LATEX: \begin{theorem}[Continuous kernel $\Rightarrow$  compact {\scriptsize [Kress LIE 2nd ed. Thm. 2.20]}]
+#+LATEX: \begin{theorem}[Continuous kernel $\Rightarrow$  compact {\scriptsize [Kress LIE 3rd ed. Thm. 2.28]}]
 
     \(G \subset \mathbb{R}^m\) compact, \(K \in C (G^2)\). Then
     \[(A \phi ) (x) \assign \int _G K (x, y) \phi (y) dy. \]
@@ -3661,7 +3661,7 @@ continuous on \(G \times G\) because \(G \times G\) compact.
 
 #+LATEX: \end{definition}
 
-#+LATEX: \begin{theorem}[Weakly singular kernel $\Rightarrow$  compact {\scriptsize [Kress LIE 2nd ed. Thm. 2.22]}]
+#+LATEX: \begin{theorem}[Weakly singular kernel $\Rightarrow$  compact {\scriptsize [Kress LIE 3rd ed. Thm. 2.29]}]
 
 \(K\) weakly singular. Then
 \[(A \phi ) (x) \assign \int _G K (x, y) \phi (y) dy. \]
@@ -3702,7 +3702,7 @@ Outline the proof of `Weakly singular kernel $\Rightarrow$  compact'.
 
 #+LATEX: \end{definition}
 
-#+LATEX: \begin{theorem}[Weakly singular kernel $\Rightarrow$  compact {\scriptsize [Kress LIE 2nd ed. Thm. 2.23]}]
+#+LATEX: \begin{theorem}[Weakly singular kernel $\Rightarrow$  compact {\scriptsize [Kress LIE 3rd ed. Thm. 2.30]}]
 
 \(K\) weakly singular on \(\partial \Omega\). Then
 \(\ds(A \phi ) (x) \assign \int _{\partial \Omega } K (x, y) \phi (y) dy \)
@@ -3719,9 +3719,9 @@ Still trying to solve
 \[L \phi \assign (I - A) \phi = \phi - A \phi = f \]
 with \(A\) compact.
 
-#+LATEX: \begin{theorem}[First Riesz Theorem {\scriptsize [Kress, Thm. 3.1]}]
+#+LATEX: \begin{theorem}[First Riesz Theorem {\scriptsize [Kress LIE 3rd ed., Thm. 3.1]}]
 
-    \(N (L)\) is finite-dimensional.
+\(N (L)\) is finite-dimensional.
 #+LATEX: \end{theorem}
 
 Questions:
@@ -3746,9 +3746,9 @@ Proof:
 
 *** Riesz Theory (II)
 
-#+LATEX: \begin{theorem}[Riesz theory {\scriptsize [Kress, Thm. 3.4]}]
+#+LATEX: \begin{theorem}[Riesz theory {\scriptsize [Kress LIE 3rd ed., Thm. 3.4]}]
 
-    \(A\) compact. *Then:*
+\(A\) compact. *Then:*
 
 - \((I - A)\) injective \(\Leftrightarrow\) \((I - A)\) surjective
 
@@ -3864,7 +3864,7 @@ Adjoint of the double-layer?
 
 *** Fredholm Alternative
 
-#+LATEX: \begin{theorem}[Fredholm Alternative {\scriptsize [Kress LIE 2nd ed. Thm. 4.14]}]
+#+LATEX: \begin{theorem}[Fredholm Alternative {\scriptsize [Kress LIE 3rd ed. Thm. 4.17]}]
 
     \(A : X \to X\) compact. *Then either:*
 
