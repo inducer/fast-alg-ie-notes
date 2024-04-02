@@ -3598,8 +3598,8 @@ if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).
 - Use a diagonal argument to find pointwise convergent subsequence, numbered $n(k)$
 - Let $\epsilon>0$, use $\delta>0$ from equicontinuity.
 - Consider cover $B(x_i, \delta)$, let $M$ be such that $G\subseteq B(x_1,\delta) \cup\cdots\cup B(x_M,\delta)$
-- Let $x\in G$. Find $x_j$ such that $\abs{x_j-x}<\delta$.
-- $\abs{f_{n(k)}(x) - f_{n(\ell)(x)}}\le \abs{f_{n(k)}(x) - f_{n(k)(x_j)}}+\dots$
+- Let $x\in G$. Find $x_j$ such that $\abs{x_j-x}<\delta$. ($j\in\{1,\dots,M\}$)
+- $\abs{f_{n(k)}(x) - f_{n(\ell)}(x)}\le \abs{f_{n(k)}(x) - f_{n(k)}(x_j)}+\cdots$
 
   Outer terms small by equicontinuity, middle term small by convergence.
 #+LATEX: \end{hidden}
