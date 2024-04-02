@@ -3897,10 +3897,11 @@ Fundamental thm of linear algebra \(\rightarrow\) next slide
 *** Fundamental Theorem of Linear Algebra
 
 #+BEGIN_CENTER
-
-  #+ATTR_LATEX: :height 7cm
-  [[./media/fundamental-thm-of-la.pdf]]
+#+ATTR_LATEX: :height 6cm
+./media/fundamental-thm-of-la.pdf]]
 #+END_CENTER
+
+[Credit: Wikipedia]
 
 *** Fredholm Alternative in IE terms
 
