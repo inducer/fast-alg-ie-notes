@@ -3783,10 +3783,10 @@ Gives out completely if there happens to be a nullspace.
 Assuming \((I - A)\) is bijective, show that \((I - A)^{- 1}\) is bounded.
 #+LATEX: \begin{hidden}
 - Assume \(L^{-1}\) unbounded, so there exists a sequence \((f_n)\) with \(\norm{f_n}=1\) and \(\norm{L^{-1}f_n}\ge n\).
-- Define \(g_n=f_n/\norm{L^{-1}f_n}\to 1\) and \(\phi_n=L^{-1} f_n/\norm{L^{-1}f_n}\)
+- Define \(g_n=f_n/\norm{L^{-1}f_n}\to 0\) and \(\phi_n=L^{-1} f_n/\norm{L^{-1}f_n}\) (\(\norm{\phi_n}=1\))
 - \(\phi_n-A\phi_n=g_n\)
 - Pick a convergent subsequence out of \((A\phi_n)\), let \(A\phi_n\to \phi\)
-- \(A\phi=\phi\), so \(\phi\in N(L)\).
+- \(A\phi=\phi\), so \(\phi\in N(L)\), contradicting injectivity.
 #+LATEX: \end{hidden}
 (Quite a bit more to the proof: Riesz' second, third theorems, Riesz numbers, \dots)
 
