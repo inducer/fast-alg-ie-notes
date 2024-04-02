@@ -3590,7 +3590,7 @@ for all \(\epsilon > 0\) there exists a \(\delta > 0\) such that
 
 if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).
 #+LATEX: \end{hidden}
-*** Arzelà-Ascoli: Proof Sketch for b\land e \Rightarrow precompact
+*** Arzelà-Ascoli: Proof Sketch for b \land e \Rightarrow precompact
 
 #+LATEX: \begin{hidden}
 - Let $f_n$ be a sequence in $U$. To show: Has Cauchy subseq. wrt $\norm{\cdot}_\infty$.
