@@ -3642,10 +3642,18 @@ Pick \(U \subset C (G)\). \(A (U)\) bounded?
 Yes, because the operator is bounded.
 #+LATEX: \end{hidden}
 
-\(A (U)\) equicontinuous?
+*** Integral Operators are Compact (II)
+Show that \(A (U)\) is equicontinuous.
 #+LATEX: \begin{hidden}
-Yes: \(K\) /uniformly/
-continuous on \(G \times G\) because \(G \times G\) compact.
+Let $\epsilon>0$. Observe \(K\) /uniformly/ continuous on \(G \times G\) because \(G \times G\) compact.
+Let $\delta>0$ be the $\delta$ from uniform continuity of $K$. Let $x,y\in G$ with $\norm{x-y}<\delta$.
+Let $\phi\in U$.
+
+\[
+\abs{(A\phi)(x)-(A\phi)(y)}
+\le \int_G \abs{K(x,z)-K(y,z)}\abs{phi(z)} dz
+\le |G|\epsilon \norm{\phi}_\infty.
+\]
 #+LATEX: \end{hidden}
 
 *** Weakly singular
