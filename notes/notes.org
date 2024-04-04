@@ -3680,7 +3680,7 @@ is compact on \(C (G)\), where \(\operatorname{cl}(G^\circ)=G\).
 Outline the proof of `Weakly singular kernel $\Rightarrow$  compact'.
 #+LATEX: \begin{hidden}
 
-- \[\int|x-y|^{\alpha-n} \le \omega_n \int_0^d \rho^{\alpha-n}\rho^{n-1}d\rho=d^\alpha/\alpha \omega_n\]
+- \[\int|x-y|^{\alpha-n} \le \omega_n \int_0^d \rho^{\alpha-n}\rho^{n-1}d\rho=\omega_n d^\alpha/\alpha \]
 - Show boundedness/existence as improper integral.
 
   (polar coordinates)
@@ -3747,6 +3747,8 @@ Proof:
 
 - \(N (L)\) closed. (Why?)
 
+- $A:N(L)\to N(L)$ compact because of closedness
+
 - \(L \phi = 0\) means what for \(A\)?
 
 - When is the identity compact again?
@@ -3784,8 +3786,8 @@ Assuming \((I - A)\) is bijective, show that \((I - A)^{- 1}\) is bounded.
 #+LATEX: \begin{hidden}
 - Assume \(L^{-1}\) unbounded, so there exists a sequence \((f_n)\) with \(\norm{f_n}=1\) and \(\norm{L^{-1}f_n}\ge n\).
 - Define \(g_n=f_n/\norm{L^{-1}f_n}\to 0\) and \(\phi_n=L^{-1} f_n/\norm{L^{-1}f_n}\) (\(\norm{\phi_n}=1\))
-- \(\phi_n-A\phi_n=g_n\)
-- Pick a convergent subsequence out of \((A\phi_n)\), let \(A\phi_n\to \phi\)
+- \(\phi_n-A\phi_n=g_n\to 0.\)
+- Pick a convergent subsequence out of \((A\phi_n)\), let \(A\phi_n\to \phi.\)
 - \(A\phi=\phi\), so \(\phi\in N(L)\), contradicting injectivity.
 #+LATEX: \end{hidden}
 (Quite a bit more to the proof: Riesz' second, third theorems, Riesz numbers, \dots)
@@ -3980,12 +3982,9 @@ Not all non-regular values are eigen.
 
 *Then:*
 
-- \(0 \in \sigma (A)\) (show! )
-
+- \(0 \in \sigma (A)\)
 - \(\sigma (A) \setminus \{0\}\) consists /only/ of eigenvalues
-
 - \(\sigma (A) \setminus \{0\}\) is at most countable
-
 - \(\sigma (A)\) has no accumulation point except for 0
 
 #+LATEX: \end{theorem}
@@ -4059,7 +4058,7 @@ Is the double layer \emph{actually} weakly singular? *Recap:*
 
 #+LATEX: \end{definition}
 
-*** Actual Singularity in the Double Layer
+*** Actual Singularity in the Double Layer (2D)
 
 \[\frac{\partial }{\partial _x} \log (|0 - x|) = \frac{x}{x^2 + y^2} \]
 #+BEGIN_CENTER
