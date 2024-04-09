@@ -3900,7 +3900,7 @@ Fundamental thm of linear algebra \(\rightarrow\) next slide
 
 #+BEGIN_CENTER
 #+ATTR_LATEX: :height 6cm
-./media/fundamental-thm-of-la.pdf]]
+[[./media/fundamental-thm-of-la.pdf]]
 #+END_CENTER
 
 [Credit: Wikipedia]
