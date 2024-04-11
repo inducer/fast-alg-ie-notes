@@ -4294,8 +4294,8 @@ Since \(\partial_i u\) is also harmonic, we may apply the mean value theorem and
 \end{equation*}
 where \(\hat n(y)\) is the unit normal to \(\partial B(x,r)\) towards
 the interior of the ball (hence the sign flip).
-The second equality follows from Gauss's theorem by applying it to \(\vec v:= \vec e_i u\), where 
-\(\vec e_i\) is the \(i\)th unit vector.
+The second equality follows from Gauss's theorem by applying it to \(\B v:= \B e_i u\), where
+\(\B e_i\) is the \(i\)th unit vector.
 
 Choosing \(r=\norm{x}/2\) yields that
 \[\norm{\nabla u(x)} \le \frac{3M}r=\frac {6M}{\norm{x}}.\]
@@ -4322,8 +4322,8 @@ Consider
 #+LATEX: \end{hidden}
 
 *** Green's Formula at Infinity: Proof (3/4)
-It remains to bound the term
-\[D_{\partial B(x,r)} u) (x) =\frac{4\pi}{r^2} \int_{\partial B (x,r)} u(y) dS_y.\]
+It remains to figure out the term
+\[(D_{\partial B(x,r)} u) (x) =\frac{4\pi}{r^2} \int_{\partial B (x,r)} u(y) dS_y.\]
 
 Can we transplant that ball to the origin in some sense?
 #+LATEX: \begin{hidden}
