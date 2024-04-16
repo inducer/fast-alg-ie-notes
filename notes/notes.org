@@ -4380,7 +4380,7 @@ How about \(u\)'s derivatives?
 
 *** Jump Relations: Mathematical Statement
 
-Let \([X] = X_+ - X_-\). (Normal points towards ``+''=``exterior''.)
+Let \([X] = X_+ - X_-\). (Normal points towards ``+''=``exterior''.) Let $x_0\in\Gamma$.
 
 #+LATEX: \begin{theorem}[Jump Relations {\footnotesize {[Kress LIE 2nd ed. Thm. 6.14, 6.17,6.18]}}]
 \vspace*{-3ex}
