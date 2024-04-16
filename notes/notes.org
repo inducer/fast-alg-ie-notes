@@ -4262,7 +4262,7 @@ So boundaries are special.
 \(\Omega \subseteq \mathbb{R}^n\) bounded, \(C^1\), connected boundary, \(\triangle  u = 0\) in \(\mathbb R^n\setminus\Omega\), \(u\) bounded
 
 #+LATEX: \begin{theorem}[Green's Formula in the exterior {\footnotesize [Kress LIE 3rd ed. Thm 6.11]}]
-\[(S_{\partial \Omega } (\hat {n} \cdot \nabla u) - D_{\partial \Omega } u)
+\[(-S_{\partial \Omega } (\hat {n} \cdot \nabla u) + D_{\partial \Omega } u)
    (x) + \tmcolor{red}{\tmop{PV}} u_\infty  = u (x) \]
 for some constant \(u_\infty\). /Only/ for \(n = 2\),
 \[u_\infty  = \frac{1}{2 \pi r}  \int _{|y| = r} u (y) ds_y . \]
