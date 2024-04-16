@@ -4382,7 +4382,7 @@ How about \(u\)'s derivatives?
 
 Let \([X] = X_+ - X_-\). (Normal points towards ``+''=``exterior''.) Let $x_0\in\Gamma$.
 
-#+LATEX: \begin{theorem}[Jump Relations {\footnotesize {[Kress LIE 2nd ed. Thm. 6.14, 6.17,6.18]}}]
+#+LATEX: \begin{theorem}[Jump Relations {\footnotesize {[Kress LIE 3rd ed. Thm. 6.15, 6.18,6.19]}}]
 \vspace*{-3ex}
 \begin{align*}
   [S \sigma ] & = 0\\
