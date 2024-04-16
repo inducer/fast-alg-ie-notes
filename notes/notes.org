@@ -4257,11 +4257,6 @@ a neighborhood. \(\rightarrow\) some points there have to be as high or higher.
 So boundaries are special.
 #+LATEX: \end{hidden}
 
-What do our /constructed/ harmonic functions (layer potentials) do there?
-#+LATEX: \begin{hidden}
-Good question \(\rightarrow\) next slide.
-#+LATEX: \end{hidden}
-
 *** Green's Formula at Infinity: Statement
 
 \(\Omega \subseteq \mathbb{R}^n\) bounded, \(C^1\), connected boundary, \(\triangle  u = 0\) in \(\mathbb R^n\setminus\Omega\), \(u\) bounded
