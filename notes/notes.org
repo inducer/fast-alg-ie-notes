@@ -4574,7 +4574,12 @@ Problem: \(N (I / 2 + S') = \{\psi \}\)... do not know \(\psi\). Assume $0\in\Om
   [[./media/drop-crop.pdf]]
 #+END_CENTER
 
-What's the problem? /(Hint: Jump condition for constant density)/
+What's the problem?
+#+LATEX: \begin{hidden}
+Recall proof of Jump condition for constant density.
+On-surface value at corner will not be *average* but *shifted* average
+between one-sided limits.
+#+LATEX: \end{hidden}
 
 *** Domains with Corners (II)
 
@@ -4582,16 +4587,17 @@ At corner \(x_0\): (2D)
 \[\lim _{x \to x_0 \pm } = \int _{\partial \Omega } \hat {n} \cdot \nabla _y G (x,
    y) \phi (y) ds_y \pm \frac{1}{2} \tmcolor{red}{\frac{\langle \text{opening
    angle on \(\pm\) side} \rangle }{\pi }} \phi \]
-\(\to\) non-continuous behavior of potential on \(\Gamma\) at \(x_0\)
+Name some problems.
+#+LATEX: \begin{hidden}
+- On-surface value of potential no longer continuous.
+- $I/2\pm D$ not compact.
+#+LATEX: \end{hidden}
 
-What space have we been living in? How do we fix this mess?
+Workarounds?
 
 #+LATEX: \begin{hidden}
-- Continuous functions
 - \(I\) \(+\) Bounded (Neumann) \(+\) Compact (Fredholm)
-- Use \(L^2\) theory
-
-  (point behavior ``invisible'')
+- Use \(L^2\) theory (point behavior ``invisible'')
 #+LATEX: \end{hidden}
 
 Numerically: Needs consideration, can drive up cost through refinement.
