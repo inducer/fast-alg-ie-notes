@@ -4539,8 +4539,8 @@ Show \(N (I / 2 + D) = \tmop{span} \{1 \}\).
 - Has right decay, so exterior Dirichlet uniqueness says \(u     |_{\bar {\Omega }^c} = 0 \).
 - Jump relations for \(\partial _n u\) yield \((\partial _n u)^- = 0\).
 - Interior Neumann `uniqueness' says \(u = \tmop{const}\) in \(\Omega\).
-- Jump relations say \(\varphi = \tmop{const}\) on \(\partial \Omega\).
-- ``\(\supseteq\)'': Can use Green's thm to show that D1+1/2=0.
+- Jump relations say \(\varphi = \tmop{const}\) on \(\partial \Omega\) \Rightarrow $N(D+I/2)\subseteq span\{1\}$.
+- ``\(\supseteq\)'': $D1+1/2=0$ shows `$\supseteq$'.
 #+LATEX: \end{hidden}
 
 What conditions on the RHS do we get for int. Neumann and ext. Dirichlet?
