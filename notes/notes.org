@@ -4500,7 +4500,7 @@ Given Dirichlet data, find Neumann data. Possible!
 
 *** Uniqueness of Integral Equation Solutions
 
-#+LATEX: \begin{theorem}[Nullspaces {\footnotesize [Kress LIE 2nd ed. Thm 6.20]}]
+#+LATEX: \begin{theorem}[Nullspaces {\footnotesize [Kress LIE 3rd ed. Thm 6.21]}]
 
 - \(N (I / 2 - D) = N (I / 2 - S') = \{0\}\)
 
