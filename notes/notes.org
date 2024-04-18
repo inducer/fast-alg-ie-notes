@@ -4552,22 +4552,20 @@ What conditions on the RHS do we get for int. Neumann and ext. Dirichlet?
 
 *** Patching up Exterior Dirichlet
 
-Problem: \(N (I / 2 + S') = \{\psi \}\)... do not know \(\psi\). Use different kernel:
+Problem: \(N (I / 2 + S') = \{\psi \}\)... do not know \(\psi\). Assume $0\in\Omega$.
 
-\[\hat {n} \cdot \nabla _y G (x, y) \qquad \to \qquad \hat {n} \cdot \nabla _y G
+#+LATEX: \begin{hidden}
+\vspace*{-2ex}
+\[K(x,y)=\hat {n} \cdot \nabla _y G (x, y) \qquad \to \qquad \tilde K(x,y)=\hat {n} \cdot \nabla _y G
    (x, y) + \frac{1}{|x|^{n - 2}} \]
-Note: Singularity only at origin! (assumed \(\in \Omega\))
+\[u(x):=\int_\Gamma\qquad \tilde K(x,y)  \sigma(y)dS_y =D \sigma(x) + \frac{1}{|x|^{n - 2}}  \int_\Gamma \sigma(y)dS_y\]
 
-- 2D behavior? 3D behavior?
-- Still a solution of the PDE? Compact?
-- Jump condition? Exterior limit? Deduce \(u = 0\) on exterior.
-  - Consider \(\partial_n G = O(1/r^{n-1})\).
-- \(|x|^{n - 2} u (x) =\)? as \(|x|\to\infty\)?
-- Thus \(\int \phi = 0\). Contribution of the second term?
-- \(\phi / 2 + D \phi = 0\), i.e. \(\phi \in N (I / 2 + D) =\)?
-- Existence/uniqueness?
-
-\(\to\) Existence for 4 out of 4.
+- Still a solution of the PDE? Compact? Jump condition? Exterior limit?
+  (all unchanged)
+- \(u = 0\) on exterior because of ext. Dirichlet uniqueness. (\(\partial_n G = O(1/r^{n-1})\))
+- \(|x|^{n - 2} u (x) = \int\phi+O(1/r) \) as \(|x|\to\infty\), so $\int\phi=0$, so \(\phi / 2 + D \phi = 0\), i.e. \(\phi \in N (I / 2 + D=span\{1\}\), i.e. const.
+  With $\int\phi=0$, $\phi=0$.
+#+LATEX: \end{hidden}
 
 *** Domains with Corners
 
