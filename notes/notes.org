@@ -4510,6 +4510,7 @@ Given Dirichlet data, find Neumann data. Possible!
 
 #+LATEX: \end{theorem}
 
+Disclaimer: \(\int \psi \ne 0\) not shown here, takes a little extra work.
 *** IE Uniqueness: Proofs (1/3)
 
 Show \(N (I / 2 - D) = \{0 \}.\)
@@ -4824,19 +4825,21 @@ with \(g \in C (\partial D)\).\medskip
 
 Find layer potential representations for each.
 #+LATEX: \begin{hidden}
-First idea: Same as Dirichlet. But: (see next slide).
+First idea: Same as Dirichlet. Issue: spurious resonances.
 #+LATEX: \end{hidden}
 
-*** Patching up resonances
+*** Patching up spurious resonances inherited from adjoint
 
-*Issue:* Ext. IE inherits non-uniqueness from `adjoint' int. BVP\medskip
+*Issue:* Exte IE inherits non-uniqueness from `adjoint' int. BVP.
 
-*Fix:* Tweak representation [Brakhage/Werner `65, ...]
+#+LATEX: \begin{hidden}
+*Idea:* Tweak representation [Brakhage/Werner `65, ...]
 
 (also called the /CFIE/ or /combined field integral equation/)
 \[u = D \phi - i \alpha S \phi \]
 (\(\alpha\): tuning knob \(\to\) \(1\) is fine, \(\sim k\) better for large
-\(k\))\medskip
+\(k\))
+#+LATEX: \end{hidden}
 
 *** Patching up resonances: CFIE (1/3)
 
@@ -4903,7 +4906,7 @@ Uniqueness for remaining IEs similar:
 
 ** Calderón identities
 
-*** A word about $D'$
+*** $D'$ is Self-Adjoint
 Show that \(D'\) is self-adjoint. 
 #+LATEX: {\scriptsize [Kress LIE 3rd ed. Sec 7.6]}
 #+LATEX: \begin{hidden}
@@ -4928,9 +4931,11 @@ Show that \(D'\) is self-adjoint.
 *** Towards Calderón
 
 Show that \((S \varphi , D' \psi ) = ((S' + I / 2) \varphi , (D - I / 2) \psi )\).
+#+LATEX: {\scriptsize [Kress LIE 3rd ed. Sec 7.6]}
+
 #+LATEX: \begin{hidden}
 Let \(w:=S\phi\) and \(v=D\psi\).
-\[(S\phi, D'\psi)=(w,\partial_n v) =(\partial_n w,v)=((S' + I / 2) \varphi , (D - I / 2) \psi ).\]
+\[(S\phi, D'\psi)=(w,\partial_n v) \overset{\text{Green2}}=((\partial_n w)_-,v_-)=((S' + I / 2) \varphi , (D - I / 2) \psi ).\]
 #+LATEX: \end{hidden}
 
 \((\varphi , SD' \psi )\)?
@@ -4940,7 +4945,6 @@ Let \(w:=S\phi\) and \(v=D\psi\).
   &  & (\varphi , SD' \psi )\\
   & = & (S \varphi , D' \psi )\\
   & = & ((S' + I / 2) \varphi , (D - I / 2) \psi )\\
-  & = & (\varphi , (D + I / 2) (D - I / 2) \psi )\\
   & = & (\varphi , (D + I / 2) (D - I / 2) \psi )\\
   & = & (\varphi , (D^2 - I / 4) \psi )
 \end{eqnarray*}
@@ -4960,7 +4964,7 @@ Also valid for Laplace (jump relation same after all!)\medskip
 
 Why do we care?
 #+LATEX: \begin{hidden}
-\(\to\) Exterior Neumann IE has \(D'\).
+\(\to\) Exterior Neumann CFIE has \(D'\).
 But: Hypersingular is yucky.
 
 Right-precondition with a single layer.
