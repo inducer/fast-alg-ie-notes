@@ -4953,7 +4953,7 @@ Show that \(D'\) is self-adjoint.
 
 - Introduce: \(u = D \varphi , \quad v = D \psi\)
 
-- Green's second thm (here, in part thanks to Sommerfeld):
+- Green's second thm (ext. and int., ext. thanks to Sommerfeld):
   \[\int _{\partial \Omega } (\hat {n} \cdot \nabla u) v = \int _{\partial
        \Omega } u (\hat {n} \cdot \nabla v) \]
 - Then:
