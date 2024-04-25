@@ -4496,7 +4496,45 @@ What's a DtN map?
 Given Dirichlet data, find Neumann data. Possible!
 #+LATEX: \end{hidden}
 
-*Next mission:* Find IE representations for each.
+*** Finding IE representations
+
+Find integral representations that lead to second-kind IEs for each of the BVPs:
+\begin{tabular}{l|p{4.5cm}|p{4.5cm}}
+  & \tmtextbf{Dirichlet} & \tmtextbf{Neumann}\\
+  \hline
+    \tmtextbf{Int.} & 
+
+    \smallskip
+    \begin{hidden}
+    $u(x):=D\sigma(x)$
+
+    $-\sigma/2+D\sigma=\operatorname{BC}$
+    \end{hidden}
+    &
+    \smallskip
+    \begin{hidden}
+    $u(x):=S\sigma(x)$
+
+    $\sigma/2+S'\sigma=\operatorname{BC}$
+    \end{hidden}\\
+    \hline
+
+    \tmtextbf{Ext.} & 
+
+    \smallskip
+    \begin{hidden}
+    $u(x):=D\sigma(x)$
+
+    $\sigma/2+D\sigma=\operatorname{BC}$
+    \end{hidden}
+    &
+    \smallskip
+    \begin{hidden}
+    $u(x):=S\sigma(x)$
+
+    $-\sigma/2+S'\sigma=\operatorname{BC}$
+    \end{hidden}
+\end{tabular}
 
 *** Uniqueness of Integral Equation Solutions
 
