@@ -4868,7 +4868,7 @@ First idea: Same as Dirichlet. Issue: spurious resonances.
 
 *** Patching up spurious resonances inherited from adjoint
 
-*Issue:* Exte IE inherits non-uniqueness from `adjoint' int. BVP.
+*Issue:* Exterior IE inherits non-uniqueness from `adjoint' interior BVP.
 
 #+LATEX: \begin{hidden}
 *Idea:* Tweak representation [Brakhage/Werner `65, ...]
