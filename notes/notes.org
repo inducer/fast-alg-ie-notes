@@ -4884,7 +4884,7 @@ First idea: Same as Dirichlet. Issue: spurious resonances.
 #+LATEX: \begin{hidden}
 For simplicity, we'll choose the the scaling
 parameter \(\alpha = 1\), so that
-\[u = D \varphi + iS \varphi . \]
+\[u = D \varphi - iS \varphi . \]
 The exterior Dirichlet BC yields the integral equation (by way of the jump
 relations for \(S\) and \(D\)):
 \[\frac{\varphi }{2} + D \varphi - iS \varphi = g. \]
