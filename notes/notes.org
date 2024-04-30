@@ -5443,7 +5443,7 @@ So neither notion of convergence really `works' for Nyström.
 
 \(X\) Banach space (think: of functions)
 
-#+LATEX: \begin{theorem}[Not-quite-norm convergence {\scriptsize [Kress LIE 2nd ed. Cor 10.4]}]
+#+LATEX: \begin{theorem}[Not-quite-norm convergence {\scriptsize [Kress LIE 3rd ed. Cor. 10.7]}]
 
     \(A_n : X \to X\) bounded linear operators,
 
