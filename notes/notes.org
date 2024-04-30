@@ -5417,7 +5417,7 @@ What senses of convergence are there for sequences of operators \(A_n\)?
 *** Convergence for Nyström (2/2)
 
 Will we get norm convergence \(\|A_n - A\|_\infty \to 0\) for Nyström?
-{\scriptsize [Kress LIE 2nd ed. Thm. 12.8]}]
+#+LATEX: {\scriptsize [Kress LIE 3rd ed. Thm. 12.8]}
 #+LATEX: \begin{hidden}
 *No:* Pick \(\psi _\epsilon  = 1\) everywhere except in
 \(\epsilon\)-nbh of quad nodes, 0 there.
