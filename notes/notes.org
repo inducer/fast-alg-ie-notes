@@ -3141,14 +3141,15 @@ Why care about Green's functions?
 #+LATEX: \begin{hidden}
 If you know them, they make
 solving the PDE simple:
-\[\triangle G = \delta \quad \Rightarrow \quad \triangle (G \ast f) = (f \ast
+# See e.g. Evans for this sign convention. Appears to agree with Kress, too.
+\[\triangle G = -\delta \quad \Rightarrow \quad \triangle (-G \ast f) = (f \ast
    \delta ) = f, \]
-i.e. \(G \ast f\) is the solution to free-space Poisson \(\triangle u = f\).
+i.e. \(-G \ast f\) is the solution to free-space Poisson \(\triangle u = f\).
 #+LATEX: \end{hidden}
 
 What is a non-free-space Green's function? I.e. one for a specific domain?
 #+LATEX: \begin{hidden}
-One that satisfies \(\Delta G = \delta\) \emph{and} a boundary
+One that satisfies \(\Delta G = -\delta\) \emph{and} a boundary
 condition.
 #+LATEX: \end{hidden}
 
