@@ -313,7 +313,7 @@
 *** Class web page
 
 #+BEGIN_CENTER
-[[https://bit.ly/fastalg-f26]]
+[[https://tinyurl.com/fastalg-f26]]
 #+END_CENTER
 
 contains:
