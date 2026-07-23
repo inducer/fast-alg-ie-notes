@@ -421,7 +421,7 @@ These notes (and the accompanying demos) are open-source!
 Bug reports and pull requests welcome: https://github.com/inducer/fast-alg-ie-notes
 
 \bigskip
-Copyright (C) 2013 -- 24 Andreas Kloeckner
+Copyright (C) 2013 -- 26 Andreas Kloeckner
 
 \bigskip
 \scriptsize
