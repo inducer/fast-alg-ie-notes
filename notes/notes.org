@@ -1,7 +1,7 @@
 #+TITLE: Fast Algorithms and Integral Equation Methods
 #+SUBTITLE: CS598APK
 #+AUTHOR: Andreas Kloeckner
-#+DATE: Fall 2024
+#+DATE: Fall 2026
 
 * To-do                                                            :noexport:
 ** TODO Work out kernel-independent M2L in more detail
@@ -313,7 +313,7 @@ https://arxiv.org/abs/2012.06925, appendix B
 *** Class web page
 
 #+BEGIN_CENTER
-[[https://bit.ly/fastalg-s24]]
+[[https://bit.ly/fastalg-f26]]
 #+END_CENTER
 
 contains:

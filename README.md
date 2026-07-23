@@ -7,11 +7,11 @@ equations via boundary integral equation methods.
 **NOTE:** The notes are still missing a few figures that were removed due to
 licensing concerns. Those will be added in the next few weeks.
 
-Originally developed for [CS98APK](https://relate.cs.illinois.edu/course/cs598apk-f24/)
+Originally developed for [CS98APK](https://relate.cs.illinois.edu/course/cs598apk-f26/)
 in the [Department of Computer Science](https://cs.illinois.edu/)
 at the [University of Illinois](https://illinois.edu/).
 
--   [PDF](https://andreask.cs.illinois.edu/cs598apk-f24/notes.pdf) of these
+-   [PDF](https://andreask.cs.illinois.edu/cs598apk-f26/notes.pdf) of these
     slides/notes (see `notes` for source)
 
 -   [Demos](https://mybinder.org/v2/gh/inducer/fast-alg-ie-notes/main?filepath=demos)
