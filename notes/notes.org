@@ -84,7 +84,7 @@
 # getting confused about tables.
 #+BEAMER_HEADER: \def\vbar{|}
 
-#+BEAMER_HEADER: \let\B=\mathbf
+#+BEAMER_HEADER: \let\B=\boldsymbol
 #+BEAMER_HEADER: \let\op=\operatorname
 #+BEAMER_HEADER: \newcommand{\nocomma}{}
 #+BEAMER_HEADER: \newcommand{\Alpha}{A}
@@ -280,6 +280,52 @@
   :RELATE_TREE_LINK: https://andreask.cs.illinois.edu/cs598apk-f26/notes-folded.pdf
   :END:
 
+*** You've been lied to
+# Based on s24 propaganda :D
+# see https://relate.cs.illinois.edu/course/cs598apk-s24/file-version/9e0807db5f1ae05791f3b1cc142e48a16d76d7ff/lectures/classes/xournal-export/scribbles-2024-01-16-andreas.pdf#page=7
+
+#+LATEX: \begin{hidden}
+**** Complexity
+     :PROPERTIES:
+     :BEAMER_col: 0.5
+     :BEAMER_opt: t
+     :END:
+*Asymptotic complexity*
+
+\(O(n^2)\) \dots means an algorithm is not scalable.
+
+**** Conditioning
+:PROPERTIES:
+:BEAMER_col: 0.5
+:BEAMER_opt: t
+:END:
+*Conditioning*
+
+What is conditioning again?
+\vspace*{-2ex}
+\[
+\text{rel.err. output}
+\le \kappa \cdot
+\text{rel.err. input}
+\]
+\[
+\kappa(A)\le\|A\|\|A^{-1}\|
+\]
+
+Discretizing derivatives to solve differential equations\dots
+\dots means discretizing an unbounded operator.
+\[
+\operatorname{sup}_{\|f\|_\infty=1}
+\norm{\partial_x f} \le \dots?
+\]
+\demo{Conditioning of Derivative Matrices}
+
+**** Clear
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+LATEX: \end{hidden}
 *** What's the point of this class?
 
 - Starting point: Large-scale scientific computing
@@ -300,6 +346,122 @@
   - `Data Science' (e.g. Graph Problems)
 
 - This is class is about an even mix of math and computation
+
+*** Integral Operators
+#+LATEX: \begin{hidden}
+- Consider /mat-vec/ and /solve/ for: $A \B x = \B b$, rename: $K \B{\sigma} = \B{f}$
+- With indices: $\sum_j K_{ij} \sigma_j = f_i$
+- As integrals: \[\int_{\Omega'} K(x,y) \sigma(y)dy = f(x)\qquad(x\in\Omega)\]
+- What are rows/columns here?
+
+*Example:*
+\[K(\B{x}, \B{y}) = \frac{1}{\|\B{x} - \B{y}\|_2}\]
+
+**** Efficiency
+:PROPERTIES:
+:BEAMER_col: 0.3
+:BEAMER_opt: t
+:END:
+
+*Efficiency*
+
+dense $\to O(n^2)$?
+**** Solvability?
+:PROPERTIES:
+:BEAMER_col: 0.3
+:BEAMER_opt: t
+:END:
+
+*Solvability*
+
+$\hookrightarrow$ Compact operators
+
+**** Applications
+:PROPERTIES:
+:BEAMER_col: 0.3
+:BEAMER_opt: t
+:END:
+
+*Applications*
+
+$\hookrightarrow$ PDE-related
+
+**** Clear
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+LATEX: \end{hidden}
+*** Solvability
+
+#+LATEX: \begin{hidden}
+\[(A\sigma)(x):=\int_{\Omega'} K(x,y) \sigma(y)dy = f(x)\qquad(x\in\Omega)\]
+
+If $K$ is smooth, $A$ is a /compact operator/.
+
+- Compact: well-approximated by operator with finite-dimensional range
+- Finite/infinite-dimensional? / Function spaces?
+- Compact good/bad for solvability?
+- First/second kind
+  - Solvability for either?
+#+LATEX: \end{hidden}
+
+*** Efficiency
+
+#+LATEX: \begin{hidden}
+For the matvec: What to exploit?
+
+- Smoothness
+  - What's a smooth function? (One with a short Taylor expansion)
+  - Explore relationship to compactness
+  - \demo{Rank of a Potential Evaluation Matrix}
+- Convolution structure, FFT
+
+For the solve: what to exploit?
+
+- Iterative methods
+  - Cost here?
+#+LATEX: \end{hidden}
+
+*** Applications: (Elliptic) PDE solving (I)
+
+#+LATEX: \begin{hidden}
+- Poisson $\Delta u =f$ (plus BC)
+  - Break PDE down in partial derivatives
+- $u$ is the solution. Key freedom: /how to represent/?
+  - Conventional numerics: polynomials, point values, here: sum of fundamental solutions
+- Fundamental solutions $\Delta G = \delta$ (interpret weakly!)
+  - What's a \delta distribution? ($\int\delta f=f(0)$, $\delta=0$ except at origin)
+  - "Free-space Green's function"
+#+LATEX: \end{hidden}
+
+*** Applications: (Elliptic) PDE solving (II)
+#+LATEX: \begin{hidden}
+- Switch to Laplace+Dirichlet
+- Write down sum of Green's functions
+- Show that PDE is solved away from boundary
+- "Upgrade" representation to integral
+  - Call out /layer potential/
+- Back to Poisson
+  - $\Delta(G*f)=\cdots$
+  - $u=G*f+\tilde u$
+#+LATEX: \end{hidden}
+*** And one more thing\dots
+
+Both multigrid and fast/IE schemes ultimately are \(O (N)\) in the
+number of degrees of freedom \(N\).
+#+LATEX: \begin{hidden}
+But:
+
+#+ATTR_LATEX: :height 3cm
+[[./media/surface-vol-dofs.pdf]]
+
+- The number \(N\) is different! (And it's smaller for IEs.)
+- Yet better: exterior problems become straightforward
+- To be precise: the /solve/ takes place on boundary DOFs!
+  - Volume convolution still needs to be done.
+
+#+LATEX: \end{hidden}
 
 *** Survey
 
@@ -326,92 +488,6 @@ contains:
 - Grading
 - Video
 
-*** TODO Incorporate advertising from s24 run
-
-# see https://relate.cs.illinois.edu/course/cs598apk-s24/file-version/9e0807db5f1ae05791f3b1cc142e48a16d76d7ff/lectures/classes/xournal-export/scribbles-2024-01-16-andreas.pdf#page=7
-*** Why study this at all?
-
-- Finite difference/element methods are inherently
-  - ill-conditioned
-  - tricky to get high accuracy with
-
-- Build up a toolset that does \emph{not} have these flaws
-- Plus: An interesting/different analytical and computational point of
-  view
-
-  - If you're not going to use it to solve PDEs, it (or the ideas behind
-    it) will still help you gain insight.
-
-*** FD/FEM: Issues
-
-Idea of these methods:
-
-1. Take differential equations
-2. Discretize derivatives
-3. Make linear system
-4. Solve
-
-So what's wrong with doing that?
-
-*** Discretizing Derivatives: Issues?
-#+LATEX: \begin{hidden}
-
-\begin{columns}
-\column{0.5\textwidth}
-Differentiation is `unbounded'. Example:
-\[(e^{i \alpha x})' = i \alpha e^{i \alpha x} \]
-\column{0.5\textwidth}
-\includegraphics[width=\textwidth]{media/diff-complex-exp.pdf}
-\end{columns}
-
-So a `small' function can become an arbitrarily big function.
-Does that matter?
-
-- \(\kappa (A) = \norm A \norm{ A^{- 1} } \), and this increases \(\norm{ A } \).
-
-- Also, \(\norm{ A^{- 1} }\) doesn't exist for derivatives.
-#+LATEX: \end{hidden}
-
-*** Discretizing Derivatives: Issues?
-
-*Result:* The better we discretize (the more points we use), the
-worse the condition number gets.
-
-\demo{Conditioning of Derivative Matrices}
-
-*To be fair:* Multigrid works around that (by judiciously using *fewer* points!)
-
-But there's another issue that's not fixable.
-
-#+LATEX: \begin{hidden}[1.5cm]
-Inherent tradeoff: FP accuracy \(\leftrightarrow\) Truncation error
-
-\demo{Floating point vs Finite Differences}
-#+LATEX: \end{hidden}
-
-*Q:* Are these problems real?
-
-#+LATEX: \begin{hidden}[1.5cm]
-\(\rightarrow\) Try solving 3D Poisson with just FEM+CG.
-#+LATEX: \end{hidden}
-
-So this class is about starting fresh with methods that (rigorously!) don't
-have these flaws!
-
-*** Bonus Advertising Goodie
-
-Both multigrid and fast/IE schemes ultimately are \(O (N)\) in the
-number of degrees of freedom \(N\).
-#+LATEX: \begin{hidden}
-But:
-
-#+ATTR_LATEX: :height 4cm
-[[./media/surface-vol-dofs.pdf]]
-
-The number \(N\) is different! (And it's smaller for IEs.)
-
-(Truth in advertising: Only for homogeneous problems.)
-#+LATEX: \end{hidden}
 
 *** Open Source <3
 
