@@ -1003,7 +1003,7 @@ For an \(m \times n\) matrix \(A\), a target rank \(k \geqslant 2\) and an
   (given a few more very mild assumptions on \(p\))
 #+LATEX: \end{theorem}
 
-[Halko/Tropp/Martinsson `10, 10.3]\medskip
+[Halko/Tropp/Martinsson `10, (1.9), proof in 10.3]\medskip
 
 *Message:* We can \emph{probably} (!) get away with oversampling
 parameters as small as \(p = 5\).\medskip
