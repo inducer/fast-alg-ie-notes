@@ -1203,11 +1203,12 @@ The probability of this event is at least $1-6p^{-p}$.
 
 *** A-posteriori and Adaptivity
 
-The result on the previous slide was /a-priori/. Once we're
+The HTM bound is /a-priori/. Once we're
 done, can we find out `how well it turned out'?
 #+LATEX: \begin{hidden}
 Sure: Just consider the error:
-\[A - QQ^T A \]
+\(A - QQ^T A \).
+
 Realize that what this does is instead of projecting onto the columns of \(Q\),
 it projects onto their orthogonal complement:
 \[E = (I - QQ^T) A \]
