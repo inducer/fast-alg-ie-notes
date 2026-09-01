@@ -994,7 +994,7 @@ How? Pick \(\Omega\) as a carefully-chosen subsampling of the Fourier transform.
 *** Errors in Random Approximations
 
 If we use the randomized range finder, how close do we get to the optimal answer?
-#+LATEX: \begin{theorem}
+#+LATEX: \begin{theorem}[Halko/Tropp/Martinsson `10, (1.9)]
 For an \(m \times n\) matrix \(A\), a target rank \(k \geqslant 2\) and an
   oversampling parameter \(p \geqslant 2\) with \(k + p \leqslant \min (m, n)\),
   with probability \(1 - 6 \cdot p^{- p}\),
@@ -1003,10 +1003,203 @@ For an \(m \times n\) matrix \(A\), a target rank \(k \geqslant 2\) and an
   (given a few more very mild assumptions on \(p\))
 #+LATEX: \end{theorem}
 
-[Halko/Tropp/Martinsson `10, (1.9), proof in 10.3]\medskip
 
-*Message:* We can \emph{probably} (!) get away with oversampling
-parameters as small as \(p = 5\).\medskip
+
+What's the role of the oversampling parameter $p$?
+
+#+LATEX: \begin{hidden}
+- does not improve the optimal error $\sigma_{k+1}$.
+- Instead: make it unlikely that the samples miss a leading direction.
+#+LATEX: \end{hidden}
+
+*** Errors in Random Approximations: Proof Sketch :noexport:
+
+- *Deterministic geometry:* isolate the random error term.
+- *Gaussian conditioning:* oversampling keeps a pseudoinverse small.
+- *Concentration:* the remaining Gaussian product stays near its mean.
+
+
+*** HTM Proof Sketch: Rotate into singular-vector coordinates
+
+Write the SVD and split after the first $k$ singular directions.
+
+#+LATEX: \begin{hidden}
+\begin{equation*}
+A=U
+\begin{bmatrix}\Sigma_1&0\\0&\Sigma_2\end{bmatrix}
+\begin{bmatrix}V_1^T\\V_2^T\end{bmatrix},
+\qquad
+\Omega_1=V_1^T\Omega,\quad \Omega_2=V_2^T\Omega.
+\end{equation*}
+
+Hence
+
+\[
+Y=A\Omega
+=U\begin{bmatrix}\Sigma_1\Omega_1\\ \Sigma_2\Omega_2\end{bmatrix}.
+\]
+
+- $\Sigma_1\Omega_1$ sees the desired dominant subspace;
+- $\Sigma_2\Omega_2$ is contamination from the spectral tail.
+
+Gaussian rotational invariance: $\Omega_1$ and $\Omega_2$ remain *independent standard Gaussian matrices*.
+#+LATEX: \end{hidden}
+
+*** HTM Proof Sketch: Isolating the Tail
+
+Let $P_Y=QQ^T$. Theorem 8.1 in [HTM `10] gives ($X^+$: pseudoinv.)
+#+LATEX: \begin{hidden}
+\[
+ \|(I-P_Y)A\|^2
+ \leq \|\Sigma_2\|^2 +
+  \|\Sigma_2\Omega_2\Omega_1^+\|^2.
+\]
+#+LATEX: \end{hidden}
+
+Since $\|\Sigma_2\|=\sigma_{k+1}$, using \(\sqrt{a^2+b^2}\le a+b\),
+#+LATEX: \begin{hidden}
+\[
+ \|(I-P_Y)A\|
+ \leq \sigma_{k+1} +
+ \|\Sigma_2\Omega_2\Omega_1^+\|.
+\]
+#+LATEX: \end{hidden}
+
+What do the factors capture?
+
+#+LATEX: \begin{hidden}
+- $\Sigma_2$: tail size
+- $\Omega_2$: tail sampling
+- $\Omega_1^+$: large if the samples nearly miss some direction in the leading \(k\)-dimensional subspace
+#+LATEX: \end{hidden}
+
+*** HTM Proof Sketch: Gaussian pseudoinverse bounds
+
+$\Omega_1$ is a wide $k\times(k+p)$ Gaussian matrix. For $t\geq1$, except with probability at most $5t^{-p}$,
+
+\[
+ \|\Omega_1^+\|_F
+ \leq t\sqrt{\frac{12k}{p}},
+ \qquad
+ \|\Omega_1^+\|
+ \leq t\,\frac{e\sqrt{k+p}}{p+1}.
+\]
+
+*** HTM Proof Sketch: Gaussian Concentration
+
+Let \(G\) be a standard Gaussian matrix, and let \(f\) be \(L\)-Lipschitz with respect to the Frobenius norm:
+
+\[|f(X)-f(Y)|\le L\|X-Y\|_F.\]
+
+Then, for every \(u\ge 0\),
+
+#+LATEX: \begin{hidden}
+\[
+P \left[f(G)\ge E[f(G)]+Lu\right]
+\le e^{-u^2/2}.
+\]
+#+LATEX: \end{hidden}
+
+ [HTM Prop. 10.3]
+ 
+*** HTM Proof Sketch: Condition on the Leading Block
+
+Fix $\Omega_1$ and regard only $\Omega_2$ as random. Define
+
+\[
+h(X)=\|\Sigma_2X\Omega_1^+\|.
+\]
+
+A Gaussian product estimate yields
+
+\[
+E h(\Omega_2)
+\leq
+\|\Sigma_2\|\,\|\Omega_1^+\|_F
++\|\Sigma_2\|_F\,\|\Omega_1^+\|.
+\]
+
+Meanwhile,
+
+\begin{equation*}
+|h(X)-h(Z)|
+\leq
+\underbrace{\|\Sigma_2\|\,\|\Omega_1^+\|}_{L}
+\|X-Z\|_F.
+\end{equation*}
+
+So $h$ is Lipschitz, with an explicit constant $L$.
+
+
+*** HTM Proof Sketch: A WIP Estimate
+
+Gaussian concentration says \( h(\Omega_2)\leq E h(\Omega_2)+uL \)
+except with probability $e^{-u^2/2}$.
+
+\medskip
+Combine with the pseudoinverse bounds:
+
+\begin{align*}
+\|(I-P_Y)A\|\leq{}&
+\left(1+t\sqrt{\frac{12k}{p}}\right)\sigma_{k+1}\\
+&+t\frac{e\sqrt{k+p}}{p+1}
+\left(\sum_{j>k}\sigma_j^2\right)^{1/2}\\
+&+ut\frac{e\sqrt{k+p}}{p+1}\sigma_{k+1}.
+\end{align*}
+
+Failure probability: $5t^{-p}+e^{-u^2/2}$.
+
+*** HTM Proof Sketch: Tune the parameters to force superexponential decay :noexport:
+
+Choose
+
+\[
+t=p,
+\qquad
+u=\sqrt{2p\log p}.
+\]
+
+Then
+
+\[
+5t^{-p}+e^{-u^2/2}
+=5p^{-p}+e^{-p\log p}
+=6p^{-p}.
+\]
+
+After rounding numerical constants, Corollary 10.9 becomes
+
+#+BEGIN_EXPORT latex
+\begin{block}{Sharper bound before the last simplification}
+\[
+\|(I-P_Y)A\|
+\leq
+\bigl[1+8\sqrt{(k+p)p\log p}\bigr]\sigma_{k+1}
++3\sqrt{k+p}\left(\sum_{j>k}\sigma_j^2\right)^{1/2}.
+\]
+\end{block}
+#+END_EXPORT
+
+*** One coarse estimate produces (1.9) :noexport:
+
+There are at most $r-k$ tail singular values, each at most $\sigma_{k+1}$:
+
+\[
+\left(\sum_{j>k}\sigma_j^2\right)^{1/2}
+\leq \sqrt{r-k}\,\sigma_{k+1}
+\leq \sqrt r\,\sigma_{k+1}.
+\]
+
+If $p\log p\leq r$, then $\sqrt{p\log p}\leq\sqrt r$. Therefore
+
+\begin{align*}
+\|(I-P_Y)A\|
+&\leq
+\bigl[1+(8+3)\sqrt{k+p}\sqrt r\bigr]\sigma_{k+1}\\
+&=\boxed{\bigl[1+11\sqrt{k+p}\sqrt r\bigr]\sigma_{k+1}}.
+\end{align*}
+
+The probability of this event is at least $1-6p^{-p}$.
 
 *** A-posteriori and Adaptivity
 
