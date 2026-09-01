@@ -28,26 +28,31 @@ at the [University of Illinois](https://illinois.edu/).
     markup language over LaTeX. They're easiest to edit in Emacs, but
     [vim-orgmode](https://github.com/jceb/vim-orgmode) will do as well.
 
-    To build the notes, you need any recent version of Emacs installed. Also make sure that
-    submodules cloned properly:
+    To build the notes, you need any recent version of Emacs and GNU Make installed.
+    Also make sure that submodules cloned properly:
     ```
     git submodule update --init
     ```
 
-    Then simply change to the `notes` subdirectory and say:
+    Then change to the `notes` subdirectory and build the standard version:
     ```
-    ./make.sh
+    make
     ```
-    The script will optionally make use of [`latexrun`](https://github.com/cjoach/latexrun).
-    If you get
+    This produces `notes.pdf`. To build both available versions, use:
+    ```
+    make all-versions
+    ```
+    This additionally produces `notes-folded.pdf`. The Makefile will use
+    [`latexrun`](https://github.com/cjoach/latexrun) when available, or fall
+    back to `pdflatex` otherwise. If you get
     ```
     There were errors; output not updated
     ```
-    on the first go, simply rerun `make.sh`.
+    on the first go, simply rerun the same `make` command.
 
--   `make.sh` will generate two PDFs: `notes.pdf` and `notes-folded.pdf`.
-    They differ in whether the boxes present in the notes (containing many
-    of the most salient mathematical developments) are filled in or not.
+-   `notes.pdf` and `notes-folded.pdf` differ in whether the boxes present in
+    the notes (containing many of the most salient mathematical developments)
+    are filled in or not.
 
     I use the un-filled version for class and fill in the boxes by hand
     during class using [Xournal++](https://github.com/xournalpp/xournalpp/)

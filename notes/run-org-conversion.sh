@@ -32,24 +32,4 @@ if test "$NOTES_DEV" = ""; then
   mv "$BASENAME.tex" notes.tex
 fi
 
-if ! which latexrun 2>&1; then
-  function build_latex()
-  {
-    mkdir -p out
-    pdflatex -output-directory=out "$@"
-    pdflatex -output-directory=out "$@"
-    pdflatex -output-directory=out "$@"
-    cp out/${1%.tex}.pdf .
-  }
-else
-  function build_latex()
-  {
-    latexrun --verbose-cmds -O out "$@"
-  }
-fi
 
-
-build_latex notes.tex
-
-grep -v '\\showhiddentrue' notes.tex > notes-folded.tex
-build_latex notes-folded.tex
