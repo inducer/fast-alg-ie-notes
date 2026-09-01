@@ -788,7 +788,7 @@ So we would need to make the /factorization/ cheaper as well.
 *Big Q:* Possible?
 #+LATEX: \end{hidden}
 
-*** Representation
+*** Representation :noexport:
 
 What does all this have to do with (right-)preconditioning?
 #+LATEX: \begin{hidden}
@@ -806,7 +806,7 @@ You could say: We change how we \emph{represent} the solution.
 
 #+LATEX: \end{hidden}
 
-*** Representation (in context)
+*** Representation (in context) :noexport:
 #+LATEX: \begin{hidden}
 Connection with what we've been doing:
 
