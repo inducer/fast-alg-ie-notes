@@ -1122,12 +1122,14 @@ E h(\Omega_2)
 
 Meanwhile,
 
+#+LATEX: \begin{hidden}
 \begin{equation*}
 |h(X)-h(Z)|
 \leq
 \underbrace{\|\Sigma_2\|\,\|\Omega_1^+\|}_{L}
 \|X-Z\|_F.
 \end{equation*}
+#+LATEX: \end{hidden}
 
 So $h$ is Lipschitz, with an explicit constant $L$.
 
