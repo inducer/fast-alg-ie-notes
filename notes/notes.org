@@ -993,7 +993,8 @@ How? Pick \(\Omega\) as a carefully-chosen subsampling of the Fourier transform.
 ** Low-Rank Approximation: Error Control
 *** Errors in Random Approximations
 
-If we use the randomized range finder, how close do we get to the optimal answer?
+If we use the randomized range finder to find $Q$ of shape $m\times(k+p)$,
+how close do we get to the optimal answer?
 #+LATEX: \begin{theorem}[Halko/Tropp/Martinsson `10, (1.9)]
 For an \(m \times n\) matrix \(A\), a target rank \(k \geqslant 2\) and an
   oversampling parameter \(p \geqslant 2\) with \(k + p \leqslant \min (m, n)\),
