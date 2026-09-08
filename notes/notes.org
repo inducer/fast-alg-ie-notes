@@ -1004,7 +1004,18 @@ For an \(m \times n\) matrix \(A\), a target rank \(k \geqslant 2\) and an
   (given a few more very mild assumptions on \(p\))
 #+LATEX: \end{theorem}
 
+*** Oversampling
+What is /oversampling/?
 
+#+LATEX: \begin{hidden}
+- We are seeking a rank-$k$ approximation of a matrix.
+- Natural: expect $Q$ to have $k$ columns.
+- Instead: seeking a $Q$ of shape $m\times(k+p)$.
+- Hypothetically: $QQ^T A$ has rank up to $k+p$.
+- Want exactly rank $k$?
+  - /Could/ truncate approximate SVD.
+  - Not useful: truncate $Q$.
+#+LATEX: \end{hidden}
 
 What's the role of the oversampling parameter $p$?
 
@@ -1290,7 +1301,7 @@ Stop and think:
 - RRQR delivers essentially the same service as what we've been
   developing: Find an orthogonal basis of the range.
 
-- But: an \(O (N^3)\) factorization.
+- But: an \(O (m n k)\) factorization.
 #+LATEX: \end{hidden}
 
 *** Interpolative Decomposition (ID): Definition
@@ -1320,7 +1331,7 @@ where
 
 #+LATEX: \begin{hidden}
 Suppose \(A \Pi = Q \begin{bmatrix} R_{11} & R_{12} \end{bmatrix} \)
-Set \(B = QR_{11} =(A\Pi)_{(:,J)}\).
+Set \(B = QR_{11} =A_{(:,J)}=(A\Pi)_{(:,:k)}\).
 #+LATEX: \end{hidden}
 
 *Q:* What is \(P\), in terms of the RRQR?
@@ -1398,9 +1409,9 @@ Name a property that the ID has over other factorizations.
 
 All our randomized tools have two stages:
 
-1. Find ONB of approximate range
+1. Cast columns of $A$ in terms of 'small' coordinates with respect to a bigger basis.
 
-1. Do actual work only on approximate range
+1. Do actual work only on coordinate representation
 
 Complexity?
 
@@ -1413,8 +1424,8 @@ For now, both stages are \(O (N^2 k)\).
 What is the impact of the ID?
 
 #+LATEX: \begin{hidden}
-- We avoid the need to form/work with \(C = Q^T A\).
 - Row subset \(A_{(J,:)}\) assumes role of \(Q^T A\)
+- We avoid the need to form/work with \(C = Q^T A\).
 #+LATEX: \end{hidden}
 
 *** Leveraging the ID for SVD (I)
@@ -1486,8 +1497,8 @@ Putting all this together in one code: \(\rightarrow\) HW exercise :)
 - We have observed that some matrices we are interested in (in some
   cases) have low numerical rank (cf. the point potential example)
 
-- We have developed a toolset that lets us obtain LRAs and do useful work
-  (using SVD as a proxy for "useful work") in \(O(N\cdot K^\alpha)\) time
+- We have developed a set of tools that lets us obtain LRAs and do useful work
+  (using SVD as a proxy for "useful work") in \(O(N\cdot k^\alpha)\) time
   (assuming availability of a cheap matvec).
 
 *Next stop:* Get some insight into \emph{why} these matrices have
