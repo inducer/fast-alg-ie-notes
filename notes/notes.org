@@ -1643,6 +1643,7 @@ expansion, then /low rank/!
 
 Compute a Taylor expansion of a 2D Laplace point potential.
 #+LATEX: \begin{hidden}
+\vspace{-2ex}
 \begin{eqnarray*}
   \psi (\B{x}) & = & \sum _{i = 1}^n G (\B{x}, \B{y}_j) \varphi (\B{y}_j)\\
   & = & \sum _{i = 1}^n \log \left ( \norm{\B{x} - \B{y}}_2 \right ) \varphi (\B{y}_j)
@@ -1650,8 +1651,8 @@ Compute a Taylor expansion of a 2D Laplace point potential.
 Since this is a superposition anyway: Just consider a single source.
 \[\psi (\B{x}) = \log \left ( \norm{\B{x} - \B{y}}_2 \right ) \]
 Pick an expansion center \(\B{c}\). WLOG, \(\B{c} = \B{0}\).
-\(\ds\psi (\B{h}) \approx \sum _{| \B{p} | \leqslant k   }
-   \frac{D^{\B{p}} \psi (\B{0})}{\B{p}!} \B{h}^{\B{p}} \)
+\[\ds\psi (\B{h}) \approx \sum _{| \B{p} | \leqslant k   }
+   \frac{D^{\B{p}}_{\B{z}} \psi (\B{z}) |_{\B{z} = \B 0}}{\B{p}!} \B{h}^{\B{p}} \]
 #+LATEX: \end{hidden}
 
 *** Taylor on Potentials (Ia)
@@ -1707,9 +1708,8 @@ What does this mean for the convergence of the Taylor series as a whole?
 \(\rightarrow\) Need to estimate each term. Recall that \(\B{h}\) is the
 vector from \(\B{c}\) to the target (aka point where we evaluate)
 \(\B{x}\). (Assume \(| \B{p} | > 0\) to keep it simple.)
-\[\left | \frac{D^{\B{p}} \psi (\B{0})}{\B{p}!} \B{h}^{\B{p}} \right |_2
-   \leqslant C_{\B{p}} | D^{\B{p}} \psi (\B{0}) \B{h}^{\B{p}} |_2 \leqslant C_{\B{p}}
-   \left ( \frac{| \B{h} |}{R} \right )^{\B{p}} . \]
+\[\left | \frac{D^{\B{p}}_{\B{z}} \psi (\B{z}) |_{\B{z} = -\B{y}}}{\B{p}!} \B{h}^{\B{p}} \right |_2
+   \leqslant C_{\B{p}} \left ( \frac{| \B{h} |}{R} \right )^{|\B{p}|} . \]
 #+ATTR_LATEX: :height 3cm
 [[./media/local-expansion.pdf]]
 #+LATEX: \end{hidden}
@@ -1767,16 +1767,17 @@ Stare at that Taylor formula again.
 #+LATEX: \begin{hidden}
 
 \[\psi (\B{x} - \B{y}) \approx \sum _{| \B{p} | \leqslant k
-     } \underbrace{\frac{D^{\B{p}}_{\B{x}} \psi
-   (\B{x} - \B{y}) |_{\B{x} = \B{c}}}{\B{p}!}}_{\text{depends on src/ctr}}
+     } \underbrace{\frac{D^{\B{p}}_{\B{z}} \psi
+   (\B{z}) |_{\B{z} = \B{c}-\B{y}}}{\B{p}!}}_{\text{depends on src/ctr}}
    \underbrace{(\B{x} - \B{c})^{\B{p}}}_{\text{dep. on ctr/tgt}} \]
 Recall: \(\B{x}\): targets, \(\B{y}\): sources.
 
 At least formally, nothing goes wrong if I swap the roles of \(\B{x}\)
-and \(\B{y}\) in the Taylor expansion:
+and \(\B{y}\) in the Taylor expansion. Since
+\(\B{z} = \B{x} - \B{y}\), this introduces one minus sign for each derivative:
 \[\psi (\B{x} - \B{y}) \approx \sum _{| \B{p} | \leqslant k
-     } \underbrace{\frac{D^{\B{p}}_{\B{y}} \psi
-   (\B{x} - \B{y}) |_{\B{y} = \B{c}}}{\B{p}!}}_{\text{depends on ctr/tgt}}
+     } \underbrace{\frac{(-1)^{|\B{p}|} D^{\B{p}}_{\B{z}} \psi
+   (\B{z}) |_{\B{z} = \B{x}-\B{c}}}{\B{p}!}}_{\text{depends on ctr/tgt}}
    \underbrace{(\B{y} - \B{c})^{\B{p}}}_{\text{dep. on src/ctr}} . \]
 In comparison to the local expansion above, we will call this (and other
 expansions like it) a /multipole expansion/.
@@ -1790,16 +1791,15 @@ mathematically/geometrically, this is a very different animal.
 #+LATEX: \begin{hidden}
 
 The analysis is the same as earlier:
-\[(\ast ) = \abs{\frac{D^{\B{p}}_{\B{y}} \psi (\B{x} -
-   \B{y}) |_{\B{y} = \B{c}}}{\B{p}!}
-   (\B{y} - \B{c})^{\B{p}}} \leqslant C_{\B{p}} \frac{\norm{\B{y} -
-   \B{c}}_2^{\B{p}}}{\norm{\B{x} - \B{c}}_2^{\B{p}}} = C_{\B{p}} \left (
+\[(\ast ) = \abs{\frac{(-1)^{|\B{p}|} D^{\B{p}}_{\B{z}} \psi
+   (\B{z}) |_{\B{z} = \B{x}-\B{c}}}{\B{p}!}
+   (\B{y} - \B{c})^{\B{p}}} \leqslant C_{\B{p}} \left (
    \frac{\norm{\B{y} - \B{c}}_2}{\norm{\B{x} -
-   \B{c}}_2} \right )^{\B{p}} \]
+   \B{c}}_2} \right )^{|\B{p}|} \]
 (just with the roles of \(\B{x}\) and \(\B{y}\) reversed). If we
 admit multiple sources/targets, we get
-\[(\ast ) \leqslant C_{\B{p}} \left ( \frac{\max _j \norm{\B{y}_i -
-   \B{c}}_2}{\min _i \norm{\B{x}_i - \B{c}}_2} \right )^{\B{p}} .
+\[(\ast ) \leqslant C_{\B{p}} \left ( \frac{\max _j \norm{\B{y}_j -
+   \B{c}}_2}{\min _i \norm{\B{x}_i - \B{c}}_2} \right )^{|\B{p}|} .
 \]
 #+LATEX: \end{hidden}
 
@@ -1812,7 +1812,7 @@ The abstract idea of a \emph{multipole expansion} is that:
   furthest source is closer to the center than the closest target,
 
 - The error in approximating the potential by a truncated (at order \(k\))
-  local expansion is
+  multipole expansion is
   \[\left ( \frac{\left . \text{dist(}\B{c}\text{, furthest source)}
        \right )}{\left . \text{dist(}\B{c}\text{, closest target)} \right )}
        \right )^{k + 1} . \]
@@ -1823,8 +1823,8 @@ The abstract idea of a \emph{multipole expansion} is that:
 
 *** Multipole Expansions (III)
 
-If our particle distribution is like in the figure: is a multipole expansion
-is a computationally useful thing?
+If our particle distribution is like in the figure, is a multipole expansion
+computationally useful?
 
 Set
 
@@ -1921,7 +1921,7 @@ Notice anything?
 
 How does that relate to \(\Delta G = 0\)?
 
-- \(\partial _x G = - \partial _y^2 G\) means that we can reduce from \(O     (p^2)\) to \(O (p)\) \emph{actually} distinct terms \(\rightarrow\) problem
+- \(\partial _x^2 G = - \partial _y^2 G\) means that we can reduce from \(O     (p^2)\) to \(O (p)\) \emph{actually} distinct terms \(\rightarrow\) problem
   solved: same value of expansion (i.e. same accuracy), many fewer terms
 
 - Alternatively: be clever
@@ -1970,7 +1970,7 @@ H^{(1)}_0 \left ( \kappa \norm{\B{x} - \B{y}}_2 \right ) =\\
     \theta }}_{\text{nonsingular}}
 \end{gather*}
 
-where \(\theta = \angle (\B{x} - \B{c})\) and \(\theta ' = \angle (\B{x}' - \B{c})\).
+where \(\theta = \angle (\B{x} - \B{c})\) and \(\theta ' = \angle (\B{y} - \B{c})\).
 
 \medskip
 Can apply same family of tricks as with Taylor to derive multipole/local expansions.
@@ -1993,7 +1993,7 @@ Compare costs for this situation:
 - Compute expansion coefficients: \(O (KS)\)
 - Evaluate expansion coefficients: \(O (KT)\)
 
-Overall: \(O (k (S + T))\): Cheap!\medskip
+Overall: \(O (K (S + T))\): Cheap!\medskip
 
 *Cost for linear algebra:*
 
