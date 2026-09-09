@@ -1359,7 +1359,6 @@ then
 \end{eqnarray*}
 
 #+LATEX: \end{hidden}
-
 *** ID $Q$ vs ID $A$
 
 What does row selection mean for the LRA?
@@ -1381,6 +1380,8 @@ I.e. \(P\) for \(Q\) and \(A\) are essentially interchangeable!
 #+LATEX: \end{hidden}
 
 [Martinsson, Rokhlin, Tygert `06]
+
+\demo{Reusing Decompressors}
 
 *** ID: Remarks
 
