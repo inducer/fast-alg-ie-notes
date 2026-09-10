@@ -1407,30 +1407,30 @@ Name a property that the ID has over other factorizations.
 #+LATEX: \begin{hidden}
 
 - It preserves (a subset of) matrix entries exactly.
-- Copmosition with other transforms without (expensive!) matmats.
+- Composition with other transforms without (expensive!) matmats.
 #+LATEX: \end{hidden}
 
 *** ID: Impact on Low-Rank Algorithms
 
 All our randomized tools have two stages:
 
-1. Cast columns of $A$ in terms of 'small' coordinates with respect to a bigger basis.
+1. Cast columns of $A$ in terms of 'small' vector of coordinates with respect to a basis.
 
-1. Do actual work only on coordinate representation
+1. Do actual work only on coordinate representation.
 
 Complexity?
 
 #+LATEX: \begin{hidden}
 First step of this: \(C = Q^T A\) \(\rightarrow\) \(O (N^2 k)\).
 
-For now, both stages are \(O (N^2 k)\).
+Second step: typically \(O (Nk^2)\).
 #+LATEX: \end{hidden}
 
-What is the impact of the ID?
+How can the ID fix this?
 
 #+LATEX: \begin{hidden}
-- Row subset \(A_{(J,:)}\) assumes role of \(Q^T A\)
-- We avoid the need to form/work with \(C = Q^T A\).
+- Obtain ID $A=PA_{[\B J]}$ from low-rank basis $Q$.
+- Use $A_{[\B J]}$ in place of $Q^TA$. (algorithms need to be suitably adapted)
 #+LATEX: \end{hidden}
 
 *** Leveraging the ID for SVD (I)
