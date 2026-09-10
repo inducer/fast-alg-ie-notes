@@ -1616,8 +1616,7 @@ Now suppose that we had an estimate that
 \end{eqnarray*}
 If \(\alpha < 1\), then this gives a viable bound.
 
-- Slightly different technique from 'textbook' calculus technique.
-- 'Textbook' like mean value theorem: not what we'll use.
+Slightly different technique from `typical' Taylor remainders.
 #+LATEX: \end{hidden}
 
 *** Connect Taylor and Low Rank
@@ -1628,15 +1627,14 @@ Can Taylor help us establish low rank of an interaction?
 #+ATTR_LATEX: :height 2cm
 [[./media/taylor-schematic.pdf]]
 Taylor makes a statement about evaluating a function in a vicinity:
-\begin{eqnarray*}
-  f (\B{x}) = f (\B{c} + \B{h}) & = & \sum _{| \B{p} |
-    \leqslant k   } \frac{D^{\B{p}} f (\B{c})}{\B{p}!}
-    \B{h}^{\B{p}}\\
-  & = & \sum _{| \B{p} | \leqslant k   } (\tmop{coeff}_{\B{p}}) G
-    (\B{x}, \B{p})
-\end{eqnarray*}
-So if we can Taylor expand with a small remainder and a short
-expansion, then /low rank/!
+\[
+  f (\B{x}) = f (\B{c} + \B{h}) \approx \sum _{| \B{p} |
+    \leqslant k   } \frac{D^{\B{p}} f (\B{c})}{\B{p}!} \B{h}^{\B{p}}
+  = \sum _{| \B{p} | \leqslant k   } (\tmop{coeff}_{\B{p}})  \B{h}^{\B{p}}
+\]
+- So if we can Taylor expand with a small remainder and a short
+  expansion, then /low rank/!
+- Also, notice the separation-of-variables character of $\B{h}^{\B{p}}$
 #+LATEX: \end{hidden}
 
 *** Taylor on Potentials (I)
@@ -1673,15 +1671,13 @@ Why is it interesting to consider Taylor expansions of Laplace point potentials?
 \verbatiminput{media/maxima-kernel-derivatives.txt}
 
 *** Taylor on Potentials (III)
-Which of these is the most dangerous (largest) term?
 
+Which of these is the most dangerous (largest) term?
+Let \(R = \sqrt{y_1^2 + y_2^2}\). What's a bound on it? (as $R \to 0$)
 #+LATEX: \begin{hidden}
 Same number of powers of
 components of \(\B{y}\). So: hard to say.
-#+LATEX: \end{hidden}
 
-What's a bound on it? Let \(R = \sqrt{y_1^2 + y_2^2}\).
-#+LATEX: \begin{hidden}
 \[\left | \frac{120 y_1}{(y_2^2 + y_1^2)^3}
    \right | \leqslant C \left | \frac{y_1}{R^6} \right | \leqslant C
    \frac{1}{R^5} . \]
@@ -1753,11 +1749,37 @@ Low rank makes evaluating interactions cheap(er). Do local
 expansions help with that
 goal?
 #+LATEX: \begin{hidden}
-#+ATTR_LATEX: :height 4cm
-[[./media/local-expansion.pdf]]
+\begin{tikzpicture}[>=stealth, every node/.style={font=\large}]
+  % Point clouds
+  \foreach \x/\y in {0/1.1, 1.2/1.35, 0.75/0.75, 1.6/0.8,
+                      0.3/-0.35, 0.95/0.1, 0.55/-0.85,
+                      1.45/-0.85, 1.85/-0.6}
+    \fill[green!55!black] (\x,\y) circle (2.1pt);
 
-No, not really. In a roughly uniform target distribution with \(O (N)\) targets,
-we need \(O (N)\) local expansion \(\rightarrow\) nothing saved really.
+  \coordinate (c) at (6.2,0.1);
+  \draw (c) circle (1.55);
+
+  \foreach \x/\y in {5.45/0.85, 5.85/1.25, 5.85/0.35,
+                      6.65/0.9, 6.5/-0.05, 6.25/-0.35,
+                      5.75/-0.85, 6.45/-0.7}
+    \fill[red] (\x,\y) circle (2.2pt);
+
+  % Connecting arrow
+  \draw[->] (1.15,-0.35) -- (c);
+  \node at (3.2,0.45) {$R$};
+
+  % Radius arrow and labels
+  \draw[->] (c) -- (6.45,1.68);
+  \node at (6.05,1.38) {$r$};
+  \node[below right] at (c) {$\B c= \B 0$};
+
+  \node[below] at (0.55,-1.75) {$\B y_j$};
+  \node[below] at (6.35,-1.55) {$\B x_i=\B h_i$};
+\end{tikzpicture}
+
+- Yes, count the ops above.
+- Would need a geometric structure to make use of it.
+- But first: consider `dual' of a local expansion.
 #+LATEX: \end{hidden}
 
 ** Multipole Expansions
