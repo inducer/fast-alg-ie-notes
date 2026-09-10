@@ -1576,17 +1576,17 @@ Decay of Taylor remainders.
 
 *Notational tool:* /Multi-Index/ in \(n\) dimensions
 \begin{eqnarray*}
-  p & = & (p_1, p_2, \ldots , p_n), \quad \left ( \text{all \(\geqslant 0\)}
+  \B{p} & = & (p_1, p_2, \ldots , p_n), \quad \left ( \text{all \(\geqslant 0\)}
     \right )\\
-  \vbar p |   & = & p_1 + \cdots + p_n,\\
-  p! & = & p_1 ! \cdot \cdots \cdot p_n !,\\
-  \tmmathbf{x}^p & = & x_1^{p_1} \cdot \cdots \cdot x_n^{p_n}\\
-  D^p f & = & \frac{\partial ^{| p |   } f}{\partial
+  \vbar \B{p} |   & = & p_1 + \cdots + p_n,\\
+  \B{p}! & = & p_1 ! \cdot \cdots \cdot p_n !,\\
+  \B{x}^{\B{p}} & = & x_1^{p_1} \cdot \cdots \cdot x_n^{p_n}\\
+  D^{\B{p}} f & = & \frac{\partial ^{| \B{p} |   } f}{\partial
     x_1^{p_1} \cdot \cdots \cdot \partial x_n^{p_n}} .
 \end{eqnarray*}
 *With that:* For \(f\) scalar,
-\(\ds f (\tmmathbf{c} + \tmmathbf{h}) \approx \sum _{| p | \leqslant k
-    } \frac{D^p f (\tmmathbf{c})}{p!} \tmmathbf{h}^p \)
+\(\ds f (\B{c} + \B{h}) \approx \sum _{| \B{p} | \leqslant k
+    } \frac{D^{\B{p}} f (\B{c})}{\B{p}!} \B{h}^{\B{p}} \)
 #+LATEX: \end{hidden}
 
 *** Taylor and Error (I)
@@ -1629,11 +1629,11 @@ Can Taylor help us establish low rank of an interaction?
 [[./media/taylor-schematic.pdf]]
 Taylor makes a statement about evaluating a function in a vicinity:
 \begin{eqnarray*}
-  f (\tmmathbf{x}) = f (\tmmathbf{c} + \tmmathbf{h}) & = & \sum _{| p |
-    \leqslant k   } \frac{D^p f (\tmmathbf{c})}{p!}
-    \tmmathbf{h}^p\\
-  & = & \sum _{| p | \leqslant k   } (\tmop{coeff}_p) G
-    (\tmmathbf{x}, p)
+  f (\B{x}) = f (\B{c} + \B{h}) & = & \sum _{| \B{p} |
+    \leqslant k   } \frac{D^{\B{p}} f (\B{c})}{\B{p}!}
+    \B{h}^{\B{p}}\\
+  & = & \sum _{| \B{p} | \leqslant k   } (\tmop{coeff}_{\B{p}}) G
+    (\B{x}, \B{p})
 \end{eqnarray*}
 So if we can Taylor expand with a small remainder and a short
 expansion, then /low rank/!
@@ -1644,14 +1644,14 @@ expansion, then /low rank/!
 Compute a Taylor expansion of a 2D Laplace point potential.
 #+LATEX: \begin{hidden}
 \begin{eqnarray*}
-  \psi (x) & = & \sum _{i = 1}^n G (x, y_j) \varphi (y_j)\\
-  & = & \sum _{i = 1}^n \log \left ( \norm{x - y}_2 \right ) \varphi (y_j)
+  \psi (\B{x}) & = & \sum _{i = 1}^n G (\B{x}, \B{y}_j) \varphi (\B{y}_j)\\
+  & = & \sum _{i = 1}^n \log \left ( \norm{\B{x} - \B{y}}_2 \right ) \varphi (\B{y}_j)
 \end{eqnarray*}
 Since this is a superposition anyway: Just consider a single source.
-\[\psi (x) = \log \left ( \norm{x - y}_2 \right ) \]
-Pick an expansion center \(\tmmathbf{c}\). WLOG, \(\tmmathbf{c} = \tmmathbf{0}\).
-\(\ds\psi (\tmmathbf{h}) \approx \sum _{| p | \leqslant k   }
-   \frac{D^p \psi (\tmmathbf{0})}{p!} \tmmathbf{h}^p \)
+\[\psi (\B{x}) = \log \left ( \norm{\B{x} - \B{y}}_2 \right ) \]
+Pick an expansion center \(\B{c}\). WLOG, \(\B{c} = \B{0}\).
+\(\ds\psi (\B{h}) \approx \sum _{| \B{p} | \leqslant k   }
+   \frac{D^{\B{p}} \psi (\B{0})}{\B{p}!} \B{h}^{\B{p}} \)
 #+LATEX: \end{hidden}
 
 *** Taylor on Potentials (Ia)
@@ -1676,7 +1676,7 @@ Which of these is the most dangerous (largest) term?
 
 #+LATEX: \begin{hidden}
 Same number of powers of
-components of \(\tmmathbf{y}\). So: hard to say.
+components of \(\B{y}\). So: hard to say.
 #+LATEX: \end{hidden}
 
 What's a bound on it? Let \(R = \sqrt{y_1^2 + y_2^2}\).
@@ -1688,14 +1688,14 @@ What's a bound on it? Let \(R = \sqrt{y_1^2 + y_2^2}\).
 
 `Generalize' this bound:
 #+LATEX: \begin{hidden}
-\[| D^p \psi | \leqslant C_p
+\[| D^{\B{p}} \psi | \leqslant C_{\B{p}}
 \begin{cases}
-  \log (R) & | p | = 0\\
-  R^{- | p |} & | p | > 0
+  \log (R) & | \B{p} | = 0\\
+  R^{- | \B{p} |} & | \B{p} | > 0
 \end{cases} . \]
-Appears true at least from the few \(p\) we tried. (Actually is true.)
+Appears true at least from the few \(\B{p}\) we tried. (Actually is true.)
 
-\(C_p\) is a `generic constant'--its value could change from one time it's
+\(C_{\B{p}}\) is a `generic constant'--its value could change from one time it's
 written to the next.
 #+LATEX: \end{hidden}
 
@@ -1704,12 +1704,12 @@ written to the next.
 What does this mean for the convergence of the Taylor series as a whole?
 #+LATEX: \begin{hidden}
 
-\(\rightarrow\) Need to estimate each term. Recall that \(\tmmathbf{h}\) is the
-vector from \(\tmmathbf{c}\) to the target (aka point where we evaluate)
-\(\tmmathbf{x}\). (Assume \(| p | > 0\) to keep it simple.)
-\[\left | \frac{D^p \psi (\tmmathbf{0})}{p!} \tmmathbf{h}^p \right |_2
-   \leqslant C_p | D^p \psi (\tmmathbf{0}) \tmmathbf{h}^p |_2 \leqslant C_p
-   \left ( \frac{| \tmmathbf{h} |}{R} \right )^p . \]
+\(\rightarrow\) Need to estimate each term. Recall that \(\B{h}\) is the
+vector from \(\B{c}\) to the target (aka point where we evaluate)
+\(\B{x}\). (Assume \(| \B{p} | > 0\) to keep it simple.)
+\[\left | \frac{D^{\B{p}} \psi (\B{0})}{\B{p}!} \B{h}^{\B{p}} \right |_2
+   \leqslant C_{\B{p}} | D^{\B{p}} \psi (\B{0}) \B{h}^{\B{p}} |_2 \leqslant C_{\B{p}}
+   \left ( \frac{| \B{h} |}{R} \right )^{\B{p}} . \]
 #+ATTR_LATEX: :height 3cm
 [[./media/local-expansion.pdf]]
 #+LATEX: \end{hidden}
@@ -1721,8 +1721,8 @@ Lesson?
 #+LATEX: \begin{hidden}
 As long as
 \begin{equation*}
-\frac{\max _i  | \tmmathbf{x}_i - \tmmathbf{c} |_2}{\min _j | \tmmathbf{y}_j
-   - \tmmathbf{c} |_2   } = \frac{r}{R} < 1,
+\frac{\max _i  | \B{x}_i - \B{c} |_2}{\min _j | \B{y}_j
+   - \B{c} |_2   } = \frac{r}{R} < 1,
 \end{equation*}
 the Taylor series converges.
 #+LATEX: \end{hidden}
@@ -1742,9 +1742,9 @@ Generalize this to multiple source points:
 
   - The error in approximating the potential by a truncated (at order
     \(k\)) local expansion is
-    \[C_p \left ( \frac{r}{R} \right )^{k + 1} = \left ( \frac{\left .
-           \text{dist(\tmtextbf{c}, furthest target} \right )}{\left .
-           \text{dist(\tmtextbf{c}, closest source} \right )} \right )^{k + 1} \]
+    \[C_{\B{p}} \left ( \frac{r}{R} \right )^{k + 1} = \left ( \frac{\left .
+           \text{dist(}\B{c}\text{, furthest target)} \right )}{\left .
+           \text{dist(}\B{c}\text{, closest source)} \right )} \right )^{k + 1} \]
 #+LATEX: \end{hidden}
 
 *** Local expansions as a Computational Tool
@@ -1766,20 +1766,18 @@ we need \(O (N)\) local expansion \(\rightarrow\) nothing saved really.
 Stare at that Taylor formula again.
 #+LATEX: \begin{hidden}
 
-\[\psi (\tmmathbf{x} - \tmmathbf{y}) \approx \sum _{| p | \leqslant k
-     } \underbrace{\frac{D^p_{\tmmathbf{x}} \psi
-   (\tmmathbf{ x - \tmmathbf{y}) |_{\tmmathbf{x = \tmmathbf{c}}}
-    }  }{p!}}_{\text{depends on src/ctr}}
-   \underbrace{(\tmmathbf{x} - \tmmathbf{c})^p}_{\text{dep. on ctr/tgt}} \]
-Recall: \(\tmmathbf{x}\): targets, \(\tmmathbf{y}\): sources.
+\[\psi (\B{x} - \B{y}) \approx \sum _{| \B{p} | \leqslant k
+     } \underbrace{\frac{D^{\B{p}}_{\B{x}} \psi
+   (\B{x} - \B{y}) |_{\B{x} = \B{c}}}{\B{p}!}}_{\text{depends on src/ctr}}
+   \underbrace{(\B{x} - \B{c})^{\B{p}}}_{\text{dep. on ctr/tgt}} \]
+Recall: \(\B{x}\): targets, \(\B{y}\): sources.
 
-At least formally, nothing goes wrong if I swap the roles of \(\tmmathbf{x}\)
-and \(\tmmathbf{y}\) in the Taylor expansion:
-\[\psi (\tmmathbf{x} - \tmmathbf{y}) \approx \sum _{| p | \leqslant k
-     } \underbrace{\frac{D^p_{\tmmathbf{y}} \psi
-   (\tmmathbf{ x - \tmmathbf{y}) |_{\tmmathbf{y = \tmmathbf{c}}}
-    }  }{p!}}_{\text{depends on ctr/tgt}}
-   \underbrace{(\tmmathbf{y} - \tmmathbf{c})^p}_{\text{dep. on src/ctr}} . \]
+At least formally, nothing goes wrong if I swap the roles of \(\B{x}\)
+and \(\B{y}\) in the Taylor expansion:
+\[\psi (\B{x} - \B{y}) \approx \sum _{| \B{p} | \leqslant k
+     } \underbrace{\frac{D^{\B{p}}_{\B{y}} \psi
+   (\B{x} - \B{y}) |_{\B{y} = \B{c}}}{\B{p}!}}_{\text{depends on ctr/tgt}}
+   \underbrace{(\B{y} - \B{c})^{\B{p}}}_{\text{dep. on src/ctr}} . \]
 In comparison to the local expansion above, we will call this (and other
 expansions like it) a /multipole expansion/.
 #+LATEX: \end{hidden}
@@ -1792,16 +1790,16 @@ mathematically/geometrically, this is a very different animal.
 #+LATEX: \begin{hidden}
 
 The analysis is the same as earlier:
-\[(\ast ) = \abs{\frac{D^p_{\tmmathbf{y}} \psi (\tmmathbf{ x -
-   \tmmathbf{y}) |_{\tmmathbf{y = \tmmathbf{c}}}  }  }{p!}
-   (\tmmathbf{y} - \tmmathbf{c})^p} \leqslant C_p \frac{\norm{\tmmathbf{y} -
-   \tmmathbf{c}}_2^p}{\norm{\tmmathbf{x} - \tmmathbf{c}}_2^p} = C_p \left (
-   \frac{\norm{\tmmathbf{y} - \tmmathbf{c}}_2}{\norm{\tmmathbf{x} -
-   \tmmathbf{c}}_2} \right )^p \]
-(just with the roles of \(\tmmathbf{x}\) and \(\tmmathbf{y}\) reversed). If we
+\[(\ast ) = \abs{\frac{D^{\B{p}}_{\B{y}} \psi (\B{x} -
+   \B{y}) |_{\B{y} = \B{c}}}{\B{p}!}
+   (\B{y} - \B{c})^{\B{p}}} \leqslant C_{\B{p}} \frac{\norm{\B{y} -
+   \B{c}}_2^{\B{p}}}{\norm{\B{x} - \B{c}}_2^{\B{p}}} = C_{\B{p}} \left (
+   \frac{\norm{\B{y} - \B{c}}_2}{\norm{\B{x} -
+   \B{c}}_2} \right )^{\B{p}} \]
+(just with the roles of \(\B{x}\) and \(\B{y}\) reversed). If we
 admit multiple sources/targets, we get
-\[(\ast ) \leqslant C_p \left ( \frac{\max _j \norm{\tmmathbf{y}_i -
-   \tmmathbf{c}}_2}{\min _i \norm{\tmmathbf{x}_i - \tmmathbf{c}}_2} \right )^p .
+\[(\ast ) \leqslant C_{\B{p}} \left ( \frac{\max _j \norm{\B{y}_i -
+   \B{c}}_2}{\min _i \norm{\B{x}_i - \B{c}}_2} \right )^{\B{p}} .
 \]
 #+LATEX: \end{hidden}
 
@@ -1815,8 +1813,8 @@ The abstract idea of a \emph{multipole expansion} is that:
 
 - The error in approximating the potential by a truncated (at order \(k\))
   local expansion is
-  \[\left ( \frac{\left . \text{dist(\tmtextbf{c}, furthest source}
-       \right )}{\left . \text{dist(\tmtextbf{c}, closest target} \right )}
+  \[\left ( \frac{\left . \text{dist(}\B{c}\text{, furthest source)}
+       \right )}{\left . \text{dist(}\B{c}\text{, closest target)} \right )}
        \right )^{k + 1} . \]
 
 #+ATTR_LATEX: :height 3cm
@@ -1856,7 +1854,7 @@ We have just shown that point\(\rightarrow\)point potential interactions
 have low numerical rank!
 
 Specifically, to precision
-\(\ds C_p \left ( \frac{r}{R} \right )^{k + 1} \),
+\(\ds C_{\B{p}} \left ( \frac{r}{R} \right )^{k + 1} \),
 the interaction from sources to targets has a numerical rank of at most
 (#terms in Taylor series)
 aka
@@ -1882,8 +1880,8 @@ So how many terms do we need for a given precision \(\varepsilon\)?
 #+LATEX: \begin{hidden}
 \begin{equation*}
   \varepsilon \approx \left ( \frac{\left .
-   \text{dist(\tmtextbf{c}, furthest target} \right )}{\left .
-   \text{dist(\tmtextbf{c}, closest source} \right )} \right )^{k + 1} = \rho ^{k
+   \text{dist(}\B{c}\text{, furthest target)} \right )}{\left .
+   \text{dist(}\B{c}\text{, closest source)} \right )} \right )^{k + 1} = \rho ^{k
    + 1}
 \end{equation*}
 Want to relate this to \(K\) (#terms = rank). Take (2D) \(K \approx k^2\), i.e.
@@ -1965,14 +1963,14 @@ How do expansions for other PDEs arise?
 DLMF 10.23.6 shows `Graf's addition theorem':
 
 \begin{gather*}
-H^{(1)}_0 \left ( \kappa \norm{x - y}_2 \right ) =\\
+H^{(1)}_0 \left ( \kappa \norm{\B{x} - \B{y}}_2 \right ) =\\
 \sum _{\ell = - \infty }^\infty  \underbrace{H_\ell ^{(1)} \left ( \kappa
-    \norm{y - c}_2 \right ) e^{i \ell \theta '}}_{\text{singular}}
-    \underbrace{J_\ell  \left ( \kappa \norm{x - c}_2 \right ) e^{- i \ell
+    \norm{\B{y} - \B{c}}_2 \right ) e^{i \ell \theta '}}_{\text{singular}}
+    \underbrace{J_\ell  \left ( \kappa \norm{\B{x} - \B{c}}_2 \right ) e^{- i \ell
     \theta }}_{\text{nonsingular}}
 \end{gather*}
 
-where \(\theta = \angle (x - c)\) and \(\theta ' = \angle (x' - c\)).
+where \(\theta = \angle (\B{x} - \B{c})\) and \(\theta ' = \angle (\B{x}' - \B{c})\).
 
 \medskip
 Can apply same family of tricks as with Taylor to derive multipole/local expansions.
@@ -2059,10 +2057,10 @@ Summarize what we know about interaction ranks.
   (Because: short Taylor expansion suffices)
 
 - If
-  \[\psi (\tmmathbf{x}) = \sum _j G (\tmmathbf{x}, \tmmathbf{y}_j) \varphi
-       (\tmmathbf{y}_j) \]
+  \[\psi (\B{x}) = \sum _j G (\B{x}, \B{y}_j) \varphi
+       (\B{y}_j) \]
   satisfies a PDE (e.g. Laplace), i.e. if
-  \(G (\tmmathbf{x}, \tmmathbf{y}_j) \)
+  \(G (\B{x}, \B{y}_j) \)
   satisfies a PDE, then that low rank is /even/ lower.
 
 - Can construct interior (`local') and exterior (`multipole') expansions
