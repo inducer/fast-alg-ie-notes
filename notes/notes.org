@@ -1589,6 +1589,23 @@ Decay of Taylor remainders.
     } \frac{D^{\B{p}} f (\B{c})}{\B{p}!} \B{h}^{\B{p}} \)
 #+LATEX: \end{hidden}
 
+*** Asside: Multivariate Taylor Truncation
+
+Where should one truncate a multivariate Taylor expansion?
+#+LATEX: \begin{hidden}
+- $|\B p|\le k$ gives rise to $P^N$
+- $\max_i p_i \le k$ gives rise to $Q^N$
+
+Relative merits?
+- $P^N$ is smaller (half in 2D, 1/6 in 3D)
+- $P^N$ suffices for asymptotic $p+1$-th order truncation
+- Case closed, right?
+
+Right?
+
+\demo{PN vs QN}
+#+LATEX: \end{hidden}
+
 *** Taylor and Error (I)
 
 How can we estimate the error in a Taylor expansion?
