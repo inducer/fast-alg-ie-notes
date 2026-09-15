@@ -1702,15 +1702,15 @@ components of \(\B{y}\). So: hard to say.
 
 `Generalize' this bound:
 #+LATEX: \begin{hidden}
-\[| D^{\B{p}} \psi | \leqslant C_{\B{p}}
+\[\left| \frac{D^{\B{p}}}{\B p !} \psi \right| \leqslant C
 \begin{cases}
   \log (R) & | \B{p} | = 0\\
   R^{- | \B{p} |} & | \B{p} | > 0
 \end{cases} . \]
 Appears true at least from the few \(\B{p}\) we tried. (Actually is true.)
 
-\(C_{\B{p}}\) is a `generic constant'--its value could change from one time it's
-written to the next.
+$C$ is a `generic constant'--its value could change from one time it's
+written to the next. It's also \(\B p\)-uniform.
 #+LATEX: \end{hidden}
 
 *** Taylor on Potentials (IV)
@@ -1722,7 +1722,7 @@ What does this mean for the convergence of the Taylor series as a whole?
 vector from \(\B{c}\) to the target (aka point where we evaluate)
 \(\B{x}\). (Assume \(| \B{p} | > 0\) to keep it simple.)
 \[\left | \frac{D^{\B{p}}_{\B{z}} \psi (\B{z}) |_{\B{z} = -\B{y}}}{\B{p}!} \B{h}^{\B{p}} \right |_2
-   \leqslant C_{\B{p}} \left ( \frac{| \B{h} |}{R} \right )^{|\B{p}|} . \]
+   \leqslant C \left ( \frac{| \B{h} |}{R} \right )^{|\B{p}|} . \]
 \input{media/local-expansion}
 #+LATEX: \end{hidden}
 
@@ -1754,7 +1754,7 @@ Generalize this to multiple source points:
 
   - The error in approximating the potential by a truncated (at order
     \(k\)) local expansion is
-    \[C_{\B{p}} \left ( \frac{r}{R} \right )^{k + 1} = \left ( \frac{\left .
+    \[C \left ( \frac{r}{R} \right )^{k + 1} = \left ( \frac{\left .
            \text{dist(}\B{c}\text{, furthest target)} \right )}{\left .
            \text{dist(}\B{c}\text{, closest source)} \right )} \right )^{k + 1} \]
 #+LATEX: \end{hidden}
@@ -1804,12 +1804,12 @@ mathematically/geometrically, this is a very different animal.
 The analysis is the same as earlier:
 \[(\ast ) = \abs{\frac{(-1)^{|\B{p}|} D^{\B{p}}_{\B{z}} \psi
    (\B{z}) |_{\B{z} = \B{x}-\B{c}}}{\B{p}!}
-   (\B{y} - \B{c})^{\B{p}}} \leqslant C_{\B{p}} \left (
+   (\B{y} - \B{c})^{\B{p}}} \leqslant C \left (
    \frac{\norm{\B{y} - \B{c}}_2}{\norm{\B{x} -
    \B{c}}_2} \right )^{|\B{p}|} \]
 (just with the roles of \(\B{x}\) and \(\B{y}\) reversed). If we
 admit multiple sources/targets, we get
-\[(\ast ) \leqslant C_{\B{p}} \left ( \frac{\max _j \norm{\B{y}_j -
+\[(\ast ) \leqslant C \left ( \frac{\max _j \norm{\B{y}_j -
    \B{c}}_2}{\min _i \norm{\B{x}_i - \B{c}}_2} \right )^{|\B{p}|} .
 \]
 #+LATEX: \end{hidden}
