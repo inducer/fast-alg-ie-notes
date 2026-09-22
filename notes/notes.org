@@ -2292,7 +2292,7 @@ If \(G_{\tmop{LR}}\) and sufficiently many of its derivatives decay suitably,
 then \(\mathcal F\{G_{\tmop{LR}}\}(n)\) decays rapidly as \(|n|\) increases.
 The Fourier series can then be approximated using finitely many reciprocal
 modes. Again: Smoothness leads to spectral compressibility. Technically:
-$\partial^\alpha G_{\mathrm{LR}}\in L^1$ for$ $|\alpha|\leq q$ implies
+$\partial^\alpha G_{\mathrm{LR}}\in L^1$ for $|\alpha|\leq q$ implies
 decay of order $q$.
 
 #+LATEX: \end{hidden}
