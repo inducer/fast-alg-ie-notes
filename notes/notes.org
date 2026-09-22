@@ -2218,7 +2218,7 @@ convolutions into products. How?
 *** Ewald Summation: Screens
 
 #+LATEX: \begin{hidden}
-Split \(G\) into two parts using a /screen/ \(\sigma\) (often $\sigma=\operatorname{erfc}$:
+Split \(G\) into two parts using a /screen/ \(\sigma\) (often $\sigma=\operatorname{erfc})$:
 \[G (\tmmathbf{x}) = \sigma (\tmmathbf{x}) G (\tmmathbf{x}) + (1 - \sigma
    (\tmmathbf{x})) G (\tmmathbf{x}) . \]
 How does that help? Consider \(G = 1 / r^4\).
