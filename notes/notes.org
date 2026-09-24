@@ -2330,7 +2330,7 @@ Convergent with factor $\sqrt2/3$ /if/ \(3 r_s + r_t \le  R_\infty \qquad (\ast 
 
 Pair of boxes satisfying \((\ast \ast )\) called /well-separated/.
 
-- This is just /one/ choice. (the one we'll use anyway)
+- This is just /one/ (classical) choice, computable with integer math.
 - One can play games here, based on a target accuracy.
 
   \(\rightarrow\) /Multipole Acceptance Criterion/ (`MAC')
