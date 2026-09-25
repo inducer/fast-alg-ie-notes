@@ -1,0 +1,142 @@
+% ---------------------------------------------------------------------------
+% Barnes-Hut / FMM illustrations: particles on an N x N grid of boxes.
+%
+% Points are generated per box, with a seed derived from the box index, so
+% every figure shows the *same* particles no matter which boxes get drawn or
+% in what order. All particles in a box go into a single path, drawn as
+% round-capped zero-length strokes, which keeps TeX time and PDF size down.
+% ---------------------------------------------------------------------------
+
+\newcommand\nboxes{8}      % boxes per side
+\newcommand\nper{40}       % particles per box
+\newcommand\ptr{0.6pt}     % particle radius
+\newcommand\ctr{1.2pt}     % radius of box-center "proxy" particles
+\newcommand\seedbase{17}   % change to get a different particle cloud
+
+% \boxparticles{i}{j}{style}: particles of box (i,j), i=column, j=row, 0-based
+\newcommand\seedbox[2]{%
+  \pgfmathsetseed{\seedbase+\nboxes*#2+#1+1}%
+  % burn-in: Park-Miller seeds that differ by 1 give nearly equal first draws
+  \pgfmathparse{rnd}\pgfmathparse{rnd}\pgfmathparse{rnd}}
+\newcommand\boxparticles[3]{%
+  \seedbox{#1}{#2}%
+  \draw[particles, #3] \foreach \k in {1,...,\nper} {({#1+rnd},{#2+rnd}) -- ++(0,0)};%
+}
+\newcommand\nlast{\the\numexpr\nboxes-1\relax}
+\newcommand\allparticles[1][red]{%
+  \foreach \i in {0,...,\nlast} {\foreach \j in {0,...,\nlast} {\boxparticles{\i}{\j}{#1}}}}
+
+% \particlesin[style]{x0}{y0}{x1}{y1}: only the particles inside a rectangle.
+% Regenerates the covering boxes' particles and tests each one, so it is
+% slower per particle than \boxparticles -- meant for small regions.
+\newcommand\particlesin[5][red]{%
+  \pgfmathtruncatemacro\pilo{max(0,floor(#2))}%
+  \pgfmathtruncatemacro\pihi{min(\nlast,ceil(#4)-1)}%
+  \pgfmathtruncatemacro\pjlo{max(0,floor(#3))}%
+  \pgfmathtruncatemacro\pjhi{min(\nlast,ceil(#5)-1)}%
+  \foreach \bi in {\pilo,...,\pihi} {\foreach \bj in {\pjlo,...,\pjhi} {
+    \seedbox{\bi}{\bj}%
+    \foreach \k in {1,...,\nper} {
+      \pgfmathsetmacro\px{\bi+rnd}\pgfmathsetmacro\py{\bj+rnd}%
+      \pgfmathtruncatemacro\inside{\px>=#2 && \px<#4 && \py>=#3 && \py<#5}%
+      \ifnum\inside=1 \draw[particles, #1] (\px,\py) -- ++(0,0);\fi}}}}
+
+% Quadtree boxes: box (i,j) on level l has side \nboxes/2^l.
+% \levelbox{l}{i}{j}{macro}: calls macro{x0}{y0}{side} for that box
+\newcommand\levelbox[4]{%
+  \pgfmathsetmacro\lbs{\nboxes/2^(#1)}%
+  #4{#2*\lbs}{#3*\lbs}{\lbs}}
+% blue overdraw of the particles in box (i,j) on level l
+\newcommand\targetparticles[3]{%
+  \pgfmathsetmacro\tbs{\nboxes/2^(#1)}%
+  \particlesin[blue]{#2*\tbs}{#3*\tbs}{(#2+1)*\tbs}{(#3+1)*\tbs}}
+
+% \ilist{l}{ai}{aj}{finest}: visits the children of the neighbors of the parent
+% of box (ai,aj) on level l. Those that are not neighbors of (ai,aj) -- its
+% interaction list -- get \farbox{x0}{y0}{side}; if finest=1, the neighbors
+% (incl. the box itself) get \nearbox{x0}{y0}{side}. Define both before use.
+\newcommand\ilist[4]{%
+  \pgfmathtruncatemacro\nmax{2^#1-1}%
+  \pgfmathtruncatemacro\ilo{max(0,2*floor(#2/2)-2)}%
+  \pgfmathtruncatemacro\ihi{min(\nmax,2*floor(#2/2)+3)}%
+  \pgfmathtruncatemacro\jlo{max(0,2*floor(#3/2)-2)}%
+  \pgfmathtruncatemacro\jhi{min(\nmax,2*floor(#3/2)+3)}%
+  \pgfmathsetmacro\fbs{\nboxes/2^#1}%
+  \foreach \ci in {\ilo,...,\ihi} {\foreach \cj in {\jlo,...,\jhi} {
+    \pgfmathtruncatemacro\isnear{abs(\ci-#2)<=1 && abs(\cj-#3)<=1}%
+    \ifnum\isnear=0 \farbox{\ci*\fbs}{\cj*\fbs}{\fbs}%
+    \else\ifnum#4=1 \nearbox{\ci*\fbs}{\cj*\fbs}{\fbs}\fi\fi}}}
+
+% \fmmtree{L}{ti}{tj}: box structure seen from target box (ti,tj) on level L:
+% interaction lists on levels 2..L, plus the neighbors on level L.
+\newcommand\fmmtree[3]{%
+  \foreach \lev in {2,...,#1} {
+    \pgfmathtruncatemacro\ai{floor(#2/2^(#1-\lev))}%
+    \pgfmathtruncatemacro\aj{floor(#3/2^(#1-\lev))}%
+    \pgfmathtruncatemacro\fin{\lev==#1}%
+    \ilist{\lev}{\ai}{\aj}{\fin}}}
+
+% target box shared by the tree figures (level, column, row)
+\newcommand\tgtL{5}\newcommand\tgti{9}\newcommand\tgtj{18}
+
+% \blockparticles{inside}{outside}: all particles, styled by whether they lie in
+% the level-2 ancestor of the target; an empty style skips those particles
+\newcommand\blockparticles[2]{%
+  \pgfmathtruncatemacro\pbi{floor(\tgti/2^(\tgtL-3))}% level-3 index of
+  \pgfmathtruncatemacro\pbj{floor(\tgtj/2^(\tgtL-3))}% target's ancestor
+  \foreach \i in {0,...,\nlast} {\foreach \j in {0,...,\nlast} {
+    \pgfmathtruncatemacro\inblk{floor(\i/2)==floor(\pbi/2) && floor(\j/2)==floor(\pbj/2)}%
+    \ifnum\inblk=1 \def\st{#1}\else\def\st{#2}\fi
+    \ifx\st\empty\else\boxparticles{\i}{\j}{\st}\fi}}}
+% lower-left corner (\bx,\by) of the target's level-2 ancestor, side 2^(3-2)=2
+\newcommand\blockcorner{%
+  \pgfmathsetmacro\bx{\nboxes/4*floor(\tgti/2^(\tgtL-2))}%
+  \pgfmathsetmacro\by{\nboxes/4*floor(\tgtj/2^(\tgtL-2))}}
+
+% \tgtanc{l}: (\ai,\aj) := index of the target's ancestor on level l
+\newcommand\tgtanc[1]{%
+  \pgfmathtruncatemacro\ai{floor(\tgti/2^(\tgtL-#1))}%
+  \pgfmathtruncatemacro\aj{floor(\tgtj/2^(\tgtL-#1))}}
+
+% \ilparticles{l}{style}: particles for an interaction-list figure on level l
+% (l <= level of the \nboxes grid): none in the target's level-l ancestor,
+% `style' in its interaction list (empty: none), faint elsewhere
+\newcommand\ilparticles[2]{%
+  \tgtanc{#1}%
+  \foreach \i in {0,...,\nlast} {\foreach \j in {0,...,\nlast} {
+    \pgfmathtruncatemacro\ci{floor(\i*2^#1/\nboxes)}%
+    \pgfmathtruncatemacro\cj{floor(\j*2^#1/\nboxes)}%
+    \pgfmathtruncatemacro\cls{(\ci==\ai && \cj==\aj) ? 0 :
+      ((abs(floor(\ci/2)-floor(\ai/2))<=1 && abs(floor(\cj/2)-floor(\aj/2))<=1
+        && !(abs(\ci-\ai)<=1 && abs(\cj-\aj)<=1)) ? 1 : 2)}%
+    \ifcase\cls \or \if\relax\detokenize{#2}\relax\else\boxparticles{\i}{\j}{#2}\fi
+    \or \boxparticles{\i}{\j}{faint}\fi}}}
+
+% \tgtbox{l}: the target's level-l ancestor, emptied, with its local expansion
+\newcommand\tgtbox[1]{%
+  \tgtanc{#1}\pgfmathsetmacro\tbs{\nboxes/2^#1}%
+  \fill[white] (\ai*\tbs,\aj*\tbs) rectangle ++(\tbs,\tbs);
+  \draw[hl] (\ai*\tbs,\aj*\tbs) rectangle ++(\tbs,\tbs);
+  \fill[local] (\ai*\tbs+\tbs/2,\aj*\tbs+\tbs/2) circle[radius=2*\ctr];}
+
+% interaction-list box styles: subdivided with particles / merged with center
+\newcommand\ilgrid[3]{\draw[step=1] (#1,#2) grid ++(#3,#3);}
+\newcommand\ildot[3]{\fill[white] (#1,#2) rectangle ++(#3,#3);
+  \draw (#1,#2) rectangle ++(#3,#3);
+  \fill[center] (#1+#3/2,#2+#3/2) circle[radius=2*\ctr];}
+
+\newcommand\outline[3]{\draw (#1,#2) rectangle ++(#3,#3);}
+\newcommand\outlinedot[3]{\outline{#1}{#2}{#3}\fill[red] (#1+#3/2,#2+#3/2) circle[radius=\ctr];}
+
+\tikzset{
+  fmm/.style={x=6mm, y=6mm},
+  % a zero-length stroke with round caps is a dot: much cheaper than a circle
+  % (4 Bezier segments) in both TeX time and PDF size
+  particles/.style={line cap=round, line width=2*\ptr},
+  boxgrid/.style={thin, step=1},
+  faint/.style={gray!45},                 % background particles
+  fgrid/.style={boxgrid, gray!45, semithick},
+  hl/.style={green!70!black, semithick},  % highlighted boxes
+  center/.style={red},                    % multipole expansions
+  local/.style={blue},                    % local expansions
+}
