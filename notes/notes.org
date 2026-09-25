@@ -2137,7 +2137,7 @@ it:
 No targets are cleanly separated from other sources.
 
 \medskip
-*Lesson from Ewald:* If you can't compute the entire interaction,
+*Idea:* If you can't compute the entire interaction,
 compute parts of it. To help do so, put down a grid.
 #+LATEX: \end{hidden}
 
@@ -2365,7 +2365,7 @@ What do we need to do?
 
 - \(L\) levels of multipoles, each of which contains:
 
-  - \(\leqslant\) 27 source boxes (!) (in 2D)
+  - \(\leqslant 27 =6^2-3^2\) source boxes (!) (in 2D)
 
   \(\rightarrow\) \(O (LK) = O (\log N)\)
 
