@@ -2673,6 +2673,46 @@ often called `List 1', `List 2', ... (with the case numbers above).
 Alternatively: `List U', `List V', ...
 #+LATEX: \end{hidden}
 
+*** FMM: An Alternate Reality
+
+Can we do without multipole and local expansions?
+#+LATEX: \begin{hidden}
+- Local expansions can be replaced by interpolating
+  polynomials, say on a Chebyshev grid.
+- Multipoles: If locals work like transposes of multipoles,
+  would need the `transpose' of interpolation\dots?
+  - Interpolation in the source coordinate
+  - `Anterpolation'
+#+LATEX: \end{hidden}
+
+What would be the downside here?
+#+LATEX: \begin{hidden}
+Interpolation does not respect the PDE: increased cost.
+#+LATEX: \end{hidden}
+
+*** Anterpolation
+WLOG: 1D. Assume $K$ smooth, $(y_j)_{j=1}^N \subset [-1,1]$. Let
+\(u(x) =\sum_{j=1}^N \rho_j K(x - y_j)\).
+Assume $N$ large. How can we use interpolation to compress?
+#+LATEX: \begin{hidden}
+Let $r_i$ be Chebyshev nodes. Let $U_{j,i}$ be interpolation from $r_i$ to $y_j$.
+View $x$ as fixed.
+\begin{align*}
+u(x)
+& \approx \sum_{j=1}^N \rho_j \sum_i K(x - r_i) U(j, i)
+=  \sum_i K(x - r_i) \sum_{j=1}^N \rho_j U(j, i)\\
+&=  \sum_i K(x - r_i) [U^T \B \rho]_i
+\end{align*}
+
+#+LATEX: \end{hidden}
+
+How about that smoothness assumption?
+#+LATEX: \begin{hidden}
+Singular at diagonal? Just assume the targets are sufficiently far away.
+#+LATEX: \end{hidden}
+
+\demo{Anterpolation}
+
 ** Ewald Summation and DMK
 *** Preliminaries: Convolution
 
