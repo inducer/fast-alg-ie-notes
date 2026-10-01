@@ -2691,12 +2691,13 @@ Interpolation does not respect the PDE: increased cost.
 #+LATEX: \end{hidden}
 
 *** Anterpolation
-WLOG: 1D. Assume $K$ smooth, $(y_j)_{j=1}^N \subset [-1,1]$. Let
+WLOG: 1D. Assume $K$ smooth, $(y_j)_{j=1}^N \subset [-1,1]$. Assume $N$ large. Let
 \(u(x) =\sum_{j=1}^N \rho_j K(x - y_j)\).
-Assume $N$ large. How can we use interpolation to compress?
+Use interpolation to compress?
 #+LATEX: \begin{hidden}
-Let $r_i$ be Chebyshev nodes. Let $U_{j,i}$ be interpolation from $r_i$ to $y_j$.
-View $x$ as fixed.
+$r_i$: Chebyshev nodes.
+$U$: interp. matrix from $(r_i)$ to $(y_j)$.
+$x$: fixed.
 \begin{align*}
 u(x)
 & \approx \sum_{j=1}^N \rho_j \sum_i K(x - r_i) U(j, i)
