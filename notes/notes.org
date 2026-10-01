@@ -2740,7 +2740,34 @@ What is \(\mathcal F\{f(x-a)\}\)?
   =\mathcal F\{f\}(\omega)e^{-2\pi i a\omega}.\]
 #+LATEX: \end{hidden}
 
+*** Preliminaries: Non-Uniform FFT (Type-1)
 
+Given nonuniform nodes $x_j\in[0,2\pi)$ and complex strengths $c_j$, we want
+
+$$F_k=\sum_{j=0}^{N-1}c_j e^{-ikx_j}\qquad (-M/2\leq k<M/2).$$
+
+#+LATEX: \begin{hidden}
+The above is the Fourier Transform of the (periodic) function
+$$f(x)=\sum_{j=0}^{N-1}c_j \delta(x-x_j)\qquad (x\in[0,2\pi))$$
+
+- On a dense-ish uniform grid: convolve $f$ with a Gaussian
+- FFT
+- Deconvolve (divide!) in Fourier space
+#+LATEX: \end{hidden}
+
+\medskip
+\demo{Non-Uniform FFT} [Greengard/Lee 2004]
+
+*** Preliminaries: Non-Uniform FFT (Type-2)
+
+Given nonuniform nodes $x_j\in[0,2\pi)$, we want
+
+$$f(x_j)=\sum_{k=-M/2}^{M/2}F(k)e^{ikx_j}$$
+#+LATEX: \begin{hidden}
+- Deconvolve (divide!) in Fourier space
+- FFT
+- Convolve with the Gaussian in real space
+#+LATEX: \end{hidden}
 
 *** Simple and Periodic: Ewald Summation
 
