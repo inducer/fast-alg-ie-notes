@@ -2891,7 +2891,7 @@ a self-interaction, which must be removed.
 
 *** Ewald Summation: Summation (1D for simplicity)
 
-The interesting part is how to sum the contribution from \(G_{\tmop{LR}}\).
+Interesting part: summing \(G_{\tmop{LR}}\).
 Define the periodic source distribution
 \[\rho(x)=\sum_{m\in\mathbb Z}\sum_{j=1}^{N_{\tmop{src}}}
   \varphi(y_j)\delta(x-y_j-m).\]
@@ -2905,6 +2905,12 @@ Using the shift rule and the Fourier transform of the Dirac comb,
  &= \mathcal F\{G_{\tmop{LR}}\}(\omega)
     \mathcal F\{\rho\}(\omega).
 \end{align*}
+#+LATEX: \end{hidden}
+
+Provide an algorithmic outline for Ewald:
+#+LATEX: \begin{hidden}
+Evaluate $\mathcal F\{\rho\}$ on a Fourier grid (maybe NUFFT?);
+multiply by $\mathcal F\{G_{\tmop{LR}}\}$; FFT to real-space; apply local corrections.
 #+LATEX: \end{hidden}
 
 *** Ewald Summation: Summation (1D for simplicity), cont'd.
@@ -2939,6 +2945,57 @@ decay of order $q$.
 
   (small if screen smooth enough to be well-sampled by mesh)
 - \(O (N \log N)\) cost (from FFT, assuming number of particles $N$ $\sim$ mesh resolution)
+
+*** Ewald vs FMMs
+
+How does Ewald compare to an FMM?
+
+#+LATEX: \begin{hidden}
+- Necessarily periodic BCs
+- Struggles with non-uniform particle distributions
+
+  (FFTs, including NUFFT, use regular grids under the hood)
+- Differ in regularization approach:
+  - FMMs regularize by distance
+  - Ewald regularizes by multiplication with a screen
+#+LATEX: \end{hidden}
+
+*** Ewald to DMK: Non-adaptive
+So what to do?
+#+LATEX: \begin{hidden}
+Separate periodic images: use a windowed kernel
+- so that
+    - No change in potential within computational domain (e.g. $[-1/2,1/2]^d$)
+    - (Practically) Zero at next periodic image of $[-1/2,1/2]^d$
+- Side effect: removes blow-up at $\B k=0$
+    - a.k.a. the conditional convergence issue encountered in Ewald
+Use with NUFFT: Fine for near-uniform particle distributions
+#+LATEX: \end{hidden}
+Algorithmic outline:
+#+LATEX: \begin{hidden}
+Exactly the same as Ewald.
+#+LATEX: \end{hidden}
+
+\demo{Dual-Space Methods} (part I)
+
+*** Ewald to DMK: Adaptive
+How can we make that algorithm adaptive?
+#+LATEX: \begin{hidden}
+Carefully manage frequency content in box hierarchy
+
+\demo{Dual-Space Methods} (part II)
+
+\medskip
+- Adopt the Barnes-Hut point of view: for each target, must sum all sources.
+- Pick up screened kernel $+D_0$ at root (NUFFT)
+    - Pick up $D_1$ at next level down (only from colleagues), \dots
+    - Pick up residual at leaf level
+#+LATEX: \end{hidden}
+
+Complexity?
+#+LATEX: \begin{hidden}
+Naively: $O(N \log N)$. With anterpolation/interpolation: $O(N)$.
+#+LATEX: \end{hidden}
 
 ** Direct Solvers
 *** What about solving?
