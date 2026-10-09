@@ -3094,19 +3094,6 @@ sources/targets.
 
 What would the resulting matrix look like?
 
-*** Rank and Proxies
-
-Unlike FMMs, partitions here do not include "buffer" zones of near elements.
-What are the consequences?
-
-#+LATEX: \begin{hidden}
-- IDs will be built using proxies
-- If near-neighbor particles inside the proxy circle, simply include them as 'additional proxies'
-  to enlarge the space enough to get accuracy for those interactions
-- Will have higher rank as a result
-- It's possible to use buffering in the sovler, but the math gets more involved
-#+LATEX: \end{hidden}
-
 *** Block-Separable Matrices
 
 A /block-separable matrix/ looks like this:
@@ -3127,6 +3114,19 @@ Here:
 - \(P_i\) shared for entire row
 
 - \(\Pi _i\) shared for entire column
+
+*** Rank and Proxies
+
+Unlike FMMs, partitions here do not include "buffer" zones of near elements.
+What are the consequences?
+
+#+LATEX: \begin{hidden}
+- IDs will be built using proxies
+- If near-neighbor particles inside the proxy circle, simply include them as 'additional proxies'
+  to enlarge the space enough to get accuracy for those interactions
+- Will have higher rank as a result
+- It's possible to use buffering in the sovler, but the math gets more involved
+#+LATEX: \end{hidden}
 
 *** Block-Separable Matrix: Questions
 
