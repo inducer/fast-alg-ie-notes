@@ -5,8 +5,6 @@
 
 * To-do                                                            :noexport:
 ** TODO Work out kernel-independent M2L in more detail
-** TODO Discuss anterpolation better
-** TODO DMK
 
 * LaTeX header setup stuff                                         :noexport:
 
@@ -2978,6 +2976,13 @@ Exactly the same as Ewald.
 #+LATEX: \end{hidden}
 
 \demo{Dual-Space Methods} (part I)
+
+*** TODO DMK To-dos
+
+- Work out the multi-level algorithmic outline for DMK better:
+  - Make it clear how the difference kernels get used
+  - Bring the telescoping sum and the overall summation picture into the notes
+  - Make it clearer how interpolation and anterpolation enter the picture
 
 *** Ewald to DMK: Adaptive
 How can we make that algorithm adaptive?
