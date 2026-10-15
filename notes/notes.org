@@ -3287,7 +3287,7 @@ Summary: Need to solve
    \[(N_{L 0 \tmop{boxes}} \cdot K) \times (N_{L 0 \tmop{boxes}} \cdot K), \]
    which is cheaper by a factor of \((K / m)^3\).
 
- - We are now only solving on the skeletons.
+ - The number of coarse DOFs is the number of skeletons
 
 **** Solving on the Skeletons                                      :B_column:
      :PROPERTIES:
