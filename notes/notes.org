@@ -3932,7 +3932,7 @@ Only works if \(| \alpha | < 1  \)!
 *** Attempt 1: The Neumann series (II)
 
 #+LATEX: \begin{theorem}
-\(A : X \to X\) Banach, \(\|A\|< 1\)
+\(A : X \to X\) Banach, \(\|A\|< 1\):
 \(\ds(I - A)^{- 1} = \sum _{k = 0}^\infty  A^k \)
 with \(\|(I - A)^{- 1} \|\le 1 / (1 -\|A\|)\).
 #+LATEX: \end{theorem}
@@ -4108,7 +4108,7 @@ Continuous on a closed and bounded (`compact') set.
 
 Use A-A. (a statement about compact /sets/) What is there to show?
 
-Pick \(U \subset C (G)\). \(A (U)\) bounded?
+Pick \(U \subset C (G)\) bounded. \(A (U)\) bounded?
 #+LATEX: \begin{hidden}
 Yes, because the operator is bounded.
 #+LATEX: \end{hidden}
@@ -4122,7 +4122,7 @@ Let $\phi\in U$.
 
 \[
 \abs{(A\phi)(x)-(A\phi)(y)}
-\le \int_G \abs{K(x,z)-K(y,z)}\abs{phi(z)} dz
+\le \int_G \abs{K(x,z)-K(y,z)}\abs{\phi(z)} dz
 \le |G|\epsilon \norm{\phi}_\infty.
 \]
 #+LATEX: \end{hidden}
