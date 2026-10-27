@@ -3994,7 +3994,7 @@ Precompactness `replaces' boundedness in \(\infty\) dim (because boundedness is
 
 *** Compact Operators
 
-\(X, Y\): Banach spaces
+\(X, Y\): Banach spaces, $T$, $S$ bounded.
 
 #+LATEX: \begin{definition}[Compact operator]
 
