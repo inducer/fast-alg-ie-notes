@@ -4066,9 +4066,21 @@ if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).
 #+LATEX: \begin{hidden}
 - Let $f_n$ be a sequence in $U$. To show: Has Cauchy subseq. wrt $\norm{\cdot}_\infty$.
 - Pick a dense sequence $(x_i)$ in \(G\)
-- Use a diagonal argument to find pointwise convergent subsequence, numbered $n(k)$
+- Pick $n_1$ so that $f_{n_1(k)}(x_1))_k$ is convergent,
+    - pick $n_2$ so that $f_{n_2(k)}(x_2))_k$ is convergent, \dots
+    - Eventually: $(f_{n_i(k)}(x_i))_k$ converges for all $x_i$
+    - Consider diagonal sequence: $f_{n(k)}:=f_{n_k(k)}$.
+    - For each $x_i$: $(f_{n(k)}(x_i))_k$ converges.
+- Have: subsequence of $(f_n)$ that's convergent for each $x_i$ ('pointwise')
+#+LATEX: \end{hidden}
+
+*** Arzelà-Ascoli: Proof Sketch for b \land e \Rightarrow precompact (cont'd)
+
+#+LATEX: \begin{hidden}
 - Let $\epsilon>0$, use $\delta>0$ from equicontinuity.
-- Consider cover $B(x_i, \delta)$, let $M$ be such that $G\subseteq B(x_1,\delta) \cup\cdots\cup B(x_M,\delta)$
+- Consider cover $B(x_i, \delta)$, let $M$ be such that $G\subseteq B(x_1,\delta) \cup\cdots\cup B(x_M,\delta)$.
+    - For each $x_1, \dots, x_M$, can find $N$ so that $\abs{\phi(n(k)(x_j)-\phi(n(k)(x_\ell)}<\epsilon$ for $k,\ell\ge N$.
+    - Finitely many: take the max over them.
 - Let $x\in G$. Find $x_j$ such that $\abs{x_j-x}<\delta$. ($j\in\{1,\dots,M\}$)
 - $\abs{f_{n(k)}(x) - f_{n(\ell)}(x)}\le \abs{f_{n(k)}(x) - f_{n(k)}(x_j)}+\cdots$
 
@@ -4079,8 +4091,7 @@ if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).
 
 Intuition?
 #+LATEX: \begin{hidden}
-Equicontinuity prevents the functions from `running
-away'.
+Equicontinuity prevents the functions from `running away'.
 #+LATEX: \end{hidden}
 
 ``Uniformly continuous''?
