@@ -4066,9 +4066,10 @@ if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).
 #+LATEX: \begin{hidden}
 - Let $f_n$ be a sequence in $U$. To show: Has Cauchy subseq. wrt $\norm{\cdot}_\infty$.
 - Pick a dense sequence $(x_i)$ in \(G\)
-- Pick $n_1$ so that $f_{n_1(k)}(x_1))_k$ is convergent,
-    - pick $n_2$ so that $f_{n_2(k)}(x_2))_k$ is convergent, \dots
+- Pick $n_1$ so that $f_{n_1(k)}(x_1))_k$ is convergent (boundedness!),
+    - pick $n_2$ from $n_1$ so that $f_{n_2(k)}(x_2))_k$ is convergent, \dots
     - Eventually: $(f_{n_i(k)}(x_i))_k$ converges for all $x_i$
+    - Need: the `last' one of these numberings
     - Consider diagonal sequence: $f_{n(k)}:=f_{n_k(k)}$.
     - For each $x_i$: $(f_{n(k)}(x_i))_k$ converges.
 - Have: subsequence of $(f_n)$ that's convergent for each $x_i$ ('pointwise')
@@ -4079,12 +4080,12 @@ if \(|x - y| < \delta\), then \(|f (x) - f (y) | < \epsilon\).
 #+LATEX: \begin{hidden}
 - Let $\epsilon>0$, use $\delta>0$ from equicontinuity.
 - Consider cover $B(x_i, \delta)$, let $M$ be such that $G\subseteq B(x_1,\delta) \cup\cdots\cup B(x_M,\delta)$.
-    - For each $x_1, \dots, x_M$, can find $N$ so that $\abs{\phi(n(k)(x_j)-\phi(n(k)(x_\ell)}<\epsilon$ for $k,\ell\ge N$.
-    - Finitely many: take the max over them.
+    - For each $x_1, \dots, x_M$, can find $N$ so that $\abs{f_{n(k)}(x_j)-f_{n(k)}(x_j)}<\epsilon$ for $k,\ell\ge N$ for $j=1,\dots,M$.
+    - Finitely many: can take the max over them.
 - Let $x\in G$. Find $x_j$ such that $\abs{x_j-x}<\delta$. ($j\in\{1,\dots,M\}$)
 - $\abs{f_{n(k)}(x) - f_{n(\ell)}(x)}\le \abs{f_{n(k)}(x) - f_{n(k)}(x_j)}+\cdots$
 
-  Outer terms small by equicontinuity, middle term small by convergence.
+  Outer terms small by equicontinuity, middle term small by cover and convergence.
 #+LATEX: \end{hidden}
 
 *** Arzelà-Ascoli (II)
@@ -4227,11 +4228,11 @@ invertibility. Now we know that there's only `finitely many obstacles'.
 
 Proof:
 
-- \(N (L)\) closed. (Why?)
-
-- $A:N(L)\to N(L)$ compact because of closedness
+- \(N (L)\) closed. (continuity!)
 
 - \(L \phi = 0\) means what for \(A\)?
+
+- $A:N(L)\to N(L)$ precompact (why?) and compact (closedness!)
 
 - When is the identity compact again?
 #+LATEX: \end{hidden}
