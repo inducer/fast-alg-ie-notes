@@ -4746,9 +4746,10 @@ So boundaries are special.
 
 #+LATEX: \begin{theorem}[Green's Formula in the exterior {\footnotesize [Kress LIE 3rd ed. Thm 6.11]}]
 \[(-S_{\partial \Omega } (\hat {n} \cdot \nabla u) + D_{\partial \Omega } u)
-   (x) + \tmcolor{red}{\tmop{PV}} u_\infty  = u (x) \]
+   (x) + \tmcolor{red}{\tmop{PV}} u_\infty  = u (x) \qquad (x\in\mathbb R^n\setminus \bar \Omega) \]
 for some constant \(u_\infty\). /Only/ for \(n = 2\),
-\[u_\infty  = \frac{1}{2 \pi r}  \int _{|y| = r} u (y) ds_y . \]
+\[u_\infty  = \frac{1}{2 \pi r}  \int _{|y| = r} u (y) ds_y \]
+for sufficiently large $r$.
 #+LATEX: \end{theorem}
 
 Realize the power of this statement:
@@ -5080,12 +5081,12 @@ Problem: \(N (I / 2 + S') = \{\psi \}\)... do not know \(\psi\). Assume $0\in\Om
 \vspace*{-2ex}
 \[K(x,y)=\hat {n} \cdot \nabla _y G (x, y) \qquad \to \qquad \tilde K(x,y)=\hat {n} \cdot \nabla _y G
    (x, y) + \frac{1}{|x|^{n - 2}} \]
-\[u(x):=\int_\Gamma\qquad \tilde K(x,y)  \sigma(y)dS_y =D \sigma(x) + \frac{1}{|x|^{n - 2}}  \int_\Gamma \sigma(y)dS_y\]
+\[u(x):=\int_\Gamma\tilde K(x,y)  \sigma(y)dS_y =D \sigma(x) + \frac{1}{|x|^{n - 2}}  \int_\Gamma \sigma(y)dS_y=\tilde D \sigma(x)\]
 
 - Still a solution of the PDE? Compact? Jump condition? Exterior limit?
   (all unchanged)
-- \(u = 0\) on exterior because of ext. Dirichlet uniqueness. (\(\partial_n G = O(1/r^{n-1})\))
-- \(|x|^{n - 2} u (x) = \int\phi+O(1/r) \) as \(|x|\to\infty\), so $\int\phi=0$, so \(\phi / 2 + D \phi = 0\), i.e. \(\phi \in N (I / 2 + D=span\{1\}\), i.e. const.
+-  Let$\phi/2+\tilde D\phi = 0$. \(u = 0\) on exterior because of ext. Dirichlet uniqueness. (\(\partial_n G = O(1/r^{n-1})\))
+- \(|x|^{n - 2} u (x) = \int\phi+O(1/r) \) as \(|x|\to\infty\), so $\int\phi=0$, so \(\phi / 2 + D \phi = 0\), i.e. \(\phi \in N (I / 2 + D)=span\{1\}\), i.e. const.
   With $\int\phi=0$, $\phi=0$.
 #+LATEX: \end{hidden}
 
@@ -5112,7 +5113,7 @@ At corner \(x_0\): (2D)
 Name some problems.
 #+LATEX: \begin{hidden}
 - On-surface value of potential no longer continuous.
-- $I/2\pm D$ not compact.
+- $I/2\pm D$ not a compact perturbation of the identity.
 #+LATEX: \end{hidden}
 
 Workarounds?
