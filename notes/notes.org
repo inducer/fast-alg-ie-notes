@@ -5217,9 +5217,9 @@ Physical quantities:
 
 - Velocity: \(v = (1 / \rho _0) \nabla U\)
 
-- Pressure: \(p = - \partial _t U = i \omega ue^{- i \omega t}\)
+- Pressure perturbation: \(p = - \partial _t U = i \omega ue^{- i \omega t}\)
 
-  - Equation of state: \(p = f (\rho )\)
+  - Equation of state: Total pressure \(P = f (\rho )\)
 
 What's \(\rho _0\)?
 #+LATEX: \begin{hidden}
@@ -5438,8 +5438,8 @@ Show that \(D'\) is self-adjoint.
 - Introduce: \(u = D \varphi , \quad v = D \psi\)
 
 - Green's second thm (ext. and int., ext. thanks to Sommerfeld):
-  \[\int _{\partial \Omega } (\hat {n} \cdot \nabla u) v = \int _{\partial
-       \Omega } u (\hat {n} \cdot \nabla v) \]
+  \[\int _{\partial \Omega } (\hat {n} \cdot \nabla u)^\pm v^\pm = \int _{\partial
+       \Omega } u^\pm (\hat {n} \cdot \nabla v)^\pm \]
 - Then:
   \begin{eqnarray*}
     (D' \varphi , \psi )
