@@ -5903,14 +5903,17 @@ What senses of convergence are there for sequences of operators \(A_n\)?
 Will we get norm convergence \(\|A_n - A\|_\infty \to 0\) for Nyström?
 #+LATEX: {\scriptsize [Kress LIE 3rd ed. Thm. 12.8]}
 #+LATEX: \begin{hidden}
-*No:* Pick \(\psi _\epsilon  = 1\) everywhere except in
+*No:* Pick \(\psi _\epsilon  = 1\) everywhere *except* in
 \(\epsilon\)-nbh of quad nodes, 0 there.
 
 Show:
 
 - \(\|A \phi \psi _\epsilon  - A \phi \|_\infty  \to 0\) (\(\epsilon \to      0\))
 
-- \(\|A - A_n \|_\infty  \ge \|A\|_\infty\)
+- \(\|A - A_n \|_\infty =\sup_{\|\phi\|=1} \|(A-A_n)\phi\|
+    \ge \sup_{\|\phi\|=1} \sup_\epsilon \|(A-A_n)\phi\psi_\epsilon\|
+    = \sup_{\|\phi\|=1} \sup_\epsilon \|A\phi\psi_\epsilon\|
+    \ge \|A\|_\infty\)
 #+LATEX: \end{hidden}
 
 Is functionwise convergence good enough?
@@ -5942,6 +5945,8 @@ How is this different from norm convergence?
 /Only on compact subsets of \(X\)!/
 #+LATEX: \end{hidden}
 
+Proof relies on uniform boundedness principle: not today!
+
 *** Collective Compactness
 
 Set \(\mathcal{A}\) of operators \(A : X \to X\)
@@ -5969,7 +5974,7 @@ Yes.
 
 Is collective compactness the same as ``every operator in \(\mathcal A\) is compact''?
 #+LATEX: \begin{hidden}
-No.
+No. (Counterexample: sequences, $A_n$ is projection onto $n$th coordinate, consider $A_n(1,1,1,\dots)$)
 #+LATEX: \end{hidden}
 
 *** Collective Compactness: Questions (2/2)
